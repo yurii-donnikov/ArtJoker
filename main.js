@@ -309,3 +309,46 @@ function AvergeElemDobleArr (array) {
     
 } 
 AvergeElemDobleArr(haveDobleArray)
+
+
+
+
+
+
+let haveDobleArray = [
+    [1, 2],
+    [3, 4],
+    [6, 2, 1]
+];
+
+function AvergeElemDobleArr(array) {
+    let chetnMass = []
+    let neChetMass = []
+    let chetsumElem = 0;
+    let nechetsumElem = 0;
+
+    array.forEach(i => {
+        i.forEach(j => {
+            if (j % 2 == 0) {
+                chetnMass.push(j)
+            } else {
+                neChetMass.push(j)
+            }
+        })
+
+
+    });
+    chetnMass.forEach(i => {
+        chetsumElem += i
+    })
+
+    neChetMass.forEach(i => {
+        nechetsumElem += i
+    })
+
+    return [(chetsumElem / chetnMass.length), (nechetsumElem / neChetMass.length)]
+
+
+
+}
+AvergeElemDobleArr(haveDobleArray)
