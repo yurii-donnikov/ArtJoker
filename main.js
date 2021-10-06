@@ -1,17 +1,3 @@
-let haveMatrix = [
-    [9, 3, 0],
-    [9, 0, 5],
-    [8, 1, 5],
-    [7, 0, 5],
-];
-for (let i = 0; i < haveMatrix.length; i++) {
-    for (let j = 0; j < haveMatrix[i].length; j++) {
-        if (haveMatrix[i][j] == 0) {
-            haveMatrix.splice(i, 1);
-        };
-    };
-};
-console.log(haveMatrix);
 // lesson1
 // function getMonogramma (haveWord1, haveWord2) {
 //     let arrayWord1 = haveWord1.split('');
@@ -267,88 +253,137 @@ console.log(haveMatrix);
 
 // lesson 14
 
-let haveArray = [2, 2, 3, 4, 5];
+// let haveArray = [2, 2, 3, 4, 5];
 
-function countAvergeElem (array) {
-    let sumChetElem = 0;
-    let numberChetElem = 0;
+// function countAvergeElem (array) {
+//     let sumChetElem = 0;
+//     let numberChetElem = 0;
 
-    let sumNechetElem = 0;
-    let numberNechetElem = 0;
+//     let sumNechetElem = 0;
+//     let numberNechetElem = 0;
 
-    array.forEach(i => {
-        if (i % 2 == 0) {
+//     array.forEach(i => {
+//         if (i % 2 == 0) {
             
-            sumChetElem += i
-            numberChetElem++ 
-        }
-        else {
-            sumNechetElem += i
-            numberNechetElem++
-        }
+//             sumChetElem += i
+//             numberChetElem++ 
+//         }
+//         else {
+//             sumNechetElem += i
+//             numberNechetElem++
+//         }
         
-    });
-    console.log ([(sumChetElem / numberChetElem), (sumNechetElem / numberNechetElem)])
-} 
-
-
-
-
-let haveDobleArray = [[1, 2], [3, 4], [6]];
-
-function AvergeElemDobleArr (array) {
-    let sumElem = 0;
-    array.forEach(i => {
-
-        console.log(i.length)
-        // i.forEach(j => {
-        //     console.log(j)
-        // })
-        
-    });
-    
-} 
-AvergeElemDobleArr(haveDobleArray)
+//     });
+//     console.log ([(sumChetElem / numberChetElem), (sumNechetElem / numberNechetElem)])
+// } 
 
 
 
 
 
+// let haveDobleArray = [
+//     [1, 2],
+//     [3, 4],
+//     [6, 2, 1]
+// ];
 
-let haveDobleArray = [
-    [1, 2],
-    [3, 4],
-    [6, 2, 1]
-];
+// function AvergeElemDobleArr(array) {
+//     let chetnMass = []
+//     let neChetMass = []
+//     let chetsumElem = 0;
+//     let nechetsumElem = 0;
 
-function AvergeElemDobleArr(array) {
-    let chetnMass = []
-    let neChetMass = []
-    let chetsumElem = 0;
-    let nechetsumElem = 0;
-
-    array.forEach(i => {
-        i.forEach(j => {
-            if (j % 2 == 0) {
-                chetnMass.push(j)
-            } else {
-                neChetMass.push(j)
-            }
-        })
-
-
-    });
-    chetnMass.forEach(i => {
-        chetsumElem += i
-    })
-
-    neChetMass.forEach(i => {
-        nechetsumElem += i
-    })
-
-    return [(chetsumElem / chetnMass.length), (nechetsumElem / neChetMass.length)]
+//     array.forEach(i => {
+//         i.forEach(j => {
+//             if (j % 2 == 0) {
+//                 chetnMass.push(j)
+//             } else {
+//                 neChetMass.push(j)
+//             }
+//         })
 
 
+//     });
+//     chetnMass.forEach(i => {
+//         chetsumElem += i
+//     })
 
-}
-AvergeElemDobleArr(haveDobleArray)
+//     neChetMass.forEach(i => {
+//         nechetsumElem += i
+//     })
+
+//     return [(chetsumElem / chetnMass.length), (nechetsumElem / neChetMass.length)]
+
+// }
+// AvergeElemDobleArr(haveDobleArray)
+
+
+
+// lesson17
+
+let dubleArray = [
+    [1, 2, 4, 4],
+    [5, 0, 7, 2],
+    [5, 3, 7, 2],
+    [5, 6, 0, 3],
+]
+
+// function deleteStrZero (array) {
+//     for (let i = 0; i < array.length; i++ ) {
+//         dubleArray[i].forEach( j => {
+//             if (j == 0) {
+//                 dubleArray.splice(i, 1);
+//                 i--;
+//             };
+//         });
+//     };
+//     return dubleArray
+// }
+// deleteStrZero(dubleArray)
+
+
+
+
+// function deleteColumnZero (array) {
+//         for (let i = 0; i < array.length; i++ ) {
+
+//             for (let j = 0; j < array[i].length; j++) {
+
+//                 if (array[i][j] == 0) {
+
+//                     //console.log(array[i], j);
+
+
+
+//                     for (let index = 0; index < array.length; index++) {
+//                         //console.log(array[index])
+//                         for ( let indj = 0; indj < array[index].length; indj++) {
+//                             if (indj == j) {
+//                                 //console.log(array[index][indj])
+//                                 array[index].splice(indj, 1);
+                                
+//                             }
+//                         }
+
+//                     };
+
+
+
+
+//                 }
+//             }
+//     };
+//     return array
+//    // console.log(array)
+// }
+
+// deleteColumnZero (dubleArray)
+
+// бегунки i, j, k, m, n
+
+
+
+
+
+
+
