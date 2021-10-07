@@ -105,3 +105,313 @@ function countElemOddNumber (array) {
     });
     return result;
 };
+// lesson10
+function countRezoElem (array) {
+    let result = 0;
+    array.forEach(i => {
+        if(i == 0) {
+            result++;
+        };
+    });
+    return result;
+};
+function countNegativeElem (array) {
+    let result = 0;
+    array.forEach(i => {
+        if(i < 0) {
+            result++;
+        };
+    });
+    return result;
+};
+function countPositiveElem (array) {
+    let result = 0;
+    array.forEach(i => {
+        if(i > 0) {
+            result++;
+        };
+    });
+    return result;
+};
+function countSimpleElem (array) {
+    let result = 0;
+    array.forEach(i => {
+        if (i == 2) {
+            result++;
+        } else {
+            if (i > 1 && i % 2 != 0) {
+                result++;
+            };
+        };
+    });
+    return result;
+};
+// lesson12
+function countAllElemDubleArr (array) {
+    let result = {};
+    let resultNum = 0;
+    array.forEach(i => {
+        i.forEach(j => {
+            resultNum += j;
+        })
+        result[i] = resultNum;
+        resultNum = 0;
+    })
+    return result;
+};
+function countElemEqualTwoDubleArr (array) {
+    let result = {};
+    let resultNum = 0;
+    array.forEach(i => {
+        i.forEach(j => {
+            if (j % 2 == 0) {
+            resultNum += j;
+            };
+        })
+        result[i] = resultNum;
+        resultNum = 0;
+    });
+    return result;
+};
+function countElemPositiveDubleArr (array) {
+    let result = {};
+    let resultNum = 0;
+    array.forEach(i => {
+        i.forEach(j => {
+            if (j % 3 == 0) {
+            resultNum += j;
+            };
+        })
+        result[i] = resultNum;
+        resultNum = 0;
+    });
+    return result;
+};
+function countElemPositiveDubleArr (array) {
+    let result = {};
+    let resultNum = 0;
+    array.forEach(i => {
+        i.forEach(j => {
+            if (j > 0) {
+            resultNum += j;
+            };
+        })
+        result[i] = resultNum;
+        resultNum = 0;
+    });
+    return result;
+};
+function countElemOddDubleArr (array) {
+    let result = {};
+    let resultNum = 0;
+    array.forEach(i => {
+        i.forEach(j => {
+            if (j % 2 != 0)  {
+            resultNum += j;
+            };
+        })
+        result[i] = resultNum;
+        resultNum = 0;
+    });
+    return result;
+};
+// les12.2
+function countZeroElemDubleArr (array) {
+    let result = {};
+    let resultNum = 0;
+    array.forEach(i => {
+        i.forEach(j => {
+            if (j == 0)  {
+            resultNum ++;
+            };
+        });
+        result[i] = resultNum;
+        resultNum = 0;
+    });
+    return result;
+};
+function countNegativeElemDubleArr (array) {
+    let result = {};
+    let resultNum = 0;
+    array.forEach(i => {
+        i.forEach(j => {
+            if (j < 0)  {
+            resultNum ++;
+            };
+        });
+        result[i] = resultNum;
+        resultNum = 0;
+    });
+    return result;
+};
+function countPositiveElemDubleArr (array) {
+    let result = {};
+    let resultNum = 0;
+    array.forEach(i => {
+        i.forEach(j => {
+            if (j > 0)  {
+            resultNum ++;
+            };
+        });
+        result[i] = resultNum;
+        resultNum = 0;
+    });
+    return result;
+};
+function countSimpleElemDubleArr (array) {
+    let result = {};
+    let resultNum = 0;
+    array.forEach(i => {
+        i.forEach(j => {
+            if (j == 2)  {
+            resultNum ++;
+            } else {
+                if (j > 1 && j % 2 != 0) {
+                    resultNum++;
+                };
+            };
+        });
+        result[i] = resultNum;
+        resultNum = 0;
+    });
+    return result;
+};
+// lesson 13
+function getMinMaxValue (array) {
+    let minNumber = array[0];
+    let maxNumber = array[0];
+    let result = 0;
+    for (var i = 0; i < array.length; i++) {
+        if (minNumber > array[i]) {
+            minNumber = array[i];
+        };
+    };
+    for (var i = 0; i < array.length; i++) {
+        if (maxNumber < array[i]) {
+            maxNumber = array[i];
+        };
+    };
+    for(let i = minNumber; i <= maxNumber; i++) {
+        result += i;
+    };
+    return result;
+};
+function getMinMaxEqualThree (array){
+    let arrayEqualThree = [];
+    let minNumber = array[0];
+    let maxNumber = array[0];
+    let result = 0;
+    array.forEach(i => {
+        if (i % 3 == 0) {
+            arrayEqualThree.push(i);
+        }
+    });
+    for (var i = 0; i < array.length; i++) {
+        if (minNumber > array[i]) {
+            minResultNumber = array[i];
+        };
+    };
+    for (var i = 0; i < array.length; i++) {
+        if (maxNumber < array[i]) {
+            maxNumber = array[i];
+        };
+    };
+    for(let i = minNumber; i <= maxNumber; i++) {
+        result += i;
+    };
+   return result;
+};
+function getMinMaxPositiveNum (array){
+    let arrayEqualThree = [];
+    let minNumber = array[0];
+    let maxNumber = array[0];
+    let result = 0;
+    array.forEach(i => {
+        if (i > 3) {
+            arrayEqualThree.push(i);
+        }
+    });
+    for (var i = 0; i < array.length; i++) {
+        if (minNumber > array[i]) {
+            minResultNumber = array[i];
+        };
+    };
+    for (var i = 0; i < array.length; i++) {
+        if (maxNumber < array[i]) {
+            maxNumber = array[i];
+        };
+    };
+    for(let i = minNumber; i <= maxNumber; i++) {
+        result += i;
+    };
+   return result;
+};
+// lesson14
+function countAvergeElem (array) {
+    let sumChetElem = 0;
+    let numberChetElem = 0;
+    let sumNechetElem = 0;
+    let numberNechetElem = 0;
+    array.forEach(i => {
+        if (i % 2 == 0) {
+            sumChetElem += i;
+            numberChetElem++;
+        } else {
+            sumNechetElem += i;
+            numberNechetElem++;
+        };  
+    });
+    return ([(sumChetElem / numberChetElem), (sumNechetElem / numberNechetElem)])
+};
+function AvergeElemDobleArr(array) {
+    let chetnMass = [];
+    let neChetMass = [];
+    let chetsumElem = 0;
+    let nechetsumElem = 0;
+    array.forEach(i => {
+        i.forEach(j => {
+            if (j % 2 == 0) {
+                chetnMass.push(j);
+            } else {
+                neChetMass.push(j);
+            };
+        });
+    });
+    chetnMass.forEach(i => {
+        chetsumElem += i;
+    })
+    neChetMass.forEach(i => {
+        nechetsumElem += i;
+    })
+    return [(chetsumElem / chetnMass.length), (nechetsumElem / neChetMass.length)];
+};
+// lesson17
+function deleteStrZero (array) {
+    for (let i = 0; i < array.length; i++ ) {
+        dubleArray[i].forEach( j => {
+            if (j == 0) {
+                dubleArray.splice(i, 1);
+                i--;
+            };
+        });
+    };
+    return dubleArray;
+};
+function deleteColumnZero (array) {
+    for (let i = 0; i < array.length; i++ ) {
+        for (let j = 0; j < array[i].length; j++) {
+            if (array[i][j] == 0) {
+                for (let k = 0; k < array.length; k++) {
+                    for ( let m = 0; m < array[k].length; m++) {
+                        if (m == j) {
+                            array[k].splice(m, 1);
+                        };
+                    };
+
+                };
+            };
+        };
+    };
+    return array;
+};
+// ====================
