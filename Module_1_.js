@@ -414,4 +414,100 @@ function deleteColumnZero (array) {
     };
     return array;
 };
+// lesson18
+function countSumRecursion (array, count) { 
+    count = count || 0;           
+    if (count < array.length - 1) {
+     return array[count] += countSumRecursion (array, ++count);
+    } else {
+        return array[count];
+    };
+};
+function countSumPositiveRecursion (array, count) { 
+    count = count || 0;           
+    if (count < array.length - 1) {
+        if (array[count] > 0) {
+            return array[count] += countSumPositiveRecursion (array, ++count);
+        } else {
+            return countSumPositiveRecursion (array, ++count);
+        };
+    } else {
+        if (array[count] > 0) {
+            return array[count];
+        } else {
+            return 0;
+        };
+    };
+};
+function countSumEqualThreeRecursion (array, count) { 
+    count = count || 0;           
+    if (count < array.length - 1) {
+        if (array[count] % 3 == 0) {
+            return array[count] += countSumEqualThreeRecursion (array, ++count);
+        } else {
+            return countSumEqualThreeRecursion (array, ++count);
+        };
+    } else {
+        if (array[count] % 3 == 0) {
+            return array[count];
+        } else {
+            return 0;
+        };
+    };
+};
+function countSumOddRecursion (array, count) { 
+    count = count || 0;           
+    if (count < array.length - 1) {
+        if (array[count] % 2 == 0) {
+            return array[count] += countSumOddRecursion (array, ++count);
+        } else {
+            return countSumOddRecursion (array, ++count);
+        };
+    } else {
+        if (array[count] % 2 == 0) {
+            return array[count];
+        } else {
+            return 0;
+        };
+    };
+};
+function countSumNumberZeroRecursion (array, count, result) {
+    count = count || 0;                               
+    result = result || 0;
+    if (count < array.length - 1) {                   
+        if (array[count] == 0) {                       
+            return (result + 1) + countSumZeroRecursion (array, ++count, result); 
+        } else {
+            return countSumZeroRecursion (array, ++count, result);
+        };
+    } else {
+        if (array[count] == 0) {
+            return ++result;
+        } else {
+             return result;
+        };
+    };
+};
 // ====================
+
+
+function countSumNumberZeroRecursion (array, callback, count, result) {
+    count = count || 0;                               
+    result = result || 0;
+    if (count < array.length - 1) {                   
+        if ( callback(array, count) ) {                       
+            return (result + 1) + countSumNumberZeroRecursion (array, callback, ++count, result); 
+        } else {
+            return countSumNumberZeroRecursion (array, callback, ++count, result);
+        };
+    } else {
+        if (callback(array, count)) {
+            return ++result;
+        } else {
+             return result;
+        };
+    };
+};
+
+
+countSumNumberZeroRecursion ( arr, (function (i, j) { return (i[j] == 0)}) )
