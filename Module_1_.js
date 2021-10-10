@@ -511,3 +511,19 @@ function countSumNumberZeroRecursion (array, callback, count, result) {
 
 
 countSumNumberZeroRecursion ( arr, (function (i, j) { return (i[j] == 0)}) )
+
+
+//18.4
+function getNumWord(offer, word, count) {
+    count = count || 0;
+    arrayPr = offer.split(' ');
+    if (count < arrayPr.length) {
+        if (arrayPr[count] == word) {
+            return 1 + getNumWord(offer, word, ++count);
+        } else {
+            return 0 + getNumWord(offer, word, ++count);
+        }
+    } else {
+        return 0;
+    };
+};
