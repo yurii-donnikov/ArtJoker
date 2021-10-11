@@ -71,6 +71,57 @@ function countFibonachi (number) {
       }
       return numPrevious
 }
+//lesson7;
+class Rectangle {
+    height;
+    width;
+    constructor(height, width) {
+        this.height = height;
+        this.width = width;
+    };
+    square() {
+        return this.width * this.height;
+    };
+    perimeter() {
+        return (this.width * 2) + (this.height * 2);
+    };
+};
+class Triangle {
+    a;
+    b;
+    c;
+    constructor(a, b, c) {
+        this.a = a;
+        this.b = b;
+        this.c = c;
+    };
+    square() {
+        return 1 / 2 * this.a * this.b * Math.sin((this.c * Math.PI) / 180);
+    };
+    perimeter() {
+        return this.a + this.b + this.c;
+    };
+};
+class Circle {
+    radius;
+    constructor(radius) {
+        this.radius = radius;
+    };
+    square() {
+        return Math.PI * Math.pow(this.radius, 2);
+    };
+    perimeter() {
+        return Math.PI * 2 * this.radius;
+    };
+};
+// lesson8
+function getFactorial (number) {
+    let result = 1;
+    for (let i = 1; i <= number; i++) {
+        result = result * i;
+    };
+    return result;
+};
 // lesson9;
 function countAllElem (array) {
     let result = 0;
@@ -155,6 +206,27 @@ function countSimpleElem (array) {
         };
     });
     return result;
+};
+// lesson11
+function getNumSystem10 (numberSystemTwo) {
+    let result = 0;
+    let arraySystTwo = ( '' + numberSystemTwo).split('').reverse();
+   for(let i = 0; i < arraySystTwo.length; i++) {
+    result += arraySystTwo[i] * (Math.pow(2, i));
+   };
+   return result;
+};
+function getNumSystem2 (number) {
+    let res;
+    if (( res = number / 2) >= 1) {   
+        if (res % 2 == parseInt(res % 2)) {  
+            return (getNumSystem2(parseInt(res)) + '0');
+        } else {
+            return (getNumSystem2(parseInt(res)) + '1');
+        };
+    } else {
+        return "1";
+    };
 };
 // lesson12
 function countAllElemDubleArr (array) {
@@ -395,6 +467,28 @@ function AvergeElemDobleArr(array) {
     })
     return [(chetsumElem / chetnMass.length), (nechetsumElem / neChetMass.length)];
 };
+// lesson15
+function transposeMatrix (matrix) {
+    let externalArray = matrix.length;
+    let interiorArray = matrix[0].length;
+    let result = [];
+    for (var i = 0; i < interiorArray; i++) {
+        result[i] = [];
+        for (var j = 0; j < externalArray; j++) result[i][j] = matrix[j][i];
+    }
+    return result;
+};
+// lesson16
+function addTwoMatrix(matrix1, matrix2) {
+    let externalArray = matrix1.length;
+    let interiorArray = matrix1[0].length;
+    let result = [];
+    for (var i = 0; i < externalArray; i++) {
+        result[i] = [];
+        for (var j = 0; j < interiorArray; j++) result[i][j] = matrix1[i][j] + matrix2[i][j];
+    };
+    return result;
+};
 // lesson17
 function deleteStrZero (array) {
     for (let i = 0; i < array.length; i++ ) {
@@ -536,4 +630,36 @@ function getNumWord(offer, word, count) {
     } else {
         return 0;
     };
+};
+//18.11
+function getNumSystem2 (number) {
+    let res;
+    if (( res = number / 2) >= 1) {   
+        if (res % 2 == parseInt(res % 2)) {  
+            return (getNumSystem2(parseInt(res)) + '0');
+        } else {
+            return (getNumSystem2(parseInt(res)) + '1');
+        };
+    } else {
+        return "1";
+    };
+};
+//18.11
+function getNumSystem10Recurs (numberSystemTwo, count) {
+    let arraySystTwo = ( '' + numberSystemTwo).split('').reverse();
+    count = count || 0;
+    if (count < arraySystTwo.length) {
+        return (arraySystTwo[count] * (Math.pow(2, count))) + getNumSystem10Recurs(numberSystemTwo, ++count);
+    } else {
+        return 0;
+    };
+};
+//18.8
+function getRecursFactorial (number, count) {
+    count = count || 1;
+   if (count <= number) {
+        return count * getRecursFactorial(number, ++count);
+   } else {
+       return 1;
+   };
 };
