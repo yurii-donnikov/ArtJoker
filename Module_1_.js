@@ -62,15 +62,17 @@ function getNumberWord (offer) {
     return resultObject;
 };
 //lesson6;
-function countFibonachi (number) {
-    let numPrevious = 0, numNext = 1;
-    for(let i = 0; i < number; i++){
-        let result = numNext;
-        numNext = numPrevious + numNext;
-        numPrevious = result;
-      }
-      return numPrevious
-}
+function getFibonachi(N) {
+    let result = [0, 1];
+    let start = result[result.length - 2];
+    let stop = result[result.length - 1];
+    for (let i = 1; i < N; i++) {
+        result.push((start + stop));
+        start = result[result.length - 2];
+        stop = result[result.length - 1];
+    };
+    return result;
+};
 //lesson7;
 class Rectangle {
     height;
