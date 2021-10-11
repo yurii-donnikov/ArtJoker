@@ -61,6 +61,16 @@ function getNumberWord (offer) {
     };
     return resultObject;
 };
+//lesson6;
+function countFibonachi (number) {
+    let numPrevious = 0, numNext = 1;
+    for(let i = 0; i < number; i++){
+        let result = numNext;
+        numNext = numPrevious + numNext;
+        numPrevious = result;
+      }
+      return numPrevious
+}
 // lesson9;
 function countAllElem (array) {
     let result = 0;
