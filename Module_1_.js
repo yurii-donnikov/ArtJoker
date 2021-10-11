@@ -663,3 +663,20 @@ function getRecursFactorial (number, count) {
        return 1;
    };
 };
+
+
+
+
+function getFibo (N, count) {
+    let result = [0, 1];
+    count = count || 1;
+    let start = result[result.length - 2]
+    let stop = result[result.length - 1]
+    //console.log(start, stop)
+
+    if (count <= N) {
+        result.push((stop + start), getFibo(N, ++count))
+        return result;
+    }
+    return 0
+}
