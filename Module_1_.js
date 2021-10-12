@@ -725,24 +725,20 @@ function getCountWordRecurcion(offer, result, count, arrayOffer) {
         return result;
     };
 };
-
-
-
-
-
-
-
-
-function getFibo (N, count) {
-    let result = [0, 1];
-    count = count || 1;
-    let start = result[result.length - 2]
-    let stop = result[result.length - 1]
-    //console.log(start, stop)
-
-    if (count <= N) {
-        result.push((stop + start), getFibo(N, ++count))
+//18.6
+function getFiboRecurcion(number, result, count) {
+    result = result || [0, 1];
+    count = count || 0;
+    let start = result[result.length - 2];
+    let stop = result[result.length - 1];
+    let sum = start + stop;
+    if (count < number - 1) {
+        result.push(sum);
+        return getFiboRecurcion(number, result, ++count);
+    } else {
         return result;
-    }
-    return 0
-}
+    };
+};
+
+
+
