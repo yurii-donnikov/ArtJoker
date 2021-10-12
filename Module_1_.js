@@ -694,17 +694,33 @@ function MonogrammaRecursion (wordOne,wordTwo, count1, count2, arrayWordOne, arr
         };
 };
 //18.3
-function  getDigitsInNumberRecursion (number, result, count, num) {
+function getDigitsInNumberRecursion(number, result, count, arrayNumber) {
     count = count || 0;
     result = result || {};
-    num = num || ('' + number).split('');
-    if (count < num.length) {
-        if (  !!result[num[count]] ) {
-            result[num[count]] += 1;
+    arrayNumber = arrayNumber || ('' + number).split('');
+    if (count < arrayNumber.length) {
+        if (!!result[arrayNumber[count]]) {
+            result[arrayNumber[count]] += 1;
         } else {
-            result[num[count]] = 1;
+            result[arrayNumber[count]] = 1;
         };
-        return getDigitsInNumberRecursion(number, result, ++count, num);
+        return getDigitsInNumberRecursion(number, result, ++count, arrayNumber);
+    } else {
+        return result;
+    };
+};
+//18.4
+function getCountWordRecurcion(offer, result, count, arrayOffer) {
+    count = count || 0;
+    result = result || {};
+    arrayOffer = arrayOffer || ('' + offer).split(' ');
+    if (count < arrayOffer.length) {
+        if (!!result[arrayOffer[count]]) {
+            result[arrayOffer[count]] += 1;
+        } else {
+            result[arrayOffer[count]] = 1;
+        };
+        return getCountWordRecurcion(offer, result, ++count, arrayOffer);
     } else {
         return result;
     };
