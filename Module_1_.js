@@ -693,6 +693,26 @@ function MonogrammaRecursion (wordOne,wordTwo, count1, count2, arrayWordOne, arr
             };
         };
 };
+//18.3
+function  getDigitsInNumberRecursion (number, result, count, num) {
+    count = count || 0;
+    result = result || {};
+    num = num || ('' + number).split('');
+    if (count < num.length) {
+        if (  !!result[num[count]] ) {
+            result[num[count]] += 1;
+        } else {
+            result[num[count]] = 1;
+        };
+        return getDigitsInNumberRecursion(number, result, ++count, num);
+    } else {
+        return result;
+    };
+};
+
+
+
+
 
 
 
