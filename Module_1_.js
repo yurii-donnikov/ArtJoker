@@ -749,6 +749,31 @@ function FindNumSystem10 (numSyst2, count, arrayNum) {
         return 0;
     };
 };
+//18.13
+function getSumMinMaxRecurcion (array, callback, minElem, maxElem, i, j) {
+    minElem = minElem || array[0];
+    maxElem = maxElem || array[0];
+    i = i || 0;
+    j = j || 1;
+    if(i < array.length) {
+        if (array[i] < minElem && callback(i)) {
+            minElem = array[i];
+        };
+        if (array[i] > maxElem && callback(i)) {
+            maxElem = array[i];
+        };
+        return getSumMinMaxRecurcion(array, callback, minElem, maxElem, ++i);
+    } else {
+       if (j <= maxElem){
+            minElem = minElem + j;
+        return getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, ++j);
+       } else {
+           return minElem - 1;
+       };
+    };
+};
+getSumMinMaxRecurcion(mas, ((i) => {return mas[i] > 0}))
+
 
 
 
