@@ -739,6 +739,18 @@ function getFiboRecurcion(number, result, count) {
         return result;
     };
 };
+//18.11
+function FindNumSystem10 (numSyst2, count, arrayNum) {
+    arrayNum = arrayNum || ('' + numSyst2).split('').reverse();
+    count = count || 0;
+    if (count < arrayNum.length) {
+        return arrayNum[count] * (Math.pow(2, count)) + FindNumSystem10(numSyst2, ++count, arrayNum);
+    } else {
+        return 0;
+    };
+};
+
+
 
 
 
