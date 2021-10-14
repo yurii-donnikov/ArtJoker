@@ -1750,3 +1750,27 @@ function addTwoMatrixRecurcion(matrix, matrix2, i, j, result) {
         return result;
     };
 }
+//18.17-1
+function deleteZeroStringRecursion(matrix, i, j) {
+    i = i || 0;
+    j = j || 0;
+    if (matrix.length == 0) {
+        return matrix;
+    };
+    if (i < matrix.length) {
+        if (j < matrix[i].length) {
+            if (matrix[i][j] == 0) {
+                matrix.splice(i, 1);
+                if (i != 0) {
+                    --i;
+                };
+                return deleteZeroStringRecursion(matrix, i, j);
+            };
+            return deleteZeroStringRecursion(matrix, i, ++j);
+        };
+        j = 0;
+        return deleteZeroStringRecursion(matrix, ++i, j);
+    } else {
+        return matrix;
+    };
+};
