@@ -470,14 +470,16 @@ function AvergeElemDobleArr(array) {
     return [(chetsumElem / chetnMass.length), (nechetsumElem / neChetMass.length)];
 };
 // lesson15
-function transposeMatrix (matrix) {
-    let externalArray = matrix.length;
-    let interiorArray = matrix[0].length;
+function findTransponentMatrix(matrix) {
     let result = [];
-    for (var i = 0; i < interiorArray; i++) {
+    for (let i = 0; i < matrix[0].length; i++) {
         result[i] = [];
-        for (var j = 0; j < externalArray; j++) result[i][j] = matrix[j][i];
-    }
+    };
+    for (let j = 0; j < matrix[0].length; j++) {
+        for (let k = 0; k < matrix.length; k++) {
+            result[j][k] = matrix[k][j];
+        };
+    };
     return result;
 };
 // lesson16
@@ -1274,14 +1276,16 @@ function AvergeElemDobleArr(array) {
     return [(chetsumElem / chetnMass.length), (nechetsumElem / neChetMass.length)];
 };
 // lesson15
-function transposeMatrix (matrix) {
-    let externalArray = matrix.length;
-    let interiorArray = matrix[0].length;
+function findTransponentMatrix(matrix) {
     let result = [];
-    for (var i = 0; i < interiorArray; i++) {
+    for (let i = 0; i < matrix[0].length; i++) {
         result[i] = [];
-        for (var j = 0; j < externalArray; j++) result[i][j] = matrix[j][i];
-    }
+    };
+    for (let j = 0; j < matrix[0].length; j++) {
+        for (let k = 0; k < matrix.length; k++) {
+            result[j][k] = matrix[k][j];
+        };
+    };
     return result;
 };
 // lesson16
