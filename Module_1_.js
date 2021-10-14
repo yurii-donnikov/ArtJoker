@@ -1671,22 +1671,19 @@ getSumMinMaxRecurcion(mas, ((i) => {return mas[i] > 0}))
 
 ==============================
     
-function getSredneeZnachArray (array, callback, result, count, delitel) {
-count = count || 0;
-result = result || 0;
-delitel = delitel || 0;
-if (count < array.length) {
-    if(callback(array[count])) {
-        result += array[count];
-        console.log(result)
-        return getSredneeZnachArray(array, callback, result, ++count, ++delitel)
-    }
-   return getSredneeZnachArray(array, callback, result, ++count, delitel)
-} else {
-    console.log(result, delitel)
-    return result / delitel;
-}
-}
-
-
-getSredneeZnachArray(mas, ((i) => {return (mas[i]) > 0}))
+//18.14-1
+    function getAverageSumArray(array, callback, result, count, amountElem) {
+    count = count || 0;
+    result = result || 0;
+    amountElem = amountElem || 0;
+    if (count < array.length) {
+        if (callback(count)) {
+            result += array[count];
+            return getAverageSumArray(array, callback, result, ++count, ++amountElem);
+        };
+        return getAverageSumArray(array, callback, result, ++count, amountElem);
+    } else {
+        return (result / amountElem);
+    };
+};
+getAverageSumArray(mas, ((i) => { return (mas[i] % 2) == 0 }))
