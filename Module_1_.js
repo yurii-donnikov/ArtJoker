@@ -483,13 +483,13 @@ function findTransponentMatrix(matrix) {
     return result;
 };
 // lesson16
-function addTwoMatrix(matrix1, matrix2) {
-    let externalArray = matrix1.length;
-    let interiorArray = matrix1[0].length;
+function addTwoMatrix(matrix, matrix2) {
     let result = [];
-    for (var i = 0; i < externalArray; i++) {
+    for (let i = 0; i < matrix.length; i++) {
         result[i] = [];
-        for (var j = 0; j < interiorArray; j++) result[i][j] = matrix1[i][j] + matrix2[i][j];
+        for (let j = 0; j < matrix[i].length; j++) {
+            result[i].push(matrix[i][j] + matrix2[i][j]);
+        };
     };
     return result;
 };
@@ -1289,13 +1289,13 @@ function findTransponentMatrix(matrix) {
     return result;
 };
 // lesson16
-function addTwoMatrix(matrix1, matrix2) {
-    let externalArray = matrix1.length;
-    let interiorArray = matrix1[0].length;
+function addTwoMatrix(matrix, matrix2) {
     let result = [];
-    for (var i = 0; i < externalArray; i++) {
+    for (let i = 0; i < matrix.length; i++) {
         result[i] = [];
-        for (var j = 0; j < interiorArray; j++) result[i][j] = matrix1[i][j] + matrix2[i][j];
+        for (let j = 0; j < matrix[i].length; j++) {
+            result[i].push(matrix[i][j] + matrix2[i][j]);
+        };
     };
     return result;
 };
