@@ -1687,8 +1687,8 @@ getSumMinMaxRecurcion(mas, ((i) => {return mas[i] > 0}))
     };
 };
 getAverageSumArray(mas, ((i) => { return (mas[i] % 2) == 0 }))
-//18.14-1
-function getAverageSumArrayRecursion(array, callback, i, j, result, amountElem) {
+//18.14-2
+function getAverageSumArrayDubleRecursion(array, callback, i, j, result, amountElem) {
     i = i || 0;
     j = j || 0;
     result = result || 0;
@@ -1699,12 +1699,12 @@ function getAverageSumArrayRecursion(array, callback, i, j, result, amountElem) 
                 result += array[i][j];
                 amountElem++;
             };
-            return getAverageSumArrayRecursion(array, callback, i, ++j, result, amountElem);
+            return getAverageSumArrayDubleRecursion(array, callback, i, ++j, result, amountElem);
         };
         j = 0;
-        return getAverageSumArrayRecursion(array, callback, ++i, j, result, amountElem);
+        return getAverageSumArrayDubleRecursion(array, callback, ++i, j, result, amountElem);
     } else {
         return (result / amountElem);
     };
 };
-getAverageSumArrayRecursion(mas, (function(i, j) { return (mas[i][j] % 2 == 0) }))
+getAverageSumArrayDubleRecursion(mas, (function(i, j) { return (mas[i][j] % 2 == 0) }))
