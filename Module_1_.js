@@ -1731,3 +1731,22 @@ function findTransponentMatrixRecursion(matrix, i, j, result) {
         return result;
     };
 };
+//18.16
+function addTwoMatrixRecurcion(matrix, matrix2, i, j, result) {
+    result = result || [];
+    i = i || 0;
+    j = j || 0;
+    if (i < matrix.length) {
+        if (typeof result[i] == 'undefined') {
+            result[i] = [];
+        };
+        if (j < matrix[0].length) {
+            result[i][j] = matrix[i][j] + matrix2[i][j];
+            return addTwoMatrixRecurcion(matrix, matrix2, i, ++j, result);
+        };
+        j = 0;
+        return addTwoMatrixRecurcion(matrix, matrix2, ++i, j, result);
+    } else {
+        return result;
+    };
+}
