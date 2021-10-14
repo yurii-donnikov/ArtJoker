@@ -1712,3 +1712,22 @@ function getAverageSumArrayDubleRecursion(array, callback, i, j, result, amountE
     };
 };
 getAverageSumArrayDubleRecursion(mas, (function(i, j) { return (mas[i][j] % 2 == 0) }))
+//18.15
+function findTransponentMatrixRecursion(matrix, i, j, result) {
+    result = result || [];
+    i = i || 0;
+    j = j || 0;
+    if (i < matrix[0].length) {
+        if (typeof result[i] == 'undefined') {
+            result[i] = [];
+        };
+        if (j < matrix.length) {
+            result[i][j] = matrix[j][i];
+            return findTransponentMatrixRecursion(matrix, i, ++j, result);
+        };
+        j = 0;
+        return findTransponentMatrixRecursion(matrix, ++i, j, result);
+    } else {
+        return result;
+    };
+};
