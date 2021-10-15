@@ -35,22 +35,15 @@ function getNumberDigits(number) {
     return resultObject;
 };
 //les4
-function getNumberDigits(number) {
-    let resultObject = {};
-    let numberArray = ('' + number).split('');
-    if (typeof arguments[0] == 'undefined') {
-        return 0;
-    };
-    for (let i = 0; i < numberArray.length; i++) {
-        let counterNumber = 0;
-        for (let j = 0; j < numberArray.length; j++) {
-            if (numberArray[i] != numberArray[j]) {
-                continue;
-            } else counterNumber++;
+function getSumUniqueWord(offer, word) {
+    let counter = 0;
+    let arrayOffer = offer.split(' ');
+    for (let i = 0; i < arrayOffer.length; i++) {
+        if (word == arrayOffer[i]) {
+            counter++;
         };
-        resultObject[numberArray[i]] = counterNumber;
     };
-    return resultObject;
+    return counter;
 };
 //les5
 function getNumberWord(offer) {
