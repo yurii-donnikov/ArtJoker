@@ -1774,3 +1774,46 @@ function deleteZeroStringRecursion(matrix, i, j) {
         return matrix;
     };
 };
+//18.17-2
+function deleteZeroColumnRecursion(matrix, i, j, k, m, flag) {
+    i = i || 0;
+    j = j || 0;
+    k = k || 0;
+    m = m || 0;
+    flag = flag || false;
+    if (i < matrix.length) {
+        if (!!flag) {
+            if (k < matrix.length) {
+                if (m == j) {
+                    matrix[k].splice(m, 1);
+                    return deleteZeroColumnRecursion(matrix, i, j, ++k, m, flag);
+                };
+                return deleteZeroColumnRecursion(matrix, i, j, k, ++m, flag);
+            } else {
+                k = 0;
+                m = 0;
+                flag = false;
+                if (j != 0) {
+                    --j;
+                } else {
+                    j = 0;
+                    return deleteZeroColumnRecursion(matrix, i, j, k, m, flag);
+                };
+                return deleteZeroColumnRecursion(matrix, i, ++j, k, m, flag);
+            };
+        };
+        if (j < matrix[i].length) {
+            if (matrix[i][j] == 0) {
+                flag = true;
+                k = 0;
+                m = 0;
+                return deleteZeroColumnRecursion(matrix, i, j, k, m, flag);
+            };
+            return deleteZeroColumnRecursion(matrix, i, ++j, k, m, flag);
+        };
+        j = 0;
+        return deleteZeroColumnRecursion(matrix, ++i, j, k, m, flag);
+    } else {
+        return matrix;
+    };
+};
