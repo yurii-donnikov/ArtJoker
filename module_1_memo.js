@@ -1,3 +1,4 @@
+//19.1
 let memoMonogramma = function() {
     let cache = {};
     return function MonogrammaRecursion(wordOne, wordTwo, count1, count2, arrayWordOne, arrayWordTwo) {
@@ -30,6 +31,30 @@ let memoMonogramma = function() {
                 };
                 return MonogrammaRecursion(wordOne, wordTwo, count1, ++count2, arrayWordOne, arrayWordTwo);
             };
+        };
+    };
+};
+//19.2
+let getDigitsInNumberMemoiz = function() {
+    let cache = [];
+    return function getDigitsInNumberRecursion(number, result, count, arrayNumber) {
+        if (cache[0] == number) {
+            return cache[1];
+        };
+        count = count || 0;
+        result = result || {};
+        arrayNumber = arrayNumber || ('' + number).split('');
+        if (count < arrayNumber.length) {
+            if (!!result[arrayNumber[count]]) {
+                result[arrayNumber[count]] += 1;
+            } else {
+                result[arrayNumber[count]] = 1;
+            };
+            return getDigitsInNumberRecursion(number, result, ++count, arrayNumber);
+        } else {
+            cache[0] = number;
+            cache[1] = result;
+            return result;
         };
     };
 };
