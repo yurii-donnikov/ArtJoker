@@ -45,9 +45,9 @@ function getDigitsInNumberRecursion(number, result, count, arrayNumber) {
 //18.4
 function getNumWord(offer, word, count) {
     count = count || 0;
-    arrayPr = offer.split(' ');
-    if (count < arrayPr.length) {
-        if (arrayPr[count] == word) {
+    arrayOffer = offer.split(' ');
+    if (count < arrayOffer.length) {
+        if (arrayOffer[count] == word) {
             return 1 + getNumWord(offer, word, ++count);
         } else {
             return 0 + getNumWord(offer, word, ++count);
