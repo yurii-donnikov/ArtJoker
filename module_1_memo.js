@@ -58,3 +58,29 @@ let getDigitsInNumberMemoiz = function() {
         };
     };
 };
+//19.4
+let getNumWordMemoiz = function() {
+    let cache = {};
+    return function getNumWord(offer, word, count) {
+        count = count || 0;
+        arrayOffer = offer.split(' ');
+        if (cache[0] == offer && !!cache[word]) {
+            return cache[word];
+        }
+        if (count < arrayOffer.length) {
+            if (typeof cache[arrayOffer[count]] == 'undefined') {
+                cache[arrayOffer[count]] = 1;
+            } else {
+                cache[arrayOffer[count]] += 1;
+            }
+            if (arrayOffer[count] == word) {
+                return 1 + getNumWord(offer, word, ++count);
+            } else {
+                return 0 + getNumWord(offer, word, ++count);
+            }
+        } else {
+            cache[0] = offer;
+            return 0;
+        };
+    };
+};
