@@ -108,3 +108,24 @@ let getCountWordMemoiz = function() {
         };
     };
 };
+//19.6
+let getFiboMemoiz = function() {
+    let cache = [];
+    return function getFiboRecurcion(number, result, count) {
+        if (typeof cache[number] != 'undefined') {
+            return cache[number];
+        };
+        result = result || [0, 1];
+        count = count || 0;
+        let start = result[result.length - 2];
+        let stop = result[result.length - 1];
+        let sum = start + stop;
+        if (count < number - 1) {
+            result.push(sum);
+            return getFiboRecurcion(number, result, ++count);
+        } else {
+            cache = result;
+            return result;
+        };
+    };
+};
