@@ -84,3 +84,27 @@ let getNumWordMemoiz = function() {
         };
     };
 };
+//19.5
+let getCountWordMemoiz = function() {
+    let cache = [];
+    return function getCountWordRecurcion(offer, result, count, arrayOffer) {
+        count = count || 0;
+        result = result || {};
+        arrayOffer = arrayOffer || ('' + offer).split(' ');
+        if (cache[0] == offer) {
+            return cache[1];
+        }
+        if (count < arrayOffer.length) {
+            if (!!result[arrayOffer[count]]) {
+                result[arrayOffer[count]] += 1;
+            } else {
+                result[arrayOffer[count]] = 1;
+            };
+            return getCountWordRecurcion(offer, result, ++count, arrayOffer);
+        } else {
+            cache[0] = offer;
+            cache[1] = result;
+            return result;
+        };
+    };
+};
