@@ -34,7 +34,7 @@ let memoMonogramma = function() {
         };
     };
 };
-//19.2
+//19.3
 let getDigitsInNumberMemoiz = function() {
     let cache = [];
     return function getDigitsInNumberRecursion(number, result, count, arrayNumber) {
