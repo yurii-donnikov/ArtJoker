@@ -147,3 +147,27 @@ let factorialMemoiz = function() {
         };
     };
 };
+//19.9
+let countSummaElemMemoiz = function() {
+    let cache = [];
+    return function countSumElemRecurs(array, callback, count, result) {
+        if (cache[0] == array && cache[1] == (callback + '')) {
+            return cache[2];
+        };
+        count = count || 0;
+        result = result || 0;
+        if (count < array.length) {
+            if (callback(array, count)) {
+                result += array[count];
+                return countSumElemRecurs(array, callback, ++count, result);
+            } else {
+                return countSumElemRecurs(array, callback, ++count, result);
+            };
+        } else {
+            cache[0] = array;
+            cache[1] = callback + '';
+            cache[2] = result;
+            return result;
+        };
+    };
+};
