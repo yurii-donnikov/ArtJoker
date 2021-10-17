@@ -129,3 +129,21 @@ let getFiboMemoiz = function() {
         };
     };
 };
+//19.8
+let factorialMemoiz = function() {
+    let cache = [];
+    return function factRecursiya(num, count, result) {
+        if (cache[num]) {
+            return cache[num];
+        }
+        result = result || [1, 1];
+        count = count || 2;
+        if (typeof result[num] == 'undefined') {
+            result.push((result[result.length - 1]) * count);
+            return factRecursiya(num, ++count, result);
+        } else {
+            cache = result;
+            return result[num];
+        };
+    };
+};
