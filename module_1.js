@@ -139,7 +139,7 @@ function countElemOddNumber(array, callback) {
 };
 countElemOddNumber(mas, ((i) => { return i }))
 //les10
-function countRezoElem(array, callback) {
+function countZeroElem(array, callback) {
     let result = 0;
     array.forEach(i => {
         if (callback(i)) {
@@ -148,7 +148,7 @@ function countRezoElem(array, callback) {
     });
     return result;
 };
-countRezoElem(mas, ((i) => { return i > 0 }))
+countZeroElem(mas, ((i) => { return i > 0 }))
 //les11
 function getNumSystem10(numberSystemTwo) {
     let result = 0;
