@@ -419,3 +419,64 @@ let findTransponentMatrixMemoiz = function () {
         };
     };
 };
+//19.16
+let addTwoMatrixMemoiz = function () {
+    let cache = [];
+    return function addTwoMatrixRecurcion(matrix, matrix2, i, j, result) {
+        if (cache[0] == matrix && cache[1] == matrix2) {
+            return cache[1];
+        };
+        result = result || [];
+        i = i || 0;
+        j = j || 0;
+        if (i < matrix.length) {
+            if (typeof result[i] == 'undefined') {
+                result[i] = [];
+            };
+            if (j < matrix[0].length) {
+                result[i][j] = matrix[i][j] + matrix2[i][j];
+                return addTwoMatrixRecurcion(matrix, matrix2, i, ++j, result);
+            };
+            j = 0;
+            return addTwoMatrixRecurcion(matrix, matrix2, ++i, j, result);
+        } else {
+            cache[0] = matrix;
+            cache[1] = matrix2;
+            cache[2] = result;
+            return result;
+        };
+    };
+};
+//19.17
+let deleteZeroStringMemoiz = function () {
+    let cache = [];
+    return function deleteZeroStringRecursion(matrix, i, j) {
+        if (cache[0] == matrix && typeof cache[1] != 'undefined') {
+            console.log('ef')
+            return cache[1];
+        };
+        cache[0] = matrix;
+        i = i || 0;
+        j = j || 0;
+        if (matrix.length == 0) {
+            return matrix;
+        };
+        if (i < matrix.length) {
+            if (j < matrix[i].length) {
+                if (matrix[i][j] == 0) {
+                    matrix.splice(i, 1);
+                    if (i != 0) {
+                        --i;
+                    };
+                    return deleteZeroStringRecursion(matrix, i, j);
+                };
+                return deleteZeroStringRecursion(matrix, i, ++j);
+            };
+            j = 0;
+            return deleteZeroStringRecursion(matrix, ++i, j);
+        } else {
+            cache[1] = matrix;
+            return matrix;
+        };
+    };
+};
