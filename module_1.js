@@ -305,8 +305,10 @@ function deleteColumnZero(array) {
                         if (m == j) {
                             array[k].splice(m, 1);
                         };
+                        continue;
                     };
                 };
+                j--
             };
         };
     };
