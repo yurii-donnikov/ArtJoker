@@ -7,18 +7,14 @@ function resultMonogramma(wordOne, wordTwo) {
             for (let j = 0; j < arrayWordTwo.length; j++) {
                 if (arrayWordOne[i] == arrayWordTwo[j]) {
                     arrayWordTwo.splice(j, 1);
-                };
-            };
-        };
+                }
+            }
+        }
     } else {
         return false;
-    };
-    if (arrayWordTwo.length == 0) {
-        return true;
-    } else {
-        return false;
-    };
-};
+    }
+    return (arrayWordTwo.length == 0);
+}
 //les3
 function getNumberDigits(number) {
     let resultObject = {};
