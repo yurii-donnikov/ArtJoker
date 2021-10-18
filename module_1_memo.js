@@ -479,3 +479,53 @@ let deleteZeroStringMemoiz = function () {
         };
     };
 };
+let deleteZeroColumnMemoiz = function () {
+    let cache = [];
+    return function deleteZeroColumnRecursion(matrix, i, j, k, m, flag) {
+        if (cache[0] == matrix && typeof cache[1] != 'undefined') {
+            return cache[1];
+        };
+        cache[0] = matrix;
+        i = i || 0;
+        j = j || 0;
+        k = k || 0;
+        m = m || 0;
+        flag = flag || false;
+        if (i < matrix.length) {
+            if (!!flag) {
+                if (k < matrix.length) {
+                    if (m == j) {
+                        matrix[k].splice(m, 1);
+                        return deleteZeroColumnRecursion(matrix, i, j, ++k, m, flag);
+                    };
+                    return deleteZeroColumnRecursion(matrix, i, j, k, ++m, flag);
+                } else {
+                    k = 0;
+                    m = 0;
+                    flag = false;
+                    if (j != 0) {
+                        --j;
+                    } else {
+                        j = 0;
+                        return deleteZeroColumnRecursion(matrix, i, j, k, m, flag);
+                    };
+                    return deleteZeroColumnRecursion(matrix, i, ++j, k, m, flag);
+                };
+            };
+            if (j < matrix[i].length) {
+                if (matrix[i][j] == 0) {
+                    flag = true;
+                    k = 0;
+                    m = 0;
+                    return deleteZeroColumnRecursion(matrix, i, j, k, m, flag);
+                };
+                return deleteZeroColumnRecursion(matrix, i, ++j, k, m, flag);
+            };
+            j = 0;
+            return deleteZeroColumnRecursion(matrix, ++i, j, k, m, flag);
+        } else {
+            cache[1] = matrix;
+            return matrix;
+        };
+    };
+};
