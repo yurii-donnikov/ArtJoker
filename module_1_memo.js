@@ -452,7 +452,6 @@ let deleteZeroStringMemoiz = function () {
     let cache = [];
     return function deleteZeroStringRecursion(matrix, i, j) {
         if (cache[0] == matrix && typeof cache[1] != 'undefined') {
-            console.log('ef')
             return cache[1];
         };
         cache[0] = matrix;
