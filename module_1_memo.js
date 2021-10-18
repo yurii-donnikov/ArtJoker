@@ -202,3 +202,24 @@ let countSumNumberMemoiz = function () {
         };
     };
 };
+//19.11
+let FindNumSystem10Memoiz = function () {
+    let cache = [];
+    return function FindNumSystem10(numSyst2, count, arrayNum, result) {
+        if (cache[0] == numSyst2) {
+            return cache[1];
+        };
+        result = result || 0;
+        arrayNum = arrayNum || ('' + numSyst2).split('').reverse();
+        count = count || 0;
+        if (count < arrayNum.length) {
+            result += arrayNum[count] * (Math.pow(2, count));
+            return FindNumSystem10(numSyst2, ++count, arrayNum, result);
+        } else {
+            cache[0] = numSyst2;
+            cache[1] = result;
+            return result;
+        };
+    };
+};
+
