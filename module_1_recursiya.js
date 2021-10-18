@@ -10,7 +10,7 @@ function MonogrammaRecursion(wordOne, wordTwo, count1, count2, arrayWordOne, arr
     if (arrayWordOne.toString() == arrayWordTwo.toString()) {
         return true;
     } else {
-        if (arrayWordOne[count1] == arrayWordTwo[count2] || count2 > arrayWordOne.length - 1) {
+        if (arrayWordOne[count1] == arrayWordTwo[count2]) {
             if (count1 > arrayWordOne.length - 1) {
                 return false;
             };
