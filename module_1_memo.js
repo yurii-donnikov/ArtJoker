@@ -249,3 +249,30 @@ let getNumSystem2Memoiz = function () {
         };
     };
 };
+//19.12(9)
+let getSumDubleArrayMemoiz = function () {
+    let cache = [];
+    return function getSumDubleArrayRecurcion(array, callback, i, j, result) {
+        if (cache[0] == array && cache[1] == (callback + '')) {
+            return cache[2];
+        };
+        i = i || 0;
+        j = j || 0;
+        result = result || 0;
+        if (i < array.length) {
+            if (j < array[i].length) {
+                if (callback(i, j)) {
+                    result += array[i][j];
+                }
+                return getSumDubleArrayRecurcion(array, callback, i, ++j, result);
+            };
+            j = 0;
+            return getSumDubleArrayRecurcion(array, callback, ++i, j, result);
+        } else {
+            cache[0] = array;
+            cache[1] = callback + '';
+            cache[2] = result;
+            return result;
+        };
+    };
+};
