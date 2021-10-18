@@ -222,4 +222,30 @@ let FindNumSystem10Memoiz = function () {
         };
     };
 };
-
+let getNumSystem2Memoiz = function () {
+   let cache = [];
+    return function getNumSystem2(number, result) {
+        if(cache[0] == number) {
+            return cache[1];
+        };
+        let sum;
+        result = result || '';
+        if (typeof arguments[0] == 'undefined') {
+            return;
+        };
+        if ((sum = number / 2) >= 1) {
+            if (sum % 2 == parseInt(sum % 2)) {
+                result += '0';
+                return getNumSystem2(parseInt(sum), result);
+            } else {
+                result += '1'
+                return getNumSystem2(parseInt(sum), result);
+            };
+        } else {
+            result += '1';
+            cache[0] = number;
+            cache[1] = result.split('').reverse().join('');
+            return result.split('').reverse().join('');
+        };
+    };
+};
