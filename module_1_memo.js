@@ -307,3 +307,88 @@ let getNumbersDubleArrayMemoiz = function () {
         };
     };
 };
+//19.13
+let getSumMinMaxMemoiz = function () {
+    let cache = [];
+    return function getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, j) {
+        if (cache[0] == array && cache[1] == (callback + '')) {
+            return cache[2];
+        };
+        minElem = minElem || array[0];
+        maxElem = maxElem || array[0];
+        i = i || 0;
+        j = j || 1;
+        if (i < array.length) {
+            if (array[i] < minElem && callback(i)) {
+                minElem = array[i];
+            };
+            if (array[i] > maxElem && callback(i)) {
+                maxElem = array[i];
+            };
+            return getSumMinMaxRecurcion(array, callback, minElem, maxElem, ++i);
+        } else {
+            if (j <= maxElem) {
+                minElem = minElem + j;
+                return getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, ++j);
+            } else {
+                minElem--
+                cache[0] = array;
+                cache[1] = callback + '';
+                cache[2] = minElem;
+                return minElem;
+            };
+        };
+    };
+};
+//19.14
+let getAverageSumArrayMemoiz = function () {
+    let cache = [];
+    return function getAverageSumArray(array, callback, result, count, amountElem) {
+        if (cache[0] == array && cache[1] == (callback + '')) {
+            return cache[2];
+        };
+        count = count || 0;
+        result = result || 0;
+        amountElem = amountElem || 0;
+        if (count < array.length) {
+            if (callback(count)) {
+                result += array[count];
+                return getAverageSumArray(array, callback, result, ++count, ++amountElem);
+            };
+            return getAverageSumArray(array, callback, result, ++count, amountElem);
+        } else {
+            cache[0] = array;
+            cache[1] = callback + '';
+            cache[2] = (result / amountElem);
+            return (result / amountElem);
+        };
+    };
+};
+let getAverageSumArrayDubleMemoiz = function () {
+    let cache = [];
+    return function getAverageSumArrayDubleRecursion(array, callback, i, j, result, amountElem) {
+        if (cache[0] == array && cache[1] == (callback + '')) {
+            return cache[2];
+        };
+        i = i || 0;
+        j = j || 0;
+        result = result || 0;
+        amountElem = amountElem || 0;
+        if (i < array.length) {
+            if (j < array[i].length) {
+                if (callback(i, j)) {
+                    result += array[i][j];
+                    amountElem++;
+                };
+                return getAverageSumArrayDubleRecursion(array, callback, i, ++j, result, amountElem);
+            };
+            j = 0;
+            return getAverageSumArrayDubleRecursion(array, callback, ++i, j, result, amountElem);
+        } else {
+            cache[0] = array;
+            cache[1] = callback + '';
+            cache[2] = (result / amountElem);
+            return (result / amountElem);
+        };
+    };
+};
