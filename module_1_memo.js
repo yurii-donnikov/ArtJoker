@@ -392,3 +392,30 @@ let getAverageSumArrayDubleMemoiz = function () {
         };
     };
 };
+//19.15
+let findTransponentMatrixMemoiz = function () {
+    let cache = [];
+    return function findTransponentMatrixRecursion(matrix, i, j, result) {
+        if (cache[0] == matrix) {
+            return cache[1];
+        };
+        result = result || [];
+        i = i || 0;
+        j = j || 0;
+        if (i < matrix[0].length) {
+            if (typeof result[i] == 'undefined') {
+                result[i] = [];
+            };
+            if (j < matrix.length) {
+                result[i][j] = matrix[j][i];
+                return findTransponentMatrixRecursion(matrix, i, ++j, result);
+            };
+            j = 0;
+            return findTransponentMatrixRecursion(matrix, ++i, j, result);
+        } else {
+            cache[0] = matrix;
+            cache[1] = result;
+            return result;
+        };
+    };
+};
