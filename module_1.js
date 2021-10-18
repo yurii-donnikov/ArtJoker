@@ -25,11 +25,11 @@ function getNumberDigits(number) {
             if (numberArray[i] != numberArray[j]) {
                 continue;
             } else counterNumber++;
-        };
+        }
         resultObject[numberArray[i]] = counterNumber;
-    };
+    }
     return resultObject;
-};
+}
 //les4
 function getSumUniqueWord(offer, word) {
     let counter = 0;
@@ -37,10 +37,10 @@ function getSumUniqueWord(offer, word) {
     for (let i = 0; i < arrayOffer.length; i++) {
         if (word == arrayOffer[i]) {
             counter++;
-        };
-    };
+        }
+    }
     return counter;
-};
+}
 //les5
 function getNumberWord(offer) {
     let resultObject = {};
@@ -48,18 +48,18 @@ function getNumberWord(offer) {
     let arrayOffer = offer.split(' ');
     if (arguments[0].length == 0) {
         return 0;
-    };
+    }
     for (let i = 0; i < arrayOffer.length; i++) {
         let counter = 0;
         for (let j = 0; j < arrayOffer.length; j++) {
             if (arrayOffer[i] != arrayOffer[j]) {
                 continue;
             } else counter++;
-        };
+        }
         resultObject[arrayOffer[i]] = counter;
-    };
+    }
     return resultObject;
-};
+}
 //les6
 function getFibonachi(number) {
     let result = [0, 1];
@@ -69,9 +69,9 @@ function getFibonachi(number) {
         result.push((start + stop));
         start = result[result.length - 2];
         stop = result[result.length - 1];
-    };
+    }
     return result;
-};
+}
 //les7
 class Rectangle {
     height;
