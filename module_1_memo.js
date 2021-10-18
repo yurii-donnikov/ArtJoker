@@ -276,3 +276,34 @@ let getSumDubleArrayMemoiz = function () {
         };
     };
 };
+//19.12(10)
+let getNumbersDubleArrayMemoiz = function () {
+    let cache = [];
+   return function getNumbersDubleArrayRecurcion(array, callback, i, j, result) {
+    if (cache[0] == array && cache[1] == (callback + '')) {
+        return cache[2];
+    };
+        i = i || 0;
+        j = j || 0;
+        result = result || {};
+        if (i < array.length) {
+            if (j < array[i].length) {
+                if (callback(i, j)) {
+                    if (!!(result[array[i][j]])) {
+                        result[array[i][j]] += 1;
+                    } else {
+                        result[array[i][j]] = 1;
+                    };
+                };
+                return getNumbersDubleArrayRecurcion(array, callback, i, ++j, result);
+            };
+            j = 0;
+            return getNumbersDubleArrayRecurcion(array, callback, ++i, j, result);
+        } else {
+            cache[0] = array;
+            cache[1] = callback + '';
+            cache[2] = result;
+            return result;
+        };
+    };
+};
