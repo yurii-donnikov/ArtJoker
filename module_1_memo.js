@@ -171,3 +171,34 @@ let countSummaElemMemoiz = function() {
         };
     };
 };
+//19.10
+let countSumNumberMemoiz = function () {
+    let cache = [];
+    return function countSumNumberRecursion(array, callback, count, result) {
+        if (cache[0] == array && cache[1] == (callback + '')) {
+            return cache[2];
+        };
+        count = count || 0;
+        result = result || 0;
+        if (count < array.length - 1) {
+            if (callback(array, count)) {
+                result += 1;
+                return countSumNumberRecursion(array, callback, ++count, result);
+            } else {
+                return countSumNumberRecursion(array, callback, ++count, result);
+            };
+        } else {
+            if (callback(array, count)) {
+                cache[0] = array;
+                cache[1] = callback + '';
+                cache[2] = ++result;
+                return result;
+            } else {
+                cache[0] = array;
+                cache[1] = callback + '';
+                cache[2] = result;
+                return result;
+            };
+        };
+    };
+};
