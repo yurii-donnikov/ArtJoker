@@ -82,9 +82,7 @@ function getFiboRecurcion(number, result, count) {
     if (count < number - 1) {
         result.push(sum);
         return getFiboRecurcion(number, result, ++count);
-    } else {
-        return result;
-    }
+    } else return result;
 }
 //18.8
 function getRecursFactorial(number, count) {
@@ -94,9 +92,7 @@ function getRecursFactorial(number, count) {
     }
     if (count <= number) {
         return count * getRecursFactorial(number, ++count);
-    } else {
-        return 1;
-    }
+    } else return 1;
 }
 //18.9
 function countSummaElemRecursion(array, callback, count, result) {
