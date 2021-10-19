@@ -180,7 +180,7 @@ function getNumbersDubleArrayRecurcion(array, callback, countOne, countTwo, resu
     if (countOne < array.length) {
         if (countTwo < array[countOne].length) {
             if (callback(countOne, countTwo)) {
-                if ( result[array[countOne][countTwo]] ) {
+                if (result[array[countOne][countTwo]]) {
                     result[array[countOne][countTwo]]++;
                 } else result[array[countOne][countTwo]] = 1;
             }
