@@ -124,10 +124,7 @@ let factorialMemoiz = function() {
         if (typeof result[num] == 'undefined') {
             result.push((result[result.length - 1]) * count);
             return factRecursiya(num, ++count, result);
-        } else {
-            cache = result;
-            return result[num];
-        }
+        } return result[num];
     }
 }
 //19.9
