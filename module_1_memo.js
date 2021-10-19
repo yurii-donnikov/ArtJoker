@@ -239,34 +239,30 @@ let getSumDubleArrayMemoiz = function() {
     }
 }
 //19.12(10)
-let getNumbersDubleArrayMemoiz = function () {
-    let cache = [];
-   return function getNumbersDubleArrayRecurcion(array, callback, i, j, result) {
-    if (cache[0] == array && cache[1] == (callback + '')) {
-        return cache[2];
-    }
-        i = i || 0;
-        j = j || 0;
+let getNumbersDubleArrayMemoiz = function() {
+    let cache = {};
+    return function getNumbersDubleArrayRecurcion(array, callback, count, countTwo, result) {
+        if (cache[array + callback]) {
+            return cache[array + callback];
+        }
+        count = count || 0;
+        countTwo = countTwo || 0;
         result = result || {};
-        if (i < array.length) {
-            if (j < array[i].length) {
-                if (callback(i, j)) {
-                    if (!!(result[array[i][j]])) {
-                        result[array[i][j]] += 1;
+        if (count < array.length) {
+            if (countTwo < array[count].length) {
+                if (callback(count, countTwo)) {
+                    if (result[array[count][countTwo]]) {
+                        result[array[count][countTwo]]++;
                     } else {
-                        result[array[i][j]] = 1;
+                        result[array[count][countTwo]] = 1;
                     }
                 }
-                return getNumbersDubleArrayRecurcion(array, callback, i, ++j, result);
+                return getNumbersDubleArrayRecurcion(array, callback, count, ++countTwo, result);
             }
-            j = 0;
-            return getNumbersDubleArrayRecurcion(array, callback, ++i, j, result);
-        } else {
-            cache[0] = array;
-            cache[1] = callback + '';
-            cache[2] = result;
-            return result;
+            countTwo = 0;
+            return getNumbersDubleArrayRecurcion(array, callback, ++count, countTwo, result);
         }
+        return cache[array + callback] = result;
     }
 }
 //19.13
