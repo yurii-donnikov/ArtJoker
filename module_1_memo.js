@@ -266,11 +266,11 @@ let getNumbersDubleArrayMemoiz = function() {
     }
 }
 //19.13
-let getSumMinMaxMemoiz = function () {
-    let cache = [];
+let getSumMinMaxMemoiz = function() {
+    let cache = {};
     return function getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, j) {
-        if (cache[0] == array && cache[1] == (callback + '')) {
-            return cache[2];
+        if (cache[array + callback]) {
+            return cache[array + callback];
         }
         minElem = minElem || array[0];
         maxElem = maxElem || array[0];
@@ -284,18 +284,13 @@ let getSumMinMaxMemoiz = function () {
                 maxElem = array[i];
             }
             return getSumMinMaxRecurcion(array, callback, minElem, maxElem, ++i);
-        } else {
-            if (j <= maxElem) {
-                minElem = minElem + j;
-                return getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, ++j);
-            } else {
-                minElem--
-                cache[0] = array;
-                cache[1] = callback + '';
-                cache[2] = minElem;
-                return minElem;
-            }
         }
+        if (j <= maxElem) {
+            minElem = minElem + j;
+            return getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, ++j);
+        }
+        minElem--;
+        return cache[array + callback] = minElem;
     }
 }
 //19.14
