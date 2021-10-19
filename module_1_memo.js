@@ -55,26 +55,22 @@ let getDigitsInNumberMemoiz = function() {
 //19.4
 let getNumWordMemoiz = function() {
     let cache = {};
-    return function getNumWord(offer, word, count) {
+    return function getNumWord(offer, word, count, result) {
         count = count || 0;
+        result = result || 0;
         arrayOffer = offer.split(' ');
-        if (cache[0] == offer && !!cache[word]) {
-            return cache[word];
+        if (typeof cache[offer] !== 'undefined') {
+            return cache[offer];
         }
         if (count < arrayOffer.length) {
-            if (typeof cache[arrayOffer[count]] == 'undefined') {
-                cache[arrayOffer[count]] = 1;
-            } else {
-                cache[arrayOffer[count]] += 1;
-            }
             if (arrayOffer[count] == word) {
-                return 1 + getNumWord(offer, word, ++count);
+                result++;
+                return getNumWord(offer, word, ++count, result);
             } else {
-                return 0 + getNumWord(offer, word, ++count);
+                return getNumWord(offer, word, ++count, result);
             }
         } else {
-            cache[0] = offer;
-            return 0;
+            return cache[offer] = result;
         }
     }
 }
