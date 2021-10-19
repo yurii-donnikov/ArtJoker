@@ -216,11 +216,11 @@ let getNumSystemTwoMemoiz = function() {
     }
 }
 //19.12(9)
-let getSumDubleArrayMemoiz = function () {
-    let cache = [];
+let getSumDubleArrayMemoiz = function() {
+    let cache = {};
     return function getSumDubleArrayRecurcion(array, callback, i, j, result) {
-        if (cache[0] == array && cache[1] == (callback + '')) {
-            return cache[2];
+        if (cache[array + callback]) {
+            return cache[array + callback];
         }
         i = i || 0;
         j = j || 0;
@@ -234,12 +234,8 @@ let getSumDubleArrayMemoiz = function () {
             }
             j = 0;
             return getSumDubleArrayRecurcion(array, callback, ++i, j, result);
-        } else {
-            cache[0] = array;
-            cache[1] = callback + '';
-            cache[2] = result;
-            return result;
         }
+        return cache[array + callback] = result;
     }
 }
 //19.12(10)
