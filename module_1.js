@@ -296,8 +296,8 @@ function deleteColumnZero(array) {
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array[i].length; j++) {
             if (array[i][j] == 0) {
-                array.map(function (i) {
-                    i.splice(j, 1);
+                array.map(function (item) {
+                    item.splice(j, 1);
                 })
                 j--;
             }
