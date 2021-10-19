@@ -34,26 +34,22 @@ let memoMonogramma = function() {
 }
 //19.3
 let getDigitsInNumberMemoiz = function() {
-    let cache = [];
+    let cache = {};
     return function getDigitsInNumberRecursion(number, result, count, arrayNumber) {
-        if (cache[0] == number) {
-            return cache[1];
+        if (typeof cache[number] !== 'undefined') {
+            return cache[number];
         }
         count = count || 0;
         result = result || {};
         arrayNumber = arrayNumber || ('' + number).split('');
         if (count < arrayNumber.length) {
-            if (!!result[arrayNumber[count]]) {
-                result[arrayNumber[count]] += 1;
+            if (result[arrayNumber[count]]) {
+                result[arrayNumber[count]]++;
             } else {
                 result[arrayNumber[count]] = 1;
             }
             return getDigitsInNumberRecursion(number, result, ++count, arrayNumber);
-        } else {
-            cache[0] = number;
-            cache[1] = result;
-            return result;
-        }
+        } return cache[number] = result;
     }
 }
 //19.4
