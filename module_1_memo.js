@@ -2,20 +2,18 @@
 let memoMonogramma = function() {
     let cache = {};
     return function MonogrammaRecursion(wordOne, wordTwo, count1, count2, arrayWordOne, arrayWordTwo) {
-        if (cache[0] == wordOne && cache[1] == wordTwo) {
-            return true;
+        if (typeof cache[wordOne+wordTwo] !== 'undefined') {
+            return cache[wordOne+wordTwo];
         }
         count1 = count1 || 0;
         count2 = count2 || 0;
         arrayWordOne = arrayWordOne || ('' + wordOne).split('');
         arrayWordTwo = arrayWordTwo || ('' + wordTwo).split('');
         if (arrayWordOne.length != arrayWordTwo.length) {
-            return false;
+            return cache[wordOne+wordTwo] = false;
         }
         if (arrayWordOne.toString() == arrayWordTwo.toString()) {
-            cache[0] = wordOne;
-            cache[1] = wordTwo;
-            return true;
+            return cache[wordOne+wordTwo] = true;
         } else {
             if (arrayWordOne[count1] == arrayWordTwo[count2] || count2 > arrayWordOne.length - 1) {
                 if (count1 > arrayWordOne.length - 1) {
