@@ -129,10 +129,10 @@ let factorialMemoiz = function() {
 }
 //19.9
 let countSummaElemMemoiz = function() {
-    let cache = [];
+    let cache = {};
     return function countSumElemRecurs(array, callback, count, result) {
-        if (cache[0] == array && cache[1] == (callback + '')) {
-            return cache[2];
+        if (cache[array + callback]) {
+            return cache[array + callback];
         }
         count = count || 0;
         result = result || 0;
@@ -144,10 +144,7 @@ let countSummaElemMemoiz = function() {
                 return countSumElemRecurs(array, callback, ++count, result);
             }
         } else {
-            cache[0] = array;
-            cache[1] = callback + '';
-            cache[2] = result;
-            return result;
+            return cache[array + callback] = result;
         }
     }
 }
