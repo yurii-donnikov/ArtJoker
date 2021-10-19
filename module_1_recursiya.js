@@ -235,26 +235,26 @@ function getAverageSumArray(array, callback, result, count, amountElem) {
     }
 }
 getAverageSumArray(mas, ((i) => { return (mas[i] % 2) == 0 }))
-function getAverageSumArrayDubleRecursion(array, callback, i, j, result, amountElem) {
-    i = i || 0;
-    j = j || 0;
+function getAverageSumArrayDubleRecursion(array, callback, countOne, countTwo, result, amountElem) {
+    countOne = countOne || 0;
+    countTwo = countTwo || 0;
     result = result || 0;
     amountElem = amountElem || 0;
-    if (i < array.length) {
-        if (j < array[i].length) {
-            if (callback(i, j)) {
-                result += array[i][j];
+    if (countOne < array.length) {
+        if (countTwo < array[countOne].length) {
+            if (callback(countOne, countTwo)) {
+                result += array[countOne][countTwo];
                 amountElem++;
             }
-            return getAverageSumArrayDubleRecursion(array, callback, i, ++j, result, amountElem);
+            return getAverageSumArrayDubleRecursion(array, callback, countOne, ++countTwo, result, amountElem);
         }
-        j = 0;
-        return getAverageSumArrayDubleRecursion(array, callback, ++i, j, result, amountElem);
+        countTwo = 0;
+        return getAverageSumArrayDubleRecursion(array, callback, ++countOne, countTwo, result, amountElem);
     } else {
         return (result / amountElem);
     }
 }
-getAverageSumArrayDubleRecursion(mas, (function(i, j) { return (mas[i][j] % 2 == 0) }))
+getAverageSumArrayDubleRecursion(mas, (function(countOne, countTwo) { return (mas[countOne][countTwo] % 2 == 0) }))
 //18.15
 function findTransponentMatrixRecursion(matrix, i, j, result) {
     result = result || [];
