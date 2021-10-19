@@ -96,7 +96,7 @@ let getCountWordMemoiz = function() {
 }
 //19.6
 let getFiboMemoiz = function() {
-    let cache = [];
+    let cache = {};
     return function getFiboRecurcion(number, result, count) {
         if (typeof cache[number] != 'undefined') {
             return cache[number];
@@ -109,10 +109,7 @@ let getFiboMemoiz = function() {
         if (count < number - 1) {
             result.push(sum);
             return getFiboRecurcion(number, result, ++count);
-        } else {
-            cache = result;
-            return result;
-        }
+        } return cache[number] = result;
     }
 }
 //19.8
