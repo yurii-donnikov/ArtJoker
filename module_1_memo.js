@@ -76,26 +76,22 @@ let getNumWordMemoiz = function() {
 }
 //19.5
 let getCountWordMemoiz = function() {
-    let cache = [];
+    let cache = {};
     return function getCountWordRecurcion(offer, result, count, arrayOffer) {
         count = count || 0;
         result = result || {};
         arrayOffer = arrayOffer || ('' + offer).split(' ');
-        if (cache[0] == offer) {
-            return cache[1];
+        if (typeof cache[offer] != 'undefined') {
+            return cache[offer];
         }
         if (count < arrayOffer.length) {
             if (!!result[arrayOffer[count]]) {
-                result[arrayOffer[count]] += 1;
+                result[arrayOffer[count]]++;
             } else {
                 result[arrayOffer[count]] = 1;
             }
             return getCountWordRecurcion(offer, result, ++count, arrayOffer);
-        } else {
-            cache[0] = offer;
-            cache[1] = result;
-            return result;
-        }
+        } return cache[offer] = result;
     }
 }
 //19.6
