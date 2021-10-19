@@ -296,17 +296,12 @@ function deleteColumnZero(array) {
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array[i].length; j++) {
             if (array[i][j] == 0) {
-                for (let k = 0; k < array.length; k++) {
-                    for (let m = 0; m < array[k].length; m++) {
-                        if (m == j) {
-                            array[k].splice(m, 1);
-                        };
-                        continue;
-                    };
-                };
-                j--
-            };
-        };
-    };
+                array.map(function (i) {
+                    i.splice(j, 1);
+                })
+                j--;
+            }
+        }
+    }
     return array;
-};
+}
