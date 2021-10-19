@@ -174,53 +174,47 @@ let countSumNumberMemoiz = function () {
     }
 }
 //19.11
-let FindNumSystem10Memoiz = function () {
-    let cache = [];
-    return function FindNumSystem10(numSyst2, count, arrayNum, result) {
-        if (cache[0] == numSyst2) {
-            return cache[1];
+let FindNumSystemTenMemoiz = function() {
+    let cache = {};
+    return function FindNumSystem10(numSystTwo, count, arrayNum, result) {
+        if (cache[numSystTwo]) {
+            return cache[numSystTwo];
         }
         result = result || 0;
-        arrayNum = arrayNum || ('' + numSyst2).split('').reverse();
+        arrayNum = arrayNum || ('' + numSystTwo).split('').reverse();
         count = count || 0;
         if (count < arrayNum.length) {
             result += arrayNum[count] * (Math.pow(2, count));
-            return FindNumSystem10(numSyst2, ++count, arrayNum, result);
-        } else {
-            cache[0] = numSyst2;
-            cache[1] = result;
-            return result;
+            return FindNumSystem10(numSystTwo, ++count, arrayNum, result);
         }
+        return cache[numSystTwo] = result;
     }
 }
-let getNumSystemTwoMemoiz = function () {
-    let cache = [];
-     return function getNumSystemTwo(number, result) {
-         if(cache[0] == number) {
-             console.log('rg')
-             return cache[1];
-         }
-         let sum;
-         result = result || '';
-         if (typeof arguments[0] == 'undefined') {
-             return;
-         }
-         if ((sum = number / 2) >= 1) {
-             if (sum % 2 == parseInt(sum % 2)) {
-                 result += '0';
-                 return getNumSystemTwo(parseInt(sum), result);
-             } else {
-                 result += '1'
-                 return getNumSystemTwo(parseInt(sum), result);
-             }
-         } else {
-             result += '1';
-             cache[0] = number;
-             cache[1] = result.split('').reverse().join('');
-             return cache[1];
-         }
-     }
- }
+let getNumSystemTwoMemoiz = function() {
+    let cache = {};
+    return function getNumSystemTwo(number, result, numberCopy) {
+        numberCopy = numberCopy || number;
+        if (cache[number]) {
+            return cache[number];
+        }
+        let sum;
+        result = result || '';
+        if (typeof arguments[0] == 'undefined') {
+            return;
+        }
+        if ((sum = numberCopy / 2) >= 1) {
+            if (sum % 2 == parseInt(sum % 2)) {
+                result += '0';
+                return getNumSystemTwo(number, result, parseInt(sum));
+            } else {
+                result += '1';
+                return getNumSystemTwo(number, result, parseInt(sum));
+            }
+        }
+        result += '1';
+        return cache[number] = result.split('').reverse().join('');
+    }
+}
 //19.12(9)
 let getSumDubleArrayMemoiz = function () {
     let cache = [];
