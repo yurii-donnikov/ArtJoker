@@ -173,28 +173,25 @@ function getSumDubleArrayRecurcion(array, callback, i, j, result) {
 }
 getSumDubleArrayRecurcion(arr, (function(i, j) { return arr[i][j] > 0 }))
 //18.12(10)
-function getNumbersDubleArrayRecurcion(array, callback, i, j, result) {
-    i = i || 0;
-    j = j || 0;
+function getNumbersDubleArrayRecurcion(array, callback, countOne, countTwo, result) {
+    countOne = countOne || 0;
+    countTwo = countTwo || 0;
     result = result || {};
-    if (i < array.length) {
-        if (j < array[i].length) {
-            if (callback(i, j)) {
-                if (!!(result[array[i][j]])) {
-                    result[array[i][j]] += 1;
-                } else {
-                    result[array[i][j]] = 1;
-                }
+    if (countOne < array.length) {
+        if (countTwo < array[countOne].length) {
+            if (callback(countOne, countTwo)) {
+                if ( result[array[countOne][countTwo]] ) {
+                    result[array[countOne][countTwo]]++;
+                } else result[array[countOne][countTwo]] = 1;
             }
-            return getNumbersDubleArrayRecurcion(array, callback, i, ++j, result);
+            return getNumbersDubleArrayRecurcion(array, callback, countOne, ++countTwo, result);
         }
-        j = 0;
-        return getNumbersDubleArrayRecurcion(array, callback, ++i, j, result);
-    } else {
-        return result;
+        countTwo = 0;
+        return getNumbersDubleArrayRecurcion(array, callback, ++countOne, countTwo, result);
     }
+    return result;
 }
-getNumbersDubleArrayRecurcion(mas, (function(i, j) { return mas[i][j] > 0 }))
+getNumbersDubleArrayRecurcion(mas, (function(countOne, countTwo) { return mas[countOne][countTwo] > 0 }));
 //18.13
 function getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, j) {
     minElem = minElem || array[0];
