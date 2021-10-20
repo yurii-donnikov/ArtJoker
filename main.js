@@ -11,13 +11,13 @@ Function.prototype.myBind = function (obj, ...arg) {
     }
 }
 Array.prototype.myFilter = function(funcFilter) {
-    let mass = [];
+    let resultArray = [];
     for (let i = 0; i < this.length; i++) {
-        if (  funcFilter(this[i], i, this)   === true) {
-            mass.push(this[i]);
+        if (funcFilter(this[i], i, this) === true) {
+            resultArray.push(this[i]);
         }
     }
-    return mass;
+    return resultArray;
 }
 Array.prototype.myForEach = function(getForEach2) {
     for (let i = 0; i < this.length; i++) {
