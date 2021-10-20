@@ -388,10 +388,11 @@ let addTwoMatrixMemoiz = function () {
 }
 //19.17
 let deleteZeroStringMemoiz = function () {
-    let cache = [];
-    return function deleteZeroStringRecursion(matrix, i, j) {
-        if (cache[0] == matrix && typeof cache[1] != 'undefined') {
-            return cache[1];
+    let cache = {};
+    return function deleteZeroStringRecursion(matrix, i, j, copyMatrix) {
+        copyMatrix = copyMatrix || matrix;
+        if (cache[copyMatrix]) {
+            return cache[matrix];
         }
         cache[0] = matrix;
         i = i || 0;
@@ -406,16 +407,14 @@ let deleteZeroStringMemoiz = function () {
                     if (i != 0) {
                         --i;
                     }
-                    return deleteZeroStringRecursion(matrix, i, j);
+                    return deleteZeroStringRecursion(matrix, i, j, copyMatrix);
                 }
-                return deleteZeroStringRecursion(matrix, i, ++j);
+                return deleteZeroStringRecursion(matrix, i, ++j, copyMatrix);
             }
             j = 0;
-            return deleteZeroStringRecursion(matrix, ++i, j);
-        } else {
-            cache[1] = matrix;
-            return matrix;
+            return deleteZeroStringRecursion(matrix, ++i, j, copyMatrix);
         }
+        return cache[copyMatrix] = matrix;
     }
 }
 let deleteZeroColumnMemoiz = function () {
