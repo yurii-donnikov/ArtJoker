@@ -364,24 +364,24 @@ let findTransponentMatrixMemoiz = function () {
 //19.16
 let addTwoMatrixMemoiz = function () {
     let cache = {};
-    return function addTwoMatrixRecurcion(matrix, matrix2, i, j, result) {
+    return function addTwoMatrixRecurcion(matrix, matrix2, index, index2, result) {
         if (cache[matrix + matrix2]) {
             console.log(cache)
             return cache[matrix + matrix2];
         }
         result = result || [];
-        i = i || 0;
-        j = j || 0;
-        if (i < matrix.length) {
-            if (typeof result[i] == 'undefined') {
-                result[i] = [];
+        index = index || 0;
+        index2 = index2 || 0;
+        if (index < matrix.length) {
+            if (typeof result[index] == 'undefined') {
+                result[index] = [];
             }
-            if (j < matrix[0].length) {
-                result[i][j] = matrix[i][j] + matrix2[i][j];
-                return addTwoMatrixRecurcion(matrix, matrix2, i, ++j, result);
+            if (index2 < matrix[0].length) {
+                result[index][index2] = matrix[index][index2] + matrix2[index][index2];
+                return addTwoMatrixRecurcion(matrix, matrix2, index, ++index2, result);
             }
-            j = 0;
-            return addTwoMatrixRecurcion(matrix, matrix2, ++i, j, result);
+            index2 = 0;
+            return addTwoMatrixRecurcion(matrix, matrix2, ++index, index2, result);
         } 
         return cache[matrix + matrix2] = result;
     }
@@ -389,81 +389,81 @@ let addTwoMatrixMemoiz = function () {
 //19.17
 let deleteZeroStringMemoiz = function () {
     let cache = {};
-    return function deleteZeroStringRecursion(matrix, i, j, copyMatrix) {
+    return function deleteZeroStringRecursion(matrix, index, index2, copyMatrix) {
         copyMatrix = copyMatrix || matrix;
         if (cache[copyMatrix]) {
+            console.log('rg')
             return cache[matrix];
         }
         cache[0] = matrix;
-        i = i || 0;
-        j = j || 0;
+        index = index || 0;
+        index2 = index2 || 0;
         if (matrix.length == 0) {
             return matrix;
         }
-        if (i < matrix.length) {
-            if (j < matrix[i].length) {
-                if (matrix[i][j] == 0) {
-                    matrix.splice(i, 1);
-                    if (i != 0) {
-                        --i;
+        if (index < matrix.length) {
+            if (index2 < matrix[index].length) {
+                if (matrix[index][index2] == 0) {
+                    matrix.splice(index, 1);
+                    if (index != 0) {
+                        --index;
                     }
-                    return deleteZeroStringRecursion(matrix, i, j, copyMatrix);
+                    return deleteZeroStringRecursion(matrix, index, index2, copyMatrix);
                 }
-                return deleteZeroStringRecursion(matrix, i, ++j, copyMatrix);
+                return deleteZeroStringRecursion(matrix, index, ++index2, copyMatrix);
             }
-            j = 0;
-            return deleteZeroStringRecursion(matrix, ++i, j, copyMatrix);
+            index2 = 0;
+            return deleteZeroStringRecursion(matrix, ++index, index2, copyMatrix);
         }
         return cache[copyMatrix] = matrix;
     }
 }
 let deleteZeroColumnMemoiz = function () {
-    let cache = [];
-    return function deleteZeroColumnRecursion(matrix, i, j, k, m, flag) {
-        if (cache[0] == matrix && typeof cache[1] != 'undefined') {
-            return cache[1];
+    let cache = {};
+    return function deleteZeroColumnRecursion(matrix, index, index2, index3, index4, flag, copyMatrix) {
+        copyMatrix = copyMatrix || matrix;
+        if (cache[copyMatrix]) {
+            return cache[copyMatrix];
         };
         cache[0] = matrix;
-        i = i || 0;
-        j = j || 0;
-        k = k || 0;
-        m = m || 0;
+        index = index || 0;
+        index2 = index2 || 0;
+        index3 = index3 || 0;
+        index4 = index4 || 0;
         flag = flag || false;
-        if (i < matrix.length) {
-            if (!!flag) {
-                if (k < matrix.length) {
-                    if (m == j) {
-                        matrix[k].splice(m, 1);
-                        return deleteZeroColumnRecursion(matrix, i, j, ++k, m, flag);
+        if (index < matrix.length) {
+            if (flag) {
+                if (index3 < matrix.length) {
+                    if (index4 == index2) {
+                        matrix[index3].splice(index4, 1);
+                        return deleteZeroColumnRecursion(matrix, index, index2, ++index3, index4, flag);
                     }
-                    return deleteZeroColumnRecursion(matrix, i, j, k, ++m, flag);
+                    return deleteZeroColumnRecursion(matrix, index, index2, index3, ++index4, flag);
                 } else {
-                    k = 0;
-                    m = 0;
+                    index3 = 0;
+                    index4 = 0;
                     flag = false;
-                    if (j != 0) {
-                        --j;
+                    if (index2 != 0) {
+                        --index2;
                     } else {
-                        j = 0;
-                        return deleteZeroColumnRecursion(matrix, i, j, k, m, flag);
+                        index2 = 0;
+                        return deleteZeroColumnRecursion(matrix, index, index2, index3, index4, flag);
                     }
-                    return deleteZeroColumnRecursion(matrix, i, ++j, k, m, flag);
+                    return deleteZeroColumnRecursion(matrix, index, ++index2, index3, index4, flag);
                 }
             }
-            if (j < matrix[i].length) {
-                if (matrix[i][j] == 0) {
+            if (index2 < matrix[index].length) {
+                if (matrix[index][index2] == 0) {
                     flag = true;
-                    k = 0;
-                    m = 0;
-                    return deleteZeroColumnRecursion(matrix, i, j, k, m, flag);
+                    index3 = 0;
+                    index4 = 0;
+                    return deleteZeroColumnRecursion(matrix, index, index2, index3, index4, flag);
                 }
-                return deleteZeroColumnRecursion(matrix, i, ++j, k, m, flag);
+                return deleteZeroColumnRecursion(matrix, index, ++index2, index3, index4, flag);
             }
-            j = 0;
-            return deleteZeroColumnRecursion(matrix, ++i, j, k, m, flag);
-        } else {
-            cache[1] = matrix;
-            return matrix;
+            index2 = 0;
+            return deleteZeroColumnRecursion(matrix, ++index, index2, index3, index4, flag);
         }
+        return cache[copyMatrix] = matrix;
     }
 }
