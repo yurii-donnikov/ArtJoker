@@ -33,9 +33,9 @@ let memoMonogramma = function() {
     }
 }
 //19.3
-let getDigitsInNumberMemoiz = function() {
+let findDigitsInNumberMemoiz = function() {
     let cache = {};
-    return function getDigitsInNumberRecursion(number, result, count, arrayNumber) {
+    return function findDigitsInNumberRecursion(number, result, count, arrayNumber) {
         if (cache[number]) {
             return cache[number];
         }
@@ -48,14 +48,14 @@ let getDigitsInNumberMemoiz = function() {
             } else {
                 result[arrayNumber[count]] = 1;
             }
-            return getDigitsInNumberRecursion(number, result, ++count, arrayNumber);
+            return findDigitsInNumberRecursion(number, result, ++count, arrayNumber);
         } return cache[number] = result;
     }
 }
 //19.4
-let getNumWordMemoiz = function() {
+let findNumWordMemoiz = function() {
     let cache = {};
-    return function getNumWord(offer, word, count, result) {
+    return function findNumWord(offer, word, count, result) {
         count = count || 0;
         result = result || 0;
         arrayOffer = offer.split(' ');
@@ -65,17 +65,17 @@ let getNumWordMemoiz = function() {
         if (count < arrayOffer.length) {
             if (arrayOffer[count] == word) {
                 result++;
-                return getNumWord(offer, word, ++count, result);
+                return findNumWord(offer, word, ++count, result);
             }
-            return getNumWord(offer, word, ++count, result);
+            return findNumWord(offer, word, ++count, result);
         }
         return cache[offer] = result;
     }
 }
 //19.5
-let getCountWordMemoiz = function() {
+let findCountWordMemoiz = function() {
     let cache = {};
-    return function getCountWordRecurcion(offer, result, count, arrayOffer) {
+    return function findCountWordRecurcion(offer, result, count, arrayOffer) {
         count = count || 0;
         result = result || {};
         arrayOffer = arrayOffer || ('' + offer).split(' ');
@@ -88,15 +88,15 @@ let getCountWordMemoiz = function() {
             } else {
                 result[arrayOffer[count]] = 1;
             }
-            return getCountWordRecurcion(offer, result, ++count, arrayOffer);
+            return findCountWordRecurcion(offer, result, ++count, arrayOffer);
         } 
         return cache[offer] = result;
     }
 }
 //19.6
-let getFiboMemoiz = function() {
+let findFiboMemoiz = function() {
     let cache = {};
-    return function getFiboRecurcion(number, result, count) {
+    return function findFiboRecurcion(number, result, count) {
         if (cache[number]) {
             return cache[number];
         }
@@ -107,7 +107,7 @@ let getFiboMemoiz = function() {
         let sum = start + stop;
         if (count < number - 1) {
             result.push(sum);
-            return getFiboRecurcion(number, result, ++count);
+            return findFiboRecurcion(number, result, ++count);
         } 
         return cache[number] = result;
     }
@@ -190,9 +190,9 @@ let FindNumSystemTenMemoiz = function() {
         return cache[numSystTwo] = result;
     }
 }
-let getNumSystemTwoMemoiz = function() {
+let findNumSystemTwoMemoiz = function() {
     let cache = {};
-    return function getNumSystemTwo(number, result, numberCopy) {
+    return function findNumSystemTwo(number, result, numberCopy) {
         numberCopy = numberCopy || number;
         if (cache[number]) {
             return cache[number];
@@ -205,10 +205,10 @@ let getNumSystemTwoMemoiz = function() {
         if ((sum = numberCopy / 2) >= 1) {
             if (sum % 2 == parseInt(sum % 2)) {
                 result += '0';
-                return getNumSystemTwo(number, result, parseInt(sum));
+                return findNumSystemTwo(number, result, parseInt(sum));
             } else {
                 result += '1';
-                return getNumSystemTwo(number, result, parseInt(sum));
+                return findNumSystemTwo(number, result, parseInt(sum));
             }
         }
         result += '1';
@@ -216,9 +216,9 @@ let getNumSystemTwoMemoiz = function() {
     }
 }
 //19.12(9)
-let getSumDubleArrayMemoiz = function() {
+let findSumDubleArrayMemoiz = function() {
     let cache = {};
-    return function getSumDubleArrayRecurcion(array, callback, index, index2, result) {
+    return function findSumDubleArrayRecurcion(array, callback, index, index2, result) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
@@ -230,18 +230,18 @@ let getSumDubleArrayMemoiz = function() {
                 if (callback(index, index2)) {
                     result += array[index][index2];
                 }
-                return getSumDubleArrayRecurcion(array, callback, index, ++index2, result);
+                return findSumDubleArrayRecurcion(array, callback, index, ++index2, result);
             }
             index2 = 0;
-            return getSumDubleArrayRecurcion(array, callback, ++index, index2, result);
+            return findSumDubleArrayRecurcion(array, callback, ++index, index2, result);
         }
         return cache[array + callback] = result;
     }
 }
 //19.12(10)
-let getNumbersDubleArrayMemoiz = function() {
+let findNumbersDubleArrayMemoiz = function() {
     let cache = {};
-    return function getNumbersDubleArrayRecurcion(array, callback, count, countTwo, result) {
+    return function findNumbersDubleArrayRecurcion(array, callback, count, countTwo, result) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
@@ -257,18 +257,18 @@ let getNumbersDubleArrayMemoiz = function() {
                         result[array[count][countTwo]] = 1;
                     }
                 }
-                return getNumbersDubleArrayRecurcion(array, callback, count, ++countTwo, result);
+                return findNumbersDubleArrayRecurcion(array, callback, count, ++countTwo, result);
             }
             countTwo = 0;
-            return getNumbersDubleArrayRecurcion(array, callback, ++count, countTwo, result);
+            return findNumbersDubleArrayRecurcion(array, callback, ++count, countTwo, result);
         }
         return cache[array + callback] = result;
     }
 }
 //19.13
-let getSumMinMaxMemoiz = function() {
+let findSumMinMaxMemoiz = function() {
     let cache = {};
-    return function getSumMinMaxRecurcion(array, callback, minElem, maxElem, index, index2) {
+    return function findSumMinMaxRecurcion(array, callback, minElem, maxElem, index, index2) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
@@ -283,20 +283,20 @@ let getSumMinMaxMemoiz = function() {
             if (array[i] > maxElem && callback(index)) {
                 maxElem = array[index];
             }
-            return getSumMinMaxRecurcion(array, callback, minElem, maxElem, ++index);
+            return findSumMinMaxRecurcion(array, callback, minElem, maxElem, ++index);
         }
         if (index2 <= maxElem) {
             minElem = minElem + index2;
-            return getSumMinMaxRecurcion(array, callback, minElem, maxElem, index, ++index2);
+            return findSumMinMaxRecurcion(array, callback, minElem, maxElem, index, ++index2);
         }
         minElem--;
         return cache[array + callback] = minElem;
     }
 }
 //19.14
-let getAverageSumArrayMemoiz = function () {
+let findAverageSumArrayMemoiz = function () {
     let cache = {};
-    return function getAverageSumArray(array, callback, result, count, amountElem) {
+    return function findAverageSumArray(array, callback, result, count, amountElem) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
@@ -306,16 +306,16 @@ let getAverageSumArrayMemoiz = function () {
         if (count < array.length) {
             if (callback(count)) {
                 result += array[count];
-                return getAverageSumArray(array, callback, result, ++count, ++amountElem);
+                return findAverageSumArray(array, callback, result, ++count, ++amountElem);
             }
-            return getAverageSumArray(array, callback, result, ++count, amountElem);
+            return findAverageSumArray(array, callback, result, ++count, amountElem);
         } 
         return cache[array + callback] = (result / amountElem);
     }
 }
-let getAverageSumArrayDubleMemoiz = function () {
+let findAverageSumArrayDubleMemoiz = function () {
     let cache = {};
-    return function getAverageSumArrayDubleRecursion(array, callback, index, index2, result, amountElem) {
+    return function findAverageSumArrayDubleRecursion(array, callback, index, index2, result, amountElem) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
@@ -329,10 +329,10 @@ let getAverageSumArrayDubleMemoiz = function () {
                     result += array[index][index2];
                     amountElem++;
                 }
-                return getAverageSumArrayDubleRecursion(array, callback, index, ++index2, result, amountElem);
+                return findAverageSumArrayDubleRecursion(array, callback, index, ++index2, result, amountElem);
             }
             index2 = 0;
-            return getAverageSumArrayDubleRecursion(array, callback, ++index, index2, result, amountElem);
+            return findAverageSumArrayDubleRecursion(array, callback, ++index, index2, result, amountElem);
         } 
         return cache[array + callback] = (result / amountElem);
     }
