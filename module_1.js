@@ -267,7 +267,7 @@ function findTransponentMatrix(matrix) {
         }
     }
     return result;
-}
+} 
 //les16
 function addTwoMatrix(matrix, matrix2) {
     let result = [];
