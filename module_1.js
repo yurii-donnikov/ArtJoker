@@ -199,7 +199,7 @@ function countNumberElemDubleArray(array, callback) {
 }
 countNumberElemDubleArray(arr, ((i) => { return i > 0 }));
 //les13
-function findSumFromMinToMax(array, callback) {
+function findSumFromMinToMax (array, callback) {
     let workingArray = [];
     array.forEach(i => {
         if (callback(i)) {
@@ -280,10 +280,10 @@ function addTwoMatrix(matrix, matrix2) {
     return result;
 }
 //les17
-function deleteStrZero(array) {
+function deleteStringWithValue(array, value) {
     for (let i = 0; i < array.length; i++) {
         array[i].forEach(j => {
-            if (j == 0) {
+            if (j == value) {
                 array.splice(i, 1);
                 i--;
             }
@@ -291,11 +291,11 @@ function deleteStrZero(array) {
     }
     return array;
 }
-function deleteColumnZero(array) {
+function deleteColumnWithValue(array, value) {
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array[i].length; j++) {
-            if (array[i][j] == 0) {
-                array.map(function (item) {
+            if (array[i][j] == value) {
+                array.map(function(item) {
                     item.splice(j, 1);
                 })
                 j--;
