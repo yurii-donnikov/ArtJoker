@@ -24,3 +24,10 @@ Array.prototype.myForEach = function(getForEach2) {
         getForEach2(this[i], i, this)
     }
 }
+Array.prototype.myMap = function (callback) {
+    let resultArray = [];
+    for (let i = 0; i < this.length; i++) {
+        resultArray.push(callback(this[i], i, this));
+    }
+    return resultArray;
+}
