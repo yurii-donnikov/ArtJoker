@@ -31,3 +31,15 @@ Array.prototype.myMap = function (callback) {
     }
     return resultArray;
 }
+Array.prototype.myMap = function (callback, startNumber) {
+    let result;
+    if(startNumber == 0 || startNumber == undefined){
+        result = 1;
+    } else {
+        result = startNumber;
+    }
+    for (let i = 0; i < this.length; i++) {
+        result =  callback(result, this[i]);
+    }
+    return result;
+}
