@@ -19,3 +19,8 @@ Array.prototype.myFilter = function(funcFilter) {
     }
     return mass;
 }
+Array.prototype.myForEach = function(getForEach2) {
+    for (let i = 0; i < this.length; i++) {
+        getForEach2(this[i], i, this)
+    }
+}
