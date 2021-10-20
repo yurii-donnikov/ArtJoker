@@ -1,5 +1,5 @@
 //les1
-function resultMonogramma(wordOne, wordTwo) {
+function Monogramma(wordOne, wordTwo) {
     let arrayWordOne = wordOne.split('');
     let arrayWordTwo = wordTwo.split('');
     if (arrayWordOne.length == arrayWordTwo.length) {
