@@ -16,7 +16,7 @@ function Monogramma(wordOne, wordTwo) {
     return (arrayWordTwo.length == 0);
 }
 //les3
-function getNumberDigits(number) {
+function findNumberDigits(number) {
     let resultObject = {};
     let numberArray = ('' + number).split('');
     for (let i = 0; i < numberArray.length; i++) {
@@ -31,7 +31,7 @@ function getNumberDigits(number) {
     return resultObject;
 }
 //les4
-function getSumUniqueWord(offer, word) {
+function findSumUniqueWord(offer, word) {
     let counter = 0;
     let arrayOffer = offer.split(' ');
     for (let i = 0; i < arrayOffer.length; i++) {
@@ -42,7 +42,7 @@ function getSumUniqueWord(offer, word) {
     return counter;
 }
 //les5
-function getNumberWord(offer) {
+function findNumberWord(offer) {
     let resultObject = {};
     let counter = 0;
     let arrayOffer = offer.split(' ');
@@ -61,7 +61,7 @@ function getNumberWord(offer) {
     return resultObject;
 }
 //les6
-function getFibonachi(number) {
+function findFibonachi(number) {
     let result = [0, 1];
     let start = result[result.length - 2];
     let stop = result[result.length - 1];
@@ -116,7 +116,7 @@ class Circle {
     }
 }
 //les8
-function getFactorial(number) {
+function findFactorial(number) {
     let result = 1;
     for (let i = 1; i <= number; i++) {
         result *= i;
@@ -146,7 +146,7 @@ Array.prototype.countElem = function (array, callback) {
 }
 mas.countElem(mas, ((i) => { return i > 0 }));
 //les11
-function getNumSystemTen(numberSystemTwo) {
+function findNumSystemTen(numberSystemTwo) {
     let result = 0;
     let arraySystTwo = ('' + numberSystemTwo).split('').reverse();
     for (let i = 0; i < arraySystTwo.length; i++) {
@@ -154,13 +154,13 @@ function getNumSystemTen(numberSystemTwo) {
     };
     return result;
 };
-function getNumSystemTwo(numberSystemTen) {
+function findNumSystemTwo(numberSystemTen) {
     let res;
     if ((res = numberSystemTen / 2) >= 1) {
         if (res % 2 == parseInt(res % 2)) {
-            return (getNumSystemTwo(parseInt(res)) + '0');
+            return (findNumSystemTwo(parseInt(res)) + '0');
         } else {
-            return (getNumSystemTwo(parseInt(res)) + '1');
+            return (findNumSystemTwo(parseInt(res)) + '1');
         }
     }
     return "1";
@@ -199,7 +199,7 @@ function countElemDubleArray(array, callback) {
 }
 countElemDubleArray(arr, ((i) => { return i > 0 }));
 //les13
-function getSumMinMax(array, callback) {
+function findAmountMinMax(array, callback) {
     let workingArray = [];
     array.forEach(i => {
         if (callback(i)) {
@@ -224,7 +224,7 @@ function getSumMinMax(array, callback) {
     }
     return result;
 }
-getSumMinMax(arr, ((i) => { return i > 0 }));
+findAmountMinMax(arr, ((i) => { return i > 0 }));
 //les14
 function countAvergeElem(array, callback) {
     let sumElem = 0;
@@ -261,9 +261,9 @@ function findTransponentMatrix(matrix) {
     for (let i = 0; i < matrix[0].length; i++) {
         result[i] = [];
     }
-    for (let j = 0; j < matrix[0].length; j++) {
-        for (let k = 0; k < matrix.length; k++) {
-            result[j][k] = matrix[k][j];
+    for (let i = 0; i < matrix[0].length; i++) {
+        for (let j = 0; j < matrix.length; j++) {
+            result[i][j] = matrix[j][i];
         }
     }
     return result;
