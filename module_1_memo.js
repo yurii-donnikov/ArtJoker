@@ -1,19 +1,19 @@
 //19.1
 let monogrammaMemoiz = function() {
     let cache = {};
-    return function MonogrammaRecursion(wordOne, wordTwo, count1, count2, arrayWordOne, arrayWordTwo) {
-        if (cache[wordOne+wordTwo]) {
-            return cache[wordOne+wordTwo];
+    return function monogrammaRecursion(wordOne, wordTwo, count1, count2, arrayWordOne, arrayWordTwo) {
+        if (typeof cache[wordOne + wordTwo] != 'undefined') {
+            return cache[wordOne + wordTwo];
         }
         count1 = count1 || 0;
         count2 = count2 || 0;
         arrayWordOne = arrayWordOne || ('' + wordOne).split('');
         arrayWordTwo = arrayWordTwo || ('' + wordTwo).split('');
         if (arrayWordOne.length != arrayWordTwo.length) {
-            return cache[wordOne+wordTwo] = false;
+            return cache[wordOne + wordTwo] = false;
         }
         if (arrayWordOne.toString() == arrayWordTwo.toString()) {
-            return cache[wordOne+wordTwo] = true;
+            return cache[wordOne + wordTwo] = true;
         } else {
             if (arrayWordOne[count1] == arrayWordTwo[count2] || count2 > arrayWordOne.length - 1) {
                 if (count1 > arrayWordOne.length - 1) {
@@ -22,12 +22,12 @@ let monogrammaMemoiz = function() {
                 let deleteElem = arrayWordTwo.splice(count2, 1);
                 arrayWordTwo.push(deleteElem[0]);
                 count2 = 0;
-                return MonogrammaRecursion(wordOne, wordTwo, ++count1, count2, arrayWordOne, arrayWordTwo);
+                return monogrammaRecursion(wordOne, wordTwo, ++count1, count2, arrayWordOne, arrayWordTwo);
             } else {
                 if (count1 > arrayWordOne.length - 1 || count2 > arrayWordOne.length - 1) {
                     return false;
                 }
-                return MonogrammaRecursion(wordOne, wordTwo, count1, ++count2, arrayWordOne, arrayWordTwo);
+                return monogrammaRecursion(wordOne, wordTwo, count1, ++count2, arrayWordOne, arrayWordTwo);
             }
         }
     }
@@ -49,7 +49,8 @@ let findDigitsInNumberMemoiz = function() {
                 result[arrayNumber[count]] = 1;
             }
             return findDigitsInNumberRecursion(number, result, ++count, arrayNumber);
-        } return cache[number] = result;
+        }
+        return cache[number] = result;
     }
 }
 //19.4
@@ -59,8 +60,8 @@ let findNumWordInOfferMemoiz = function() {
         count = count || 0;
         result = result || 0;
         arrayOffer = offer.split(' ');
-        if (cache[offer]) {
-            return cache[offer];
+        if (cache[offer + word]) {
+            return cache[offer + word];
         }
         if (count < arrayOffer.length) {
             if (arrayOffer[count] == word) {
@@ -69,11 +70,11 @@ let findNumWordInOfferMemoiz = function() {
             }
             return findNumWord(offer, word, ++count, result);
         }
-        return cache[offer] = result;
+        return cache[offer + word] = result;
     }
 }
 //19.5
-let findCountWordInOfferMemoiz = function() {
+let findSumWordInOfferMemoiz = function() {
     let cache = {};
     return function findCountWordRecurcion(offer, result, count, arrayOffer) {
         count = count || 0;
@@ -82,6 +83,9 @@ let findCountWordInOfferMemoiz = function() {
         if (cache[offer]) {
             return cache[offer];
         }
+        if (!arguments[0]) {
+            return;
+        }
         if (count < arrayOffer.length) {
             if (!!result[arrayOffer[count]]) {
                 result[arrayOffer[count]]++;
@@ -89,16 +93,16 @@ let findCountWordInOfferMemoiz = function() {
                 result[arrayOffer[count]] = 1;
             }
             return findCountWordRecurcion(offer, result, ++count, arrayOffer);
-        } 
+        }
         return cache[offer] = result;
     }
 }
 //19.6
 let findFiboMemoiz = function() {
-    let cache = {};
+    let cache = [];
     return function findFiboRecurcion(number, result, count) {
-        if (cache[number]) {
-            return cache[number];
+        if (cache[0] >= number) {
+            return cache[1][number];
         }
         result = result || [0, 1];
         count = count || 0;
@@ -108,28 +112,31 @@ let findFiboMemoiz = function() {
         if (count < number - 1) {
             result.push(sum);
             return findFiboRecurcion(number, result, ++count);
-        } 
-        return cache[number] = result;
+        }
+        cache[0] = number;
+        return cache[1] = result;
     }
 }
 //19.8
 let factorialMemoiz = function() {
     let cache = [];
-    return function factRecursiya(num, count, result) {
-        if (cache[num]) {
-            return cache[num];
+    return function factorialRecurs(num, count, result) {
+        if (cache[0] >= num) {
+            return cache[1][num];
         }
         result = result || [1, 1];
         count = count || 2;
         if (typeof result[num] == 'undefined') {
             result.push((result[result.length - 1]) * count);
-            return factRecursiya(num, ++count, result);
-        } 
-        return result[num];
+            return factorialRecurs(num, ++count, result);
+        }
+        cache[0] = num;
+        cache[1] = result;
+        return cache[1][num];
     }
 }
 //19.9
-let countSummaElemMemoiz = function() {
+let countSummaElemArrayMemoiz = function() {
     let cache = {};
     return function countSumElemRecurs(array, callback, count, result) {
         if (cache[array + callback]) {
@@ -141,9 +148,8 @@ let countSummaElemMemoiz = function() {
             if (callback(array, count)) {
                 result += array[count];
                 return countSumElemRecurs(array, callback, ++count, result);
-            } else {
-                return countSumElemRecurs(array, callback, ++count, result);
             }
+            return countSumElemRecurs(array, callback, ++count, result);
         }
         return cache[array + callback] = result;
     }
