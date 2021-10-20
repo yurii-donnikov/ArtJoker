@@ -295,10 +295,10 @@ let getSumMinMaxMemoiz = function() {
 }
 //19.14
 let getAverageSumArrayMemoiz = function () {
-    let cache = [];
+    let cache = {};
     return function getAverageSumArray(array, callback, result, count, amountElem) {
-        if (cache[0] == array && cache[1] == (callback + '')) {
-            return cache[2];
+        if (cache[array + callback]) {
+            return cache[array + callback];
         }
         count = count || 0;
         result = result || 0;
@@ -309,19 +309,15 @@ let getAverageSumArrayMemoiz = function () {
                 return getAverageSumArray(array, callback, result, ++count, ++amountElem);
             }
             return getAverageSumArray(array, callback, result, ++count, amountElem);
-        } else {
-            cache[0] = array;
-            cache[1] = callback + '';
-            cache[2] = (result / amountElem);
-            return (result / amountElem);
-        }
+        } 
+        return cache[array + callback] = (result / amountElem);
     }
 }
 let getAverageSumArrayDubleMemoiz = function () {
-    let cache = [];
+    let cache = {};
     return function getAverageSumArrayDubleRecursion(array, callback, i, j, result, amountElem) {
-        if (cache[0] == array && cache[1] == (callback + '')) {
-            return cache[2];
+        if (cache[array + callback]) {
+            return cache[array + callback];
         }
         i = i || 0;
         j = j || 0;
@@ -337,20 +333,16 @@ let getAverageSumArrayDubleMemoiz = function () {
             }
             j = 0;
             return getAverageSumArrayDubleRecursion(array, callback, ++i, j, result, amountElem);
-        } else {
-            cache[0] = array;
-            cache[1] = callback + '';
-            cache[2] = (result / amountElem);
-            return (result / amountElem);
-        }
+        } 
+        return cache[array + callback] = (result / amountElem);
     }
 }
 //19.15
 let findTransponentMatrixMemoiz = function () {
-    let cache = [];
+    let cache = {};
     return function findTransponentMatrixRecursion(matrix, i, j, result) {
-        if (cache[0] == matrix) {
-            return cache[1];
+        if (cache[matrix]) {
+            return cache[matrix];
         };
         result = result || [];
         i = i || 0;
@@ -365,19 +357,17 @@ let findTransponentMatrixMemoiz = function () {
             }
             j = 0;
             return findTransponentMatrixRecursion(matrix, ++i, j, result);
-        } else {
-            cache[0] = matrix;
-            cache[1] = result;
-            return result;
         }
+        return cache[matrix] = result;
     }
 }
 //19.16
 let addTwoMatrixMemoiz = function () {
-    let cache = [];
+    let cache = {};
     return function addTwoMatrixRecurcion(matrix, matrix2, i, j, result) {
-        if (cache[0] == matrix && cache[1] == matrix2) {
-            return cache[1];
+        if (cache[matrix + matrix2]) {
+            console.log(cache)
+            return cache[matrix + matrix2];
         }
         result = result || [];
         i = i || 0;
@@ -392,12 +382,8 @@ let addTwoMatrixMemoiz = function () {
             }
             j = 0;
             return addTwoMatrixRecurcion(matrix, matrix2, ++i, j, result);
-        } else {
-            cache[0] = matrix;
-            cache[1] = matrix2;
-            cache[2] = result;
-            return result;
-        }
+        } 
+        return cache[matrix + matrix2] = result;
     }
 }
 //19.17
