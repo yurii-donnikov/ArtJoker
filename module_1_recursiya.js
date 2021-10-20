@@ -1,5 +1,5 @@
 //les18.1
-function MonogrammaRecursion(wordOne, wordTwo, count1, count2, arrayWordOne, arrayWordTwo) {
+function monogrammaRecursion(wordOne, wordTwo, count1, count2, arrayWordOne, arrayWordTwo) {
     count1 = count1 || 0;
     count2 = count2 || 0;
     arrayWordOne = arrayWordOne || ('' + wordOne).split('');
