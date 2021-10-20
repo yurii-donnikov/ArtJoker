@@ -218,22 +218,22 @@ let getNumSystemTwoMemoiz = function() {
 //19.12(9)
 let getSumDubleArrayMemoiz = function() {
     let cache = {};
-    return function getSumDubleArrayRecurcion(array, callback, i, j, result) {
+    return function getSumDubleArrayRecurcion(array, callback, index, index2, result) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
-        i = i || 0;
-        j = j || 0;
+        index = index || 0;
+        index2 = index2 || 0;
         result = result || 0;
-        if (i < array.length) {
-            if (j < array[i].length) {
-                if (callback(i, j)) {
-                    result += array[i][j];
+        if (index < array.length) {
+            if (index2 < array[index].length) {
+                if (callback(index, index2)) {
+                    result += array[index][index2];
                 }
-                return getSumDubleArrayRecurcion(array, callback, i, ++j, result);
+                return getSumDubleArrayRecurcion(array, callback, index, ++index2, result);
             }
-            j = 0;
-            return getSumDubleArrayRecurcion(array, callback, ++i, j, result);
+            index2 = 0;
+            return getSumDubleArrayRecurcion(array, callback, ++index, index2, result);
         }
         return cache[array + callback] = result;
     }
@@ -268,26 +268,26 @@ let getNumbersDubleArrayMemoiz = function() {
 //19.13
 let getSumMinMaxMemoiz = function() {
     let cache = {};
-    return function getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, j) {
+    return function getSumMinMaxRecurcion(array, callback, minElem, maxElem, index, index2) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
         minElem = minElem || array[0];
         maxElem = maxElem || array[0];
-        i = i || 0;
-        j = j || 1;
-        if (i < array.length) {
-            if (array[i] < minElem && callback(i)) {
+        index = index || 0;
+        index2 = index2 || 1;
+        if (index < array.length) {
+            if (array[index] < minElem && callback(index)) {
                 minElem = array[i];
             }
-            if (array[i] > maxElem && callback(i)) {
-                maxElem = array[i];
+            if (array[i] > maxElem && callback(index)) {
+                maxElem = array[index];
             }
-            return getSumMinMaxRecurcion(array, callback, minElem, maxElem, ++i);
+            return getSumMinMaxRecurcion(array, callback, minElem, maxElem, ++index);
         }
-        if (j <= maxElem) {
-            minElem = minElem + j;
-            return getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, ++j);
+        if (index2 <= maxElem) {
+            minElem = minElem + index2;
+            return getSumMinMaxRecurcion(array, callback, minElem, maxElem, index, ++index2);
         }
         minElem--;
         return cache[array + callback] = minElem;
@@ -315,24 +315,24 @@ let getAverageSumArrayMemoiz = function () {
 }
 let getAverageSumArrayDubleMemoiz = function () {
     let cache = {};
-    return function getAverageSumArrayDubleRecursion(array, callback, i, j, result, amountElem) {
+    return function getAverageSumArrayDubleRecursion(array, callback, index, index2, result, amountElem) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
-        i = i || 0;
-        j = j || 0;
+        index = index || 0;
+        index2 = index2 || 0;
         result = result || 0;
         amountElem = amountElem || 0;
-        if (i < array.length) {
-            if (j < array[i].length) {
-                if (callback(i, j)) {
-                    result += array[i][j];
+        if (index < array.length) {
+            if (index2 < array[index].length) {
+                if (callback(index, index2)) {
+                    result += array[index][index2];
                     amountElem++;
                 }
-                return getAverageSumArrayDubleRecursion(array, callback, i, ++j, result, amountElem);
+                return getAverageSumArrayDubleRecursion(array, callback, index, ++index2, result, amountElem);
             }
-            j = 0;
-            return getAverageSumArrayDubleRecursion(array, callback, ++i, j, result, amountElem);
+            index2 = 0;
+            return getAverageSumArrayDubleRecursion(array, callback, ++index, index2, result, amountElem);
         } 
         return cache[array + callback] = (result / amountElem);
     }
