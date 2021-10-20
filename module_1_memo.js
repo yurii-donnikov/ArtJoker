@@ -340,23 +340,23 @@ let getAverageSumArrayDubleMemoiz = function () {
 //19.15
 let findTransponentMatrixMemoiz = function () {
     let cache = {};
-    return function findTransponentMatrixRecursion(matrix, i, j, result) {
+    return function findTransponentMatrixRecursion(matrix, index, index2, result) {
         if (cache[matrix]) {
             return cache[matrix];
         };
         result = result || [];
-        i = i || 0;
-        j = j || 0;
-        if (i < matrix[0].length) {
-            if (typeof result[i] == 'undefined') {
-                result[i] = [];
+        index = index || 0;
+        index2 = index2 || 0;
+        if (index < matrix[0].length) {
+            if (typeof result[index] == 'undefined') {
+                result[index] = [];
             }
-            if (j < matrix.length) {
-                result[i][j] = matrix[j][i];
-                return findTransponentMatrixRecursion(matrix, i, ++j, result);
+            if (index2 < matrix.length) {
+                result[index][index2] = matrix[index2][index];
+                return findTransponentMatrixRecursion(matrix, index, ++index2, result);
             }
-            j = 0;
-            return findTransponentMatrixRecursion(matrix, ++i, j, result);
+            index2 = 0;
+            return findTransponentMatrixRecursion(matrix, ++index, index2, result);
         }
         return cache[matrix] = result;
     }
