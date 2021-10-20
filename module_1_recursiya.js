@@ -60,7 +60,7 @@ function getCountWordRecurcion(offer, result, count, arrayOffer) {
     result = result || {};
     arrayOffer = arrayOffer || ('' + offer).split(' ');
     if (count < arrayOffer.length) {
-        if (!!result[arrayOffer[count]]) {
+        if (result[arrayOffer[count]]) {
             result[arrayOffer[count]]++;
         } else {
             result[arrayOffer[count]] = 1;
@@ -127,28 +127,27 @@ function countSumNumberZeroRecursion(array, callback, count, result) {
 }
 countSumNumberZeroRecursion(arr, (function(i, j) { return (i[j] == 0) }));
 //18.11
-function FindNumSystem10(numSyst2, count, arrayNum) {
+function FindNumSystemTen(numSyst2, count, arrayNum) {
     arrayNum = arrayNum || ('' + numSyst2).split('').reverse();
     count = count || 0;
     if (count < arrayNum.length) {
-        return arrayNum[count] * (Math.pow(2, count)) + FindNumSystem10(numSyst2, ++count, arrayNum);
+        return arrayNum[count] * (Math.pow(2, count)) + FindNumSystemTen(numSyst2, ++count, arrayNum);
     }
     return 0;
 }
-function getNumSystem2(number) {
+function getNumSystemTwo(number) {
     let res;
     if (typeof arguments[0] == 'undefined') {
         return;
     }
     if ((res = number / 2) >= 1) {
         if (res % 2 == parseInt(res % 2)) {
-            return (getNumSystem2(parseInt(res)) + '0');
+            return (getNumSystemTwo(parseInt(res)) + '0');
         } else {
-            return (getNumSystem2(parseInt(res)) + '1');
+            return (getNumSystemTwo(parseInt(res)) + '1');
         }
-    } else {
-        return "1";
     }
+    return "1";
 }
 //18.12(9)
 function getSumDubleArrayRecurcion(array, callback, index, index2, result) {
