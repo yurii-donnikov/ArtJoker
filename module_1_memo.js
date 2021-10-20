@@ -1,5 +1,5 @@
 //19.1
-let MonogrammaMemoiz = function() {
+let monogrammaMemoiz = function() {
     let cache = {};
     return function MonogrammaRecursion(wordOne, wordTwo, count1, count2, arrayWordOne, arrayWordTwo) {
         if (cache[wordOne+wordTwo]) {
