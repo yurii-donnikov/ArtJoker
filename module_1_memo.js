@@ -2,7 +2,7 @@
 let memoMonogramma = function() {
     let cache = {};
     return function MonogrammaRecursion(wordOne, wordTwo, count1, count2, arrayWordOne, arrayWordTwo) {
-        if (typeof cache[wordOne+wordTwo] !== 'undefined') {
+        if (cache[wordOne+wordTwo]) {
             return cache[wordOne+wordTwo];
         }
         count1 = count1 || 0;
@@ -36,7 +36,7 @@ let memoMonogramma = function() {
 let getDigitsInNumberMemoiz = function() {
     let cache = {};
     return function getDigitsInNumberRecursion(number, result, count, arrayNumber) {
-        if (typeof cache[number] !== 'undefined') {
+        if (cache[number]) {
             return cache[number];
         }
         count = count || 0;
@@ -59,7 +59,7 @@ let getNumWordMemoiz = function() {
         count = count || 0;
         result = result || 0;
         arrayOffer = offer.split(' ');
-        if (typeof cache[offer] !== 'undefined') {
+        if (cache[offer]) {
             return cache[offer];
         }
         if (count < arrayOffer.length) {
@@ -81,7 +81,7 @@ let getCountWordMemoiz = function() {
         count = count || 0;
         result = result || {};
         arrayOffer = arrayOffer || ('' + offer).split(' ');
-        if (typeof cache[offer] != 'undefined') {
+        if (cache[offer]) {
             return cache[offer];
         }
         if (count < arrayOffer.length) {
@@ -98,7 +98,7 @@ let getCountWordMemoiz = function() {
 let getFiboMemoiz = function() {
     let cache = {};
     return function getFiboRecurcion(number, result, count) {
-        if (typeof cache[number] != 'undefined') {
+        if (cache[number]) {
             return cache[number];
         }
         result = result || [0, 1];
@@ -366,7 +366,6 @@ let addTwoMatrixMemoiz = function () {
     let cache = {};
     return function addTwoMatrixRecurcion(matrix, matrix2, index, index2, result) {
         if (cache[matrix + matrix2]) {
-            console.log(cache)
             return cache[matrix + matrix2];
         }
         result = result || [];
@@ -392,7 +391,6 @@ let deleteZeroStringMemoiz = function () {
     return function deleteZeroStringRecursion(matrix, index, index2, copyMatrix) {
         copyMatrix = copyMatrix || matrix;
         if (cache[copyMatrix]) {
-            console.log('rg')
             return cache[matrix];
         }
         cache[0] = matrix;
