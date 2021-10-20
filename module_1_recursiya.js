@@ -166,7 +166,7 @@ function getSumDubleArrayRecurcion(array, callback, index, index2, result) {
     }
     return result;
 }
-getSumDubleArrayRecurcion(arr, (function(i, j) { return arr[i][j] > 0 }))
+getSumDubleArrayRecurcion(arr, (function(i, j) { return arr[i][j] > 0 }));
 //18.12(10)
 function getNumbersDubleArrayRecurcion(array, callback, countOne, countTwo, result) {
     countOne = countOne || 0;
@@ -210,7 +210,7 @@ function getSumMinMaxRecurcion(array, callback, minElem, maxElem, index, index2)
         }
     }
 }
-getSumMinMaxRecurcion(mas, ((i) => { return mas[i] > 0 }))
+getSumMinMaxRecurcion(mas, ((i) => { return mas[i] > 0 }));
 //18.14
 function getAverageSumArray(array, callback, result, count, amountElem) {
     count = count || 0;
@@ -225,7 +225,7 @@ function getAverageSumArray(array, callback, result, count, amountElem) {
     }
     return (result / amountElem);
 }
-getAverageSumArray(mas, ((i) => { return (mas[i] % 2) == 0 }))
+getAverageSumArray(mas, ((i) => { return (mas[i] % 2) == 0 }));
 function getAverageSumArrayDubleRecursion(array, callback, countOne, countTwo, result, amountElem) {
     countOne = countOne || 0;
     countTwo = countTwo || 0;
@@ -244,7 +244,7 @@ function getAverageSumArrayDubleRecursion(array, callback, countOne, countTwo, r
     }
     return (result / amountElem);
 }
-getAverageSumArrayDubleRecursion(mas, (function(countOne, countTwo) { return (mas[countOne][countTwo] % 2 == 0) }))
+getAverageSumArrayDubleRecursion(mas, (function(countOne, countTwo) { return (mas[countOne][countTwo] % 2 == 0) }));
 //18.15
 function findTransponentMatrixRecursion(matrix, index, index2, result) {
     result = result || [];
