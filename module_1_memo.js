@@ -66,12 +66,10 @@ let getNumWordMemoiz = function() {
             if (arrayOffer[count] == word) {
                 result++;
                 return getNumWord(offer, word, ++count, result);
-            } else {
-                return getNumWord(offer, word, ++count, result);
             }
-        } else {
-            return cache[offer] = result;
+            return getNumWord(offer, word, ++count, result);
         }
+        return cache[offer] = result;
     }
 }
 //19.5
@@ -91,7 +89,8 @@ let getCountWordMemoiz = function() {
                 result[arrayOffer[count]] = 1;
             }
             return getCountWordRecurcion(offer, result, ++count, arrayOffer);
-        } return cache[offer] = result;
+        } 
+        return cache[offer] = result;
     }
 }
 //19.6
@@ -109,7 +108,8 @@ let getFiboMemoiz = function() {
         if (count < number - 1) {
             result.push(sum);
             return getFiboRecurcion(number, result, ++count);
-        } return cache[number] = result;
+        } 
+        return cache[number] = result;
     }
 }
 //19.8
@@ -124,7 +124,8 @@ let factorialMemoiz = function() {
         if (typeof result[num] == 'undefined') {
             result.push((result[result.length - 1]) * count);
             return factRecursiya(num, ++count, result);
-        } return result[num];
+        } 
+        return result[num];
     }
 }
 //19.9
@@ -143,9 +144,8 @@ let countSummaElemMemoiz = function() {
             } else {
                 return countSumElemRecurs(array, callback, ++count, result);
             }
-        } else {
-            return cache[array + callback] = result;
         }
+        return cache[array + callback] = result;
     }
 }
 //19.10
