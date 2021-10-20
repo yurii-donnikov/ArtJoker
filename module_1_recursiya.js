@@ -38,9 +38,8 @@ function getDigitsInNumberRecursion(number, result, count, arrayNumber) {
             result[arrayNumber[count]] = 1;
         }
         return getDigitsInNumberRecursion(number, result, ++count, arrayNumber);
-    } else {
-        return result;
     }
+    return result;
 }
 //18.4
 function getNumWord(offer, word, count) {
@@ -52,9 +51,8 @@ function getNumWord(offer, word, count) {
         } else {
             return 0 + getNumWord(offer, word, ++count);
         }
-    } else {
-        return 0;
     }
+    return 0;
 }
 //18.5
 function getCountWordRecurcion(offer, result, count, arrayOffer) {
@@ -68,9 +66,8 @@ function getCountWordRecurcion(offer, result, count, arrayOffer) {
             result[arrayOffer[count]] = 1;
         }
         return getCountWordRecurcion(offer, result, ++count, arrayOffer);
-    } else {
-        return result;
     }
+    return result;
 }
 //18.6
 function getFiboRecurcion(number, result, count) {
@@ -82,7 +79,8 @@ function getFiboRecurcion(number, result, count) {
     if (count < number - 1) {
         result.push(sum);
         return getFiboRecurcion(number, result, ++count);
-    } else return result;
+    }
+    return result;
 }
 //18.8
 function getRecursFactorial(number, count) {
@@ -92,7 +90,8 @@ function getRecursFactorial(number, count) {
     }
     if (count <= number) {
         return count * getRecursFactorial(number, ++count);
-    } else return 1;
+    }
+    return 1;
 }
 //18.9
 function countSummaElemRecursion(array, callback, count, result) {
@@ -104,9 +103,8 @@ function countSummaElemRecursion(array, callback, count, result) {
         } else {
             return countSummaElemRecursion(array, callback, ++count, result);
         }
-    } else {
-        return 0;
     }
+    return 0;
 }
 countSummaElemRecursion(arr, (function (i, j) { return (i[j]) > 0}));
 //18.10
@@ -134,9 +132,8 @@ function FindNumSystem10(numSyst2, count, arrayNum) {
     count = count || 0;
     if (count < arrayNum.length) {
         return arrayNum[count] * (Math.pow(2, count)) + FindNumSystem10(numSyst2, ++count, arrayNum);
-    } else {
-        return 0;
     }
+    return 0;
 }
 function getNumSystem2(number) {
     let res;
@@ -154,22 +151,21 @@ function getNumSystem2(number) {
     }
 }
 //18.12(9)
-function getSumDubleArrayRecurcion(array, callback, i, j, result) {
-    i = i || 0;
-    j = j || 0;
+function getSumDubleArrayRecurcion(array, callback, index, index2, result) {
+    index = index || 0;
+    index2 = index2 || 0;
     result = result || 0;
-    if (i < array.length) {
-        if (j < array[i].length) {
-            if (callback(i, j)) {
-                result += array[i][j];
+    if (index < array.length) {
+        if (index2 < array[index].length) {
+            if (callback(index, index2)) {
+                result += array[index][index2];
             }
-            return getSumDubleArrayRecurcion(array, callback, i, ++j, result);
+            return getSumDubleArrayRecurcion(array, callback, index, ++index2, result);
         }
-        j = 0;
-        return getSumDubleArrayRecurcion(array, callback, ++i, j, result);
-    } else {
-        return result;
+        index2 = 0;
+        return getSumDubleArrayRecurcion(array, callback, ++index, index2, result);
     }
+    return result;
 }
 getSumDubleArrayRecurcion(arr, (function(i, j) { return arr[i][j] > 0 }))
 //18.12(10)
@@ -193,23 +189,23 @@ function getNumbersDubleArrayRecurcion(array, callback, countOne, countTwo, resu
 }
 getNumbersDubleArrayRecurcion(mas, (function(countOne, countTwo) { return mas[countOne][countTwo] > 0 }));
 //18.13
-function getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, j) {
+function getSumMinMaxRecurcion(array, callback, minElem, maxElem, index, index2) {
     minElem = minElem || array[0];
     maxElem = maxElem || array[0];
-    i = i || 0;
-    j = j || 1;
-    if (i < array.length) {
-        if (array[i] < minElem && callback(i)) {
-            minElem = array[i];
+    index = index || 0;
+    index2 = index2 || 1;
+    if (index < array.length) {
+        if (array[index] < minElem && callback(index)) {
+            minElem = array[index];
         }
-        if (array[i] > maxElem && callback(i)) {
-            maxElem = array[i];
+        if (array[index] > maxElem && callback(index)) {
+            maxElem = array[index];
         }
-        return getSumMinMaxRecurcion(array, callback, minElem, maxElem, ++i);
+        return getSumMinMaxRecurcion(array, callback, minElem, maxElem, ++index);
     } else {
-        if (j <= maxElem) {
-            minElem = minElem + j;
-            return getSumMinMaxRecurcion(array, callback, minElem, maxElem, i, ++j);
+        if (index2 <= maxElem) {
+            minElem = minElem + index2;
+            return getSumMinMaxRecurcion(array, callback, minElem, maxElem, index, ++index2);
         } else {
             return minElem - 1;
         }
@@ -227,9 +223,8 @@ function getAverageSumArray(array, callback, result, count, amountElem) {
             return getAverageSumArray(array, callback, result, ++count, ++amountElem);
         }
         return getAverageSumArray(array, callback, result, ++count, amountElem);
-    } else {
-        return (result / amountElem);
     }
+    return (result / amountElem);
 }
 getAverageSumArray(mas, ((i) => { return (mas[i] % 2) == 0 }))
 function getAverageSumArrayDubleRecursion(array, callback, countOne, countTwo, result, amountElem) {
@@ -247,112 +242,107 @@ function getAverageSumArrayDubleRecursion(array, callback, countOne, countTwo, r
         }
         countTwo = 0;
         return getAverageSumArrayDubleRecursion(array, callback, ++countOne, countTwo, result, amountElem);
-    } else {
-        return (result / amountElem);
     }
+    return (result / amountElem);
 }
 getAverageSumArrayDubleRecursion(mas, (function(countOne, countTwo) { return (mas[countOne][countTwo] % 2 == 0) }))
 //18.15
-function findTransponentMatrixRecursion(matrix, i, j, result) {
+function findTransponentMatrixRecursion(matrix, index, index2, result) {
     result = result || [];
-    i = i || 0;
-    j = j || 0;
-    if (i < matrix[0].length) {
-        if (typeof result[i] == 'undefined') {
-            result[i] = [];
+    index = index || 0;
+    index2 = index2 || 0;
+    if (index < matrix[0].length) {
+        if (typeof result[index] == 'undefined') {
+            result[index] = [];
         }
-        if (j < matrix.length) {
-            result[i][j] = matrix[j][i];
-            return findTransponentMatrixRecursion(matrix, i, ++j, result);
+        if (index2 < matrix.length) {
+            result[index][index2] = matrix[index2][index];
+            return findTransponentMatrixRecursion(matrix, index, ++index2, result);
         }
-        j = 0;
-        return findTransponentMatrixRecursion(matrix, ++i, j, result);
-    } else {
-        return result;
+        index2 = 0;
+        return findTransponentMatrixRecursion(matrix, ++index, index2, result);
     }
+    return result;
 }
 //18.16
-function addTwoMatrixRecurcion(matrix, matrix2, i, j, result) {
+function addTwoMatrixRecurcion(matrix, matrix2, index, index2, result) {
     result = result || [];
-    i = i || 0;
-    j = j || 0;
-    if (i < matrix.length) {
-        if (typeof result[i] == 'undefined') {
-            result[i] = [];
+    index = index || 0;
+    index2 = index2 || 0;
+    if (index < matrix.length) {
+        if (typeof result[index] == 'undefined') {
+            result[index] = [];
         }
-        if (j < matrix[0].length) {
-            result[i][j] = matrix[i][j] + matrix2[i][j];
-            return addTwoMatrixRecurcion(matrix, matrix2, i, ++j, result);
+        if (index2 < matrix[0].length) {
+            result[index][index2] = matrix[index][index2] + matrix2[index][index2];
+            return addTwoMatrixRecurcion(matrix, matrix2, index, ++index2, result);
         }
-        j = 0;
-        return addTwoMatrixRecurcion(matrix, matrix2, ++i, j, result);
-    } else {
-        return result;
+        index2 = 0;
+        return addTwoMatrixRecurcion(matrix, matrix2, ++index, index2, result);
     }
+    return result;
 }
 //18.17
-function deleteZeroStringRecursion(matrix, i, j) {
-    i = i || 0;
-    j = j || 0;
+function deleteZeroStringRecursion(matrix, index, index2) {
+    index = index || 0;
+    index2 = index2 || 0;
     if (matrix.length == 0) {
         return matrix;
     }
-    if (i < matrix.length) {
-        if (j < matrix[i].length) {
-            if (matrix[i][j] == 0) {
-                matrix.splice(i, 1);
-                if (i != 0) {
-                    --i;
+    if (index < matrix.length) {
+        if (index2 < matrix[index].length) {
+            if (matrix[index][index2] == 0) {
+                matrix.splice(index, 1);
+                if (index != 0) {
+                    --index;
                 }
-                return deleteZeroStringRecursion(matrix, i, j);
+                return deleteZeroStringRecursion(matrix, index, index2);
             }
-            return deleteZeroStringRecursion(matrix, i, ++j);
+            return deleteZeroStringRecursion(matrix, index, ++index2);
         }
-        j = 0;
-        return deleteZeroStringRecursion(matrix, ++i, j);
-    } else {
-        return matrix;
+        index2 = 0;
+        return deleteZeroStringRecursion(matrix, ++index, index2);
     }
+    return matrix;
 }
-function deleteZeroColumnRecursion(matrix, i, j, k, m, flag) {
-    i = i || 0;
-    j = j || 0;
-    k = k || 0;
-    m = m || 0;
+function deleteZeroColumnRecursion(matrix, index, index2, index3, index4, flag) {
+    index = index || 0;
+    index2 = index2 || 0;
+    index3 = index3 || 0;
+    index4 = index4 || 0;
     flag = flag || false;
-    if (i < matrix.length) {
-        if (!!flag) {
-            if (k < matrix.length) {
-                if (m == j) {
-                    matrix[k].splice(m, 1);
-                    return deleteZeroColumnRecursion(matrix, i, j, ++k, m, flag);
+    if (index < matrix.length) {
+        if (flag) {
+            if (index3 < matrix.length) {
+                if (index4 == index2) {
+                    matrix[index3].splice(index4, 1);
+                    return deleteZeroColumnRecursion(matrix, index, index2, ++index3, index4, flag);
                 }
-                return deleteZeroColumnRecursion(matrix, i, j, k, ++m, flag);
+                return deleteZeroColumnRecursion(matrix, index, index2, index3, ++index4, flag);
             } else {
-                k = 0;
-                m = 0;
+                index3 = 0;
+                index4 = 0;
                 flag = false;
-                if (j != 0) {
-                    --j;
+                if (index2 != 0) {
+                    --index2;
                 } else {
-                    j = 0;
-                    return deleteZeroColumnRecursion(matrix, i, j, k, m, flag);
+                    index2 = 0;
+                    return deleteZeroColumnRecursion(matrix, index, index2, index3, index4, flag);
                 }
-                return deleteZeroColumnRecursion(matrix, i, ++j, k, m, flag);
+                return deleteZeroColumnRecursion(matrix, index, ++index2, index3, index4, flag);
             }
         }
-        if (j < matrix[i].length) {
-            if (matrix[i][j] == 0) {
+        if (index2 < matrix[index].length) {
+            if (matrix[index][index2] == 0) {
                 flag = true;
-                k = 0;
-                m = 0;
-                return deleteZeroColumnRecursion(matrix, i, j, k, m, flag);
+                index3 = 0;
+                index4 = 0;
+                return deleteZeroColumnRecursion(matrix, index, index2, index3, index4, flag);
             }
-            return deleteZeroColumnRecursion(matrix, i, ++j, k, m, flag);
+            return deleteZeroColumnRecursion(matrix, index, ++index2, index3, index4, flag);
         }
-        j = 0;
-        return deleteZeroColumnRecursion(matrix, ++i, j, k, m, flag);
-    } else {
-        return matrix;
+        index2 = 0;
+        return deleteZeroColumnRecursion(matrix, ++index, index2, index3, index4, flag);
     }
+    return matrix;
 }
