@@ -10,3 +10,12 @@ Function.prototype.myBind = function (obj, ...arg) {
         copyObj.func();
     }
 }
+Array.prototype.myFilter = function(funcFilter) {
+    let mass = [];
+    for (let i = 0; i < this.length; i++) {
+        if (  funcFilter(this[i], i, this)   === true) {
+            mass.push(this[i]);
+        }
+    }
+    return mass;
+}
