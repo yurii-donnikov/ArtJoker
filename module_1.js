@@ -162,9 +162,8 @@ function getNumSystemTwo(numberSystemTen) {
         } else {
             return (getNumSystemTwo(parseInt(res)) + '1');
         }
-    } else {
-        return "1";
     }
+    return "1";
 }
 //les12
   //12.9
