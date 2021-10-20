@@ -42,7 +42,7 @@ function findSumUniqueWord(offer, word) {
     return counter;
 }
 //les5
-function findNumberWord(offer) {
+function findSumWordInOffer(offer) {
     let resultObject = {};
     let counter = 0;
     let arrayOffer = offer.split(' ');
@@ -135,7 +135,7 @@ function countSummOddElements(array, callback) {
 }
 countSummOddElements(mas, ((i) => { return i }));
 //les10
-Array.prototype.countElem = function (array, callback) {
+Array.prototype.countElemArray = function (array, callback) {
     let result = 0;
     array.forEach(i => {
         if (callback(i)) {
@@ -144,9 +144,9 @@ Array.prototype.countElem = function (array, callback) {
     })
     return result;
 }
-mas.countElem(mas, ((i) => { return i > 0 }));
+mas.countElemArray(mas, ((i) => { return i > 0 }));
 //les11
-function findNumSystemTen(numberSystemTwo) {
+function findNumberSystemTen(numberSystemTwo) {
     let result = 0;
     let arraySystTwo = ('' + numberSystemTwo).split('').reverse();
     for (let i = 0; i < arraySystTwo.length; i++) {
@@ -154,13 +154,13 @@ function findNumSystemTen(numberSystemTwo) {
     };
     return result;
 };
-function findNumSystemTwo(numberSystemTen) {
+function findNumberSystemTwo(numberSystemTen) {
     let res;
     if ((res = numberSystemTen / 2) >= 1) {
         if (res % 2 == parseInt(res % 2)) {
-            return (findNumSystemTwo(parseInt(res)) + '0');
+            return (findNumberSystemTwo(parseInt(res)) + '0');
         } else {
-            return (findNumSystemTwo(parseInt(res)) + '1');
+            return (findNumberSystemTwo(parseInt(res)) + '1');
         }
     }
     return "1";
@@ -183,7 +183,7 @@ function countSumElemDubleArr(array, callback) {
 }
 countSumElemDubleArr(arr, ((i) => { return i > 0 }));
   //12.10
-function countElemDubleArray(array, callback) {
+function countNumberElemDubleArray(array, callback) {
     let result = {};
     let resultNum = 0;
     array.forEach(i => {
@@ -197,9 +197,9 @@ function countElemDubleArray(array, callback) {
     })
     return result;
 }
-countElemDubleArray(arr, ((i) => { return i > 0 }));
+countNumberElemDubleArray(arr, ((i) => { return i > 0 }));
 //les13
-function findAmountMinMax(array, callback) {
+function findSumFromMinToMax(array, callback) {
     let workingArray = [];
     array.forEach(i => {
         if (callback(i)) {
@@ -224,7 +224,7 @@ function findAmountMinMax(array, callback) {
     }
     return result;
 }
-findAmountMinMax(arr, ((i) => { return i > 0 }));
+findSumFromMinToMax(arr, ((i) => { return i > 0 }));
 //les14
 function countAvergeElem(array, callback) {
     let sumElem = 0;
