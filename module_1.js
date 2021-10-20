@@ -124,7 +124,7 @@ function findFactorial(number) {
     return result;
 }
 //les9
-function countElemOddNumber(array, callback) {
+function countSummOddElements(array, callback) {
     let result = 0;
     array.forEach(i => {
         if (callback(i)) {
@@ -133,7 +133,7 @@ function countElemOddNumber(array, callback) {
     })
     return result;
 }
-countElemOddNumber(mas, ((i) => { return i }));
+countSummOddElements(mas, ((i) => { return i }));
 //les10
 Array.prototype.countElem = function (array, callback) {
     let result = 0;
