@@ -159,7 +159,7 @@ let countSumNumberMemoiz = function () {
         result = result || 0;
         if (count < array.length - 1) {
             if (callback(array, count)) {
-                result += 1;
+                result++;
                 return countSumNumberRecursion(array, callback, ++count, result);
             } else {
                 return countSumNumberRecursion(array, callback, ++count, result);
