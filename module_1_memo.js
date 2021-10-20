@@ -53,7 +53,7 @@ let findDigitsInNumberMemoiz = function() {
     }
 }
 //19.4
-let findNumWordMemoiz = function() {
+let findNumWordInOfferMemoiz = function() {
     let cache = {};
     return function findNumWord(offer, word, count, result) {
         count = count || 0;
@@ -73,7 +73,7 @@ let findNumWordMemoiz = function() {
     }
 }
 //19.5
-let findCountWordMemoiz = function() {
+let findCountWordInOfferMemoiz = function() {
     let cache = {};
     return function findCountWordRecurcion(offer, result, count, arrayOffer) {
         count = count || 0;
