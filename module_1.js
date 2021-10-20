@@ -135,7 +135,7 @@ function countElemOddNumber(array, callback) {
 }
 countElemOddNumber(mas, ((i) => { return i }));
 //les10
-function countElem(array, callback) {
+Array.prototype.countElem = function (array, callback) {
     let result = 0;
     array.forEach(i => {
         if (callback(i)) {
@@ -144,7 +144,7 @@ function countElem(array, callback) {
     })
     return result;
 }
-countElem(mas, ((i) => { return i > 0 }));
+mas.countElem(mas, ((i) => { return i > 0 }));
 //les11
 function getNumSystemTen(numberSystemTwo) {
     let result = 0;
