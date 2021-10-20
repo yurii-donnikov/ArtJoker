@@ -42,7 +42,7 @@ function findDigitsInNumberRecursion(number, result, count, arrayNumber) {
     return result;
 }
 //18.4
-function findNumWord(offer, word, count) {
+function findNumWordInOffer(offer, word, count) {
     count = count || 0;
     arrayOffer = offer.split(' ');
     if (count < arrayOffer.length) {
@@ -55,7 +55,7 @@ function findNumWord(offer, word, count) {
     return 0;
 }
 //18.5
-function findCountWordRecurcion(offer, result, count, arrayOffer) {
+function findCountWordInOfferRecurcion(offer, result, count, arrayOffer) {
     count = count || 0;
     result = result || {};
     arrayOffer = arrayOffer || ('' + offer).split(' ');
@@ -83,7 +83,7 @@ function findFiboRecurcion(number, result, count) {
     return result;
 }
 //18.8
-function findRecursFactorial(number, count) {
+function findFactorial(number, count) {
     count = count || 1;
     if (typeof arguments[0] == 'undefined') {
         return 0;
@@ -108,7 +108,7 @@ function countSummaElemRecursion(array, callback, count, result) {
 }
 countSummaElemRecursion(arr, (function (i, j) { return (i[j]) > 0}));
 //18.10
-function countSumNumberZeroRecursion(array, callback, count, result) {
+function countSumNumberRecursion(array, callback, count, result) {
     count = count || 0;
     result = result || 0;
     if (count < array.length - 1) {
@@ -125,7 +125,7 @@ function countSumNumberZeroRecursion(array, callback, count, result) {
         }
     }
 }
-countSumNumberZeroRecursion(arr, (function(i, j) { return (i[j] == 0) }));
+countSumNumberRecursion(arr, (function(i, j) { return (i[j] == 0) }));
 //18.11
 function FindNumSystemTen(numSyst2, count, arrayNum) {
     arrayNum = arrayNum || ('' + numSyst2).split('').reverse();
