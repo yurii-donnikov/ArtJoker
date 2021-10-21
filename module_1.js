@@ -65,6 +65,9 @@ function findFibonachi(number) {
     let result = [0, 1];
     let start = result[result.length - 2];
     let stop = result[result.length - 1];
+    if(typeof arguments[0] == 'undefined') {
+        return;
+    }
     for (let i = 1; i < number; i++) {
         result.push((start + stop));
         start = result[result.length - 2];
