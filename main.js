@@ -43,3 +43,23 @@ Array.prototype.myMap = function (callback, startNumber) {
     }
     return result;
 }
+let fibonachiElements = {
+    0: 0,
+    1: 1,
+    fibonachi (number) {
+        for(let i = 2; i <= number; i++) {
+            fibonachiElements[i] = fibonachiElements[i - 2] + fibonachiElements[i - 1]
+        }
+    },
+    [Symbol.iterator]() {
+        let counter = 0;
+        return {
+            next : function () {
+                return {
+                    value: fibonachiElements[counter],
+                    done: typeof fibonachiElements[counter++] === 'undefined',
+                }
+            }
+        }
+    }
+}
