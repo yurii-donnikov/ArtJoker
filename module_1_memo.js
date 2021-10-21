@@ -33,9 +33,12 @@ let monogrammaMemoiz = function() {
     }
 }
 //19.3
-let findDigitsInNumberMemoiz = function() {
+let calculateDigitsNumber = function() {
     let cache = {};
-    return function findDigitsInNumberRecursion(number, result, count, arrayNumber) {
+    return function calculateDigitsNumberRecursion(number, result, count, arrayNumber) {
+        if(typeof arguments[0] == 'undefined') {
+            return null;
+        }
         if (cache[number]) {
             return cache[number];
         }
@@ -48,33 +51,36 @@ let findDigitsInNumberMemoiz = function() {
             } else {
                 result[arrayNumber[count]] = 1;
             }
-            return findDigitsInNumberRecursion(number, result, ++count, arrayNumber);
+            return calculateDigitsNumberRecursion(number, result, ++count, arrayNumber);
         }
         return cache[number] = result;
     }
 }
 //19.4
-let findNumWordInOfferMemoiz = function() {
+let findSumUniqueWord = function() {
     let cache = {};
-    return function findNumWord(offer, word, count, result) {
+    return function findSumUniqueWordRecursion(offer, word, count, result) {
         count = count || 0;
         result = result || 0;
         arrayOffer = offer.split(' ');
+        if(!arguments[1]) {
+            return null;
+        }
         if (cache[offer + word]) {
             return cache[offer + word];
         }
         if (count < arrayOffer.length) {
             if (arrayOffer[count] == word) {
                 result++;
-                return findNumWord(offer, word, ++count, result);
+                return findSumUniqueWordRecursion(offer, word, ++count, result);
             }
-            return findNumWord(offer, word, ++count, result);
+            return findSumUniqueWordRecursion(offer, word, ++count, result);
         }
         return cache[offer + word] = result;
     }
 }
 //19.5
-let findSumWordInOfferMemoiz = function() {
+let findSumWord = function() {
     let cache = {};
     return function findCountWordRecurcion(offer, result, count, arrayOffer) {
         count = count || 0;
@@ -84,10 +90,10 @@ let findSumWordInOfferMemoiz = function() {
             return cache[offer];
         }
         if (!arguments[0]) {
-            return;
+            return null;
         }
         if (count < arrayOffer.length) {
-            if (!!result[arrayOffer[count]]) {
+            if (result[arrayOffer[count]]) {
                 result[arrayOffer[count]]++;
             } else {
                 result[arrayOffer[count]] = 1;
@@ -98,14 +104,14 @@ let findSumWordInOfferMemoiz = function() {
     }
 }
 //19.6
-let findFiboMemoiz = function() {
+let calculateFibonachi = function() {
     let cache = [];
-    return function findFiboRecurcion(number, result, count) {
+    return function calculateFibonachiRecurcion(number, result, count) {
         if (cache[0] >= number) {
             return cache[1][number];
         }
         if(typeof arguments[0] == 'undefined'){
-            return;
+            return null;
         }
         result = result || [0, 1];
         count = count || 0;
@@ -114,16 +120,19 @@ let findFiboMemoiz = function() {
         let sum = start + stop;
         if (count < number - 1) {
             result.push(sum);
-            return findFiboRecurcion(number, result, ++count);
+            return calculateFibonachiRecurcion(number, result, ++count);
         }
         cache[0] = number;
         return cache[1] = result;
     }
 }
 //19.8
-let factorialMemoiz = function() {
+let calculateFactorial = function() {
     let cache = [];
-    return function factorialRecurs(num, count, result) {
+    return function calculateFactorialRecursion(num, count, result) {
+        if(typeof arguments[0] == 'undefined') {
+            return null;
+        }
         if (cache[0] >= num) {
             return cache[1][num];
         }
@@ -131,7 +140,7 @@ let factorialMemoiz = function() {
         count = count || 2;
         if (typeof result[num] == 'undefined') {
             result.push((result[result.length - 1]) * count);
-            return factorialRecurs(num, ++count, result);
+            return calculateFactorialRecursion(num, ++count, result);
         }
         cache[0] = num;
         cache[1] = result;
@@ -139,9 +148,9 @@ let factorialMemoiz = function() {
     }
 }
 //19.9
-let countSummaElemArrayMemoiz = function() {
+let calculateSumElements = function() {
     let cache = {};
-    return function countSumElemRecurs(array, callback, count, result) {
+    return function calculateSumElementsRecursion(array, callback, count, result) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
@@ -150,17 +159,17 @@ let countSummaElemArrayMemoiz = function() {
         if (count < array.length) {
             if (callback(array, count)) {
                 result += array[count];
-                return countSumElemRecurs(array, callback, ++count, result);
+                return calculateSumElementsRecursion(array, callback, ++count, result);
             }
-            return countSumElemRecurs(array, callback, ++count, result);
+            return calculateSumElementsRecursion(array, callback, ++count, result);
         }
         return cache[array + callback] = result;
     }
 }
 //19.10
-let countElemInArrayMemoiz = function () {
+let calculateAmountElements = function () {
     let cache = {};
-    return function countSumNumberRecursion(array, callback, count, result) {
+    return function calculateAmountElementsRecursion(array, callback, count, result) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
@@ -169,9 +178,9 @@ let countElemInArrayMemoiz = function () {
         if (count < array.length - 1) {
             if (callback(array, count)) {
                 result++;
-                return countSumNumberRecursion(array, callback, ++count, result);
+                return calculateAmountElementsRecursion(array, callback, ++count, result);
             }
-            return countSumNumberRecursion(array, callback, ++count, result);
+            return calculateAmountElementsRecursion(array, callback, ++count, result);
         } else {
             if (callback(array, count)) {
                 return cache[array + callback] = ++result;
@@ -181,28 +190,28 @@ let countElemInArrayMemoiz = function () {
     }
 }
 //19.11
-let FindNumSystemTenMemoiz = function() {
+let FindNumSystemTen = function() {
     let cache = {};
-    return function FindNumSystemTen(numSystTwo, count, arrayNum, result) {
-        if (cache[numSystTwo]) {
-            return cache[numSystTwo];
+    return function FindNumSystemTenRecursion(numSystemTwo, count, arrayNum, result) {
+        if (cache[numSystemTwo]) {
+            return cache[numSystemTwo];
         }
         if(typeof arguments[0] == 'undefined'){
-            return;
+            return null;
         }
         result = result || 0;
-        arrayNum = arrayNum || ('' + numSystTwo).split('').reverse();
+        arrayNum = arrayNum || ('' + numSystemTwo).split('').reverse();
         count = count || 0;
         if (count < arrayNum.length) {
             result += arrayNum[count] * (Math.pow(2, count));
-            return FindNumSystemTen(numSystTwo, ++count, arrayNum, result);
+            return FindNumSystemTenRecursion(numSystemTwo, ++count, arrayNum, result);
         }
-        return cache[numSystTwo] = result;
+        return cache[numSystemTwo] = result;
     }
 }
-let findNumSystemTwoMemoiz = function() {
+let findNumSystemTwo = function() {
     let cache = {};
-    return function findNumSystemTwo(number, result, numberCopy) {
+    return function findNumSystemTwoRecursion(number, result, numberCopy) {
         numberCopy = numberCopy || number;
         if (cache[number]) {
             return cache[number];
@@ -210,15 +219,15 @@ let findNumSystemTwoMemoiz = function() {
         let sum;
         result = result || '';
         if (typeof arguments[0] == 'undefined') {
-            return;
+            return null;
         }
         if ((sum = numberCopy / 2) >= 1) {
             if (sum % 2 == parseInt(sum % 2)) {
                 result += '0';
-                return findNumSystemTwo(number, result, parseInt(sum));
+                return findNumSystemTwoRecursion(number, result, parseInt(sum));
             } else {
                 result += '1';
-                return findNumSystemTwo(number, result, parseInt(sum));
+                return findNumSystemTwoRecursion(number, result, parseInt(sum));
             }
         }
         result += '1';
@@ -226,7 +235,7 @@ let findNumSystemTwoMemoiz = function() {
     }
 }
 //19.12(9)
-let findSumInDubleArrayMemoiz = function() {
+let calculateSumElementsDubleArray = function() {
     let cache = {};
     return function findSumDubleArrayRecurcion(array, callback, index, index2, result) {
         if (cache[array + callback]) {
@@ -248,8 +257,9 @@ let findSumInDubleArrayMemoiz = function() {
         return cache[array + callback] = result;
     }
 }
+calculateSumElementsDubleArray()(arr, ((i) => { return i > 0 }));
 //19.12(10)
-let findNumberInDubleArrayMemoiz = function() {
+let calculateAmountElementsDubleArray = function() {
     let cache = {};
     return function findNumbersDubleArrayRecurcion(array, callback, count, countTwo, result) {
         if (cache[array + callback]) {
@@ -275,10 +285,11 @@ let findNumberInDubleArrayMemoiz = function() {
         return cache[array + callback] = result;;
     }
 }
+calculateAmountElementsDubleArray()(arr2, (function(countOne, countTwo) { return arr2[countOne][countTwo] > 0 }))
 //19.13
-let findSumFromMinToMaxMemoiz = function() {
+let sumMinToMax = function() {
     let cache = {};
-    return function findSumFromMinToMaxRecurcion(array, callback, minElem, maxElem, index, index2) {
+    return function sumMinToMaxRecurcion(array, callback, minElem, maxElem, index, index2) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
@@ -288,25 +299,26 @@ let findSumFromMinToMaxMemoiz = function() {
         index2 = index2 || 1;
         if (index < array.length) {
             if (array[index] < minElem && callback(index)) {
-                minElem = array[i];
+                minElem = array[index];
             }
             if (array[index] > maxElem && callback(index)) {
                 maxElem = array[index];
             }
-            return findSumFromMinToMaxRecurcion(array, callback, minElem, maxElem, ++index);
+            return sumMinToMaxRecurcion(array, callback, minElem, maxElem, ++index);
         }
         if (index2 <= maxElem) {
             minElem = minElem + index2;
-            return findSumFromMinToMaxRecurcion(array, callback, minElem, maxElem, index, ++index2);
+            return sumMinToMaxRecurcion(array, callback, minElem, maxElem, index, ++index2);
         }
         minElem--;
         return cache[array + callback] = minElem;
     }
 }
+sumMinToMax()(arr, ((i) => { return arr[i] > 0 }))
 //19.14
-let findAverageSumArrayMemoiz = function () {
+let AvergeNumber = function () {
     let cache = {};
-    return function findAverageSumArray(array, callback, result, count, amountElem) {
+    return function AvergeNumberRecurion(array, callback, result, count, amountElem) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
@@ -316,16 +328,17 @@ let findAverageSumArrayMemoiz = function () {
         if (count < array.length) {
             if (callback(count)) {
                 result += array[count];
-                return findAverageSumArray(array, callback, result, ++count, ++amountElem);
+                return AvergeNumberRecurion(array, callback, result, ++count, ++amountElem);
             }
-            return findAverageSumArray(array, callback, result, ++count, amountElem);
+            return AvergeNumberRecurion(array, callback, result, ++count, amountElem);
         } 
         return cache[array + callback] = (result / amountElem);
     }
 }
-let findAverageSumInArrayDubleMemoiz = function () {
+AvergeNumber()(arr, ((i) => { return (arr[i] % 2) == 0 }));
+let AvergeNumberDobleArray = function () {
     let cache = {};
-    return function findAverageSumArrayDubleRecursion(array, callback, index, index2, result, amountElem) {
+    return function AvergeNumberDobleArrayRecursion(array, callback, index, index2, result, amountElem) {
         if (cache[array + callback]) {
             return cache[array + callback];
         }
@@ -339,19 +352,21 @@ let findAverageSumInArrayDubleMemoiz = function () {
                     result += array[index][index2];
                     amountElem++;
                 }
-                return findAverageSumArrayDubleRecursion(array, callback, index, ++index2, result, amountElem);
+                return AvergeNumberDobleArrayRecursion(array, callback, index, ++index2, result, amountElem);
             }
             index2 = 0;
-            return findAverageSumArrayDubleRecursion(array, callback, ++index, index2, result, amountElem);
+            return AvergeNumberDobleArrayRecursion(array, callback, ++index, index2, result, amountElem);
         } 
         return cache[array + callback] = result / amountElem;
     }
 }
+AvergeNumberDobleArray()(arr2, (function(countOne, countTwo) { return (arr2[countOne][countTwo] % 2 == 0) }));
 //19.15
-let TransponentMatrixMemoiz = function () {
+let transponentMatrix = function () {
     let cache = {};
-    return function TransponentMatrixRecursion(matrix, index, index2, result) {
+    return function transponentMatrixRecursion(matrix, index, index2, result) {
         if (cache[matrix]) {
+            console.log(cache)
             return cache[matrix];
         };
         result = result || [];
@@ -363,16 +378,16 @@ let TransponentMatrixMemoiz = function () {
             }
             if (index2 < matrix.length) {
                 result[index][index2] = matrix[index2][index];
-                return TransponentMatrixRecursion(matrix, index, ++index2, result);
+                return transponentMatrixRecursion(matrix, index, ++index2, result);
             }
             index2 = 0;
-            return TransponentMatrixRecursion(matrix, ++index, index2, result);
+            return transponentMatrixRecursion(matrix, ++index, index2, result);
         }
         return cache[matrix] = result;
     }
 }
 //19.16
-let addTwoMatrixMemoiz = function () {
+let addTwoMatrix = function () {
     let cache = {};
     return function addTwoMatrixRecurcion(matrix, matrix2, index, index2, result) {
         if (cache[matrix + matrix2]) {
@@ -396,9 +411,9 @@ let addTwoMatrixMemoiz = function () {
     }
 }
 //19.17
-let deleteStringWithValueMemoiz = function () {
+let deleteValueString = function () {
     let cache = {};
-    return function deleteStringWithValueRecursion(matrix, value, index, index2, copyMatrix) {
+    return function deleteValueStringRecursion(matrix, value, index, index2, copyMatrix) {
         copyMatrix = copyMatrix || matrix;
         if (cache[copyMatrix]) {
             return cache[matrix];
@@ -416,19 +431,19 @@ let deleteStringWithValueMemoiz = function () {
                     if (index != 0) {
                         --index;
                     }
-                    return deleteStringWithValueRecursion(matrix, value, index, index2, copyMatrix);
+                    return deleteValueStringRecursion(matrix, value, index, index2, copyMatrix);
                 }
-                return deleteStringWithValueRecursion(matrix, value, index, ++index2, copyMatrix);
+                return deleteValueStringRecursion(matrix, value, index, ++index2, copyMatrix);
             }
             index2 = 0;
-            return deleteStringWithValueRecursion(matrix, value, ++index, index2, copyMatrix);
+            return deleteValueStringRecursion(matrix, value, ++index, index2, copyMatrix);
         }
         return cache[copyMatrix] = matrix;
     }
 }
-let deleteColumnWithValueMemoiz = function () {
+let deleteValueColumn = function () {
     let cache = {};
-    return function deleteColumnWithValueRecursion(matrix, value, index, index2, index3, index4, flag, copyMatrix) {
+    return function deleteColumnValueRecursion(matrix, value, index, index2, index3, index4, flag, copyMatrix) {
         copyMatrix = copyMatrix || matrix;
         if (cache[copyMatrix]) {
             return cache[copyMatrix];
@@ -444,9 +459,9 @@ let deleteColumnWithValueMemoiz = function () {
                 if (index3 < matrix.length) {
                     if (index4 == index2) {
                         matrix[index3].splice(index4, 1);
-                        return deleteColumnWithValueRecursion(matrix, value, index, index2, ++index3, index4, flag);
+                        return deleteColumnValueRecursion(matrix, value, index, index2, ++index3, index4, flag);
                     }
-                    return deleteColumnWithValueRecursion(matrix, value, index, index2, index3, ++index4, flag);
+                    return deleteColumnValueRecursion(matrix, value, index, index2, index3, ++index4, flag);
                 } else {
                     index3 = 0;
                     index4 = 0;
@@ -455,9 +470,9 @@ let deleteColumnWithValueMemoiz = function () {
                         --index2;
                     } else {
                         index2 = 0;
-                        return deleteColumnWithValueRecursion(matrix, value, index, index2, index3, index4, flag);
+                        return deleteColumnValueRecursion(matrix, value, index, index2, index3, index4, flag);
                     }
-                    return deleteColumnWithValueRecursion(matrix, value, index, ++index2, index3, index4, flag);
+                    return deleteColumnValueRecursion(matrix, value, index, ++index2, index3, index4, flag);
                 }
             }
             if (index2 < matrix[index].length) {
@@ -465,12 +480,12 @@ let deleteColumnWithValueMemoiz = function () {
                     flag = true;
                     index3 = 0;
                     index4 = 0;
-                    return deleteColumnWithValueRecursion(matrix, value, index, index2, index3, index4, flag);
+                    return deleteColumnValueRecursion(matrix, value, index, index2, index3, index4, flag);
                 }
-                return deleteColumnWithValueRecursion(matrix, value, index, ++index2, index3, index4, flag);
+                return deleteColumnValueRecursion(matrix, value, index, ++index2, index3, index4, flag);
             }
             index2 = 0;
-            return deleteColumnWithValueRecursion(matrix, value, ++index, index2, index3, index4, flag);
+            return deleteColumnValueRecursion(matrix, value, ++index, index2, index3, index4, flag);
         }
         return cache[copyMatrix] = matrix;
     }
