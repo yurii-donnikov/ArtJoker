@@ -63,3 +63,18 @@ let fibonachiElements = {
         }
     }
 }
+let fibonachiElements = {
+    0: 0,
+    1: 1,
+    fibonachi(number) {
+        for (let i = 2; i <= number; i++) {
+            fibonachiElements[i] = fibonachiElements[i - 2] + fibonachiElements[i - 1];
+        }
+    },
+    *[Symbol.iterator]() {
+        let count = 0;
+        while (typeof fibonachiElements[count] !== 'undefined') {
+            yield fibonachiElements[count++];
+        }
+    }
+}
