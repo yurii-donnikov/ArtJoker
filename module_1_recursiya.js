@@ -75,7 +75,7 @@ function findSumWordInOfferRecurs(offer, result, count, arrayOffer) {
 function findFiboRecurcion(number, result, count) {
     result = result || [0, 1];
     count = count || 0;
-    if (!arguments[0]) {
+    if (typeof arguments[0] == 'undefined') {
         return;
     }
     let start = result[result.length - 2];
