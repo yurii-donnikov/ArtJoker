@@ -162,7 +162,6 @@ let countElemInArrayMemoiz = function () {
     let cache = {};
     return function countSumNumberRecursion(array, callback, count, result) {
         if (cache[array + callback]) {
-            console.log(cache)
             return cache[array + callback];
         }
         count = count || 0;
