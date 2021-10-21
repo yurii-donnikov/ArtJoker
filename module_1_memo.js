@@ -104,6 +104,9 @@ let findFiboMemoiz = function() {
         if (cache[0] >= number) {
             return cache[1][number];
         }
+        if(typeof arguments[0] == 'undefined'){
+            return;
+        }
         result = result || [0, 1];
         count = count || 0;
         let start = result[result.length - 2];
