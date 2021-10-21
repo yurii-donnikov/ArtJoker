@@ -16,9 +16,12 @@ function monogramma(wordOne, wordTwo) {
     return (arrayWordTwo.length == 0);
 }
 //les3
-function findNumberDigits(number) {
+function calculateDigitsNumber(number) {
     let resultObject = {};
     let numberArray = ('' + number).split('');
+    if (typeof arguments[0] == 'undefined') {
+        return null;
+    }
     for (let i = 0; i < numberArray.length; i++) {
         let counterNumber = 0;
         for (let j = 0; j < numberArray.length; j++) {
@@ -34,6 +37,9 @@ function findNumberDigits(number) {
 function findSumUniqueWord(offer, word) {
     let counter = 0;
     let arrayOffer = offer.split(' ');
+    if(!arguments[1]){
+        return null;
+    }
     for (let i = 0; i < arrayOffer.length; i++) {
         if (word == arrayOffer[i]) {
             counter++;
@@ -42,31 +48,31 @@ function findSumUniqueWord(offer, word) {
     return counter;
 }
 //les5
-function findSumWordInOffer(offer) {
+function findSumWord(offer) {
     let resultObject = {};
-    let counter = 0;
+    let count = 0;
     let arrayOffer = offer.split(' ');
     if (arguments[0].length == 0) {
-        return 0;
+        return null;
     }
     for (let i = 0; i < arrayOffer.length; i++) {
-        let counter = 0;
+        let count = 0;
         for (let j = 0; j < arrayOffer.length; j++) {
             if (arrayOffer[i] != arrayOffer[j]) {
                 continue;
-            } else counter++;
+            } else count++;
         }
-        resultObject[arrayOffer[i]] = counter;
+        resultObject[arrayOffer[i]] = count;
     }
     return resultObject;
 }
 //les6
-function findFibonachi(number) {
+function calculateFibonachi(number) {
     let result = [0, 1];
     let start = result[result.length - 2];
     let stop = result[result.length - 1];
     if(typeof arguments[0] == 'undefined') {
-        return;
+        return null;
     }
     for (let i = 1; i < number; i++) {
         result.push((start + stop));
@@ -119,15 +125,18 @@ class Circle {
     }
 }
 //les8
-function findFactorial(number) {
+function calculateFactorial(number) {
     let result = 1;
+    if(typeof arguments[0] == 'undefined'){
+        return null;
+    }
     for (let i = 1; i <= number; i++) {
         result *= i;
     }
     return result;
 }
 //les9
-function countSummOddElements(array, callback) {
+function calculateSumElements(array, callback) {
     let result = 0;
     array.forEach(i => {
         if (callback(i)) {
@@ -136,18 +145,18 @@ function countSummOddElements(array, callback) {
     })
     return result;
 }
-countSummOddElements(mas, ((i) => { return i }));
+calculateSumElements(mas, ((i) => { return i }));
 //les10
-Array.prototype.countElemArray = function (array, callback) {
+Array.prototype.calculateAmountElements = function (callback) {
     let result = 0;
-    array.forEach(i => {
+    this.forEach(i => {
         if (callback(i)) {
             result++;
         }
     })
     return result;
 }
-mas.countElemArray(mas, ((i) => { return i > 0 }));
+mas.countElemArray(((i) => { return i > 0 }));
 //les11
 function findNumberSystemTen(numberSystemTwo) {
     let result = 0;
@@ -170,7 +179,7 @@ function findNumberSystemTwo(numberSystemTen) {
 }
 //les12
   //12.9
-function countSumElemDubleArr(array, callback) {
+function calculateSumElementsDubleArray(array, callback) {
     let result = {};
     let resultNum = 0;
     array.forEach(i => {
@@ -184,9 +193,9 @@ function countSumElemDubleArr(array, callback) {
     })
     return result;
 }
-countSumElemDubleArr(arr, ((i) => { return i > 0 }));
+calculateSumElementsDubleArray(arr2, ((i) => { return i > 0 }));
   //12.10
-function countNumberElemDubleArray(array, callback) {
+function calculateAmountElementsDubleArray(array, callback) {
     let result = {};
     let resultNum = 0;
     array.forEach(i => {
@@ -200,9 +209,9 @@ function countNumberElemDubleArray(array, callback) {
     })
     return result;
 }
-countNumberElemDubleArray(arr, ((i) => { return i > 0 }));
+calculateAmountElementsDubleArray(arr2, ((i) => { return i > 0 }));
 //les13
-function findSumFromMinToMax (array, callback) {
+function sumMinToMax (array, callback) {
     let workingArray = [];
     array.forEach(i => {
         if (callback(i)) {
@@ -227,9 +236,9 @@ function findSumFromMinToMax (array, callback) {
     }
     return result;
 }
-findSumFromMinToMax(arr, ((i) => { return i > 0 }));
+sumMinToMax(arr, ((i) => { return i > 0 }));
 //les14
-function countAvergeElem(array, callback) {
+function AvergeNumber(array, callback) {
     let sumElem = 0;
     let numberElem = 0;
     array.forEach(i => {
@@ -240,9 +249,9 @@ function countAvergeElem(array, callback) {
     })
     return (sumElem / numberElem);
 }
-countAvergeElem(arr, ((i) => { return (i % 2 == 0) }));
+AvergeNumber(arr, ((i) => { return (i % 2 == 0) }));
   //for duble array 
-function AvergeElemDobleArr(array) {
+function AvergeNumberDobleArr(array) {
     let chetnMass = [];
     let chetsumElem = 0;
     array.forEach(i => {
@@ -257,9 +266,9 @@ function AvergeElemDobleArr(array) {
     })
     return (chetsumElem / chetnMass.length);
 }
-AvergeElemDobleArr(arr, ((i) => { return (i % 2 == 0) }));
+AvergeNumberDobleArr(arr2, ((i) => { return (i % 2 == 0) }));
 //les15
-function findTransponentMatrix(matrix) {
+function transponentMatrix(matrix) {
     let result = [];
     for (let i = 0; i < matrix[0].length; i++) {
         result[i] = [];
@@ -283,7 +292,7 @@ function addTwoMatrix(matrix, matrix2) {
     return result;
 }
 //les17
-function deleteStringWithValue(array, value) {
+function deleteValueString(array, value) {
     for (let i = 0; i < array.length; i++) {
         array[i].forEach(j => {
             if (j == value) {
@@ -294,7 +303,7 @@ function deleteStringWithValue(array, value) {
     }
     return array;
 }
-function deleteColumnWithValue(array, value) {
+function deleteValueColumn(array, value) {
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < array[i].length; j++) {
             if (array[i][j] == value) {
