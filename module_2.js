@@ -49,7 +49,7 @@ let fibonachiElements = {
     1: 1,
     fibonachi (number) {
         for(let i = 2; i <= number; i++) {
-            fibonachiElements[i] = fibonachiElements[i - 2] + fibonachiElements[i - 1]
+            fibonachiElements[i] = fibonachiElements[i - 2] + fibonachiElements[i - 1];
         }
     },
     [Symbol.iterator]() {
@@ -57,8 +57,8 @@ let fibonachiElements = {
         return {
             next : function () {
                 return {
-                    value: fibonachiElements[counter],
-                    done: typeof fibonachiElements[counter++] === 'undefined',
+                    value: fibonachiElements[counter];
+                    done: typeof fibonachiElements[counter++] === 'undefined';
                 }
             }
         }
