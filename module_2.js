@@ -45,11 +45,13 @@ Array.prototype.myReduce = function(callback, startElement) {
 }
 //3
 let fibonachiElements = {
-    0: 0,
-    1: 1,
     fibonachi (number) {
-        for(let i = 2; i <= number; i++) {
-            fibonachiElements[i] = fibonachiElements[i - 2] + fibonachiElements[i - 1];
+        for(let i = 0; i <= number; i++) {
+            if(fibonachiElements[i - 2] === undefined) {
+                fibonachiElements[i] = i;
+            } else {
+                fibonachiElements[i] = fibonachiElements[i - 2] + fibonachiElements[i - 1];
+            }
         }
     },
     [Symbol.iterator]() {
@@ -65,11 +67,13 @@ let fibonachiElements = {
     }
 }
 let fibonachiElements = {
-    0: 0,
-    1: 1,
-    fibonachi(number) {
-        for (let i = 2; i <= number; i++) {
-            fibonachiElements[i] = fibonachiElements[i - 2] + fibonachiElements[i - 1];
+    fibonachi (number) {
+        for(let i = 0; i <= number; i++) {
+            if(fibonachiElements[i - 2] === undefined) {
+                fibonachiElements[i] = i;
+            } else {
+                fibonachiElements[i] = fibonachiElements[i - 2] + fibonachiElements[i - 1];
+            }
         }
     },
     *[Symbol.iterator]() {
