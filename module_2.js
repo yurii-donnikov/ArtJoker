@@ -35,7 +35,7 @@ Array.prototype.myFilter = function(funcFilter) {
 }
 Array.prototype.myReduce = function(callback, startValue) {
     let result;
-    if (startValue == undefined || startValue == 0) {
+    if (startValue === undefined || startValue === 0) {
         result = 0;
     } else result = startValue;
     for (let i = 0; i < this.length; i++) {
