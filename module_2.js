@@ -33,11 +33,11 @@ Array.prototype.myFilter = function(funcFilter) {
     }
     return resultArray;
 }
-Array.prototype.myReduce = function(callback, startValue) {
+Array.prototype.myReduce = function(callback, startElement) {
     let result;
-    if (startValue === undefined || startValue === 0) {
+    if (startElement === undefined || startElement === 0) {
         result = 0;
-    } else result = startValue;
+    } else result = startElement;
     for (let i = 0; i < this.length; i++) {
         result = callback(result, this[i]);
     }
