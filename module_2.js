@@ -60,7 +60,7 @@ let fibonachiElements = {
             next : function () {
                 return {
                     value: fibonachiElements[counter],
-                    done: typeof fibonachiElements[counter++] === 'undefined',
+                    done: fibonachiElements[counter++] === undefined,
                 }
             }
         }
@@ -76,10 +76,15 @@ let fibonachiElements = {
             }
         }
     },
-    *[Symbol.iterator]() {
-        let count = 0;
-        while (typeof fibonachiElements[count] !== 'undefined') {
-            yield fibonachiElements[count++];
+    [Symbol.iterator]() {
+        let counter = 0;
+        return {
+            next : function () {
+                return {
+                    value: fibonachiElements[counter],
+                    done: fibonachiElements[counter++] === undefined,
+                }
+            }
         }
     }
 }
