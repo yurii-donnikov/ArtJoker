@@ -57,8 +57,8 @@ let fibonachiElements = {
         return {
             next : function () {
                 return {
-                    value: fibonachiElements[counter];
-                    done: typeof fibonachiElements[counter++] === 'undefined';
+                    value: fibonachiElements[counter],
+                    done: typeof fibonachiElements[counter++] === 'undefined',
                 }
             }
         }
