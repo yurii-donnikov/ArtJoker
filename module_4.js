@@ -1,3 +1,4 @@
+
 class Restaurant {
     constructor() {
         this.department = [
@@ -73,23 +74,39 @@ class Restaurant {
     sumSalary(callback){
         let result = {}
         this.employee.forEach((i) => {
-            // if(i.works !== false) {
-                if(callback()) {
+          if(callback(i)) {
+        // колбек nn.sumSalary((i) => i.works !== true)
                 if(result[i.department]) {
                     result[i.department] += i.salary;
                 } else {
                     result[i.department] = i.salary;
                 }
-            } 
+            }
         })
         return result;
     }
+    // averageSalary(department){
+    //   let result = 0;
+    //   let count = 0;
+    //   this.employee.forEach((i) => {
+    //     if(i.department === department) {
+    //       result += i.salary;
+    //       count++;
+    //     }
+    //   });
+    //   return result / count;
+    // }
     averageSalary(){
-        let result = {}
-        let count = 0;
-        
+      let result = {};
+      //let count = 0;
+      this.employee.forEach((i) => {
+        if(i.department === department) {
+          result += i.salary;
+          count++;
+        }
+      });
+      return result / count;
     }
-
 }
 
 let nn = new Restaurant()
