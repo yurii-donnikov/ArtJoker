@@ -101,7 +101,8 @@ class Node {
         }
     }
 }
-function sortSelection(array, callback){
+Array.prototype.sortSelection = function (callback){
+    let array = this;
     for(let i = 0; i < array.length; i++){
         for(let j = i+1; j < array.length; j++){
             if(callback(array[i], array[j])){
@@ -112,7 +113,8 @@ function sortSelection(array, callback){
         }
     }
 }
-function sortBubble(array, callback) {
+Array.prototype.sortBubble = function (callback) {
+    let array = this;
     for (let i = array.length - 1; i > 0; i--) {
       for (let j = 0; j < i; j++) {
         if (callback(array[j], array[j + 1])) {
