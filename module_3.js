@@ -9,19 +9,16 @@ class Node {
     }
     insert(value, node) {
         node = node || this;
-
         if (node.#value === null) {
             node.#value = value;
             return true;
         }
-
         if (node.#value > value) {
             if (node.#left === null) {
                 node.#left = new Node();
             }
             return this.insert(value, node.#left);
         }
-
         if (node.#value < value) {
             if (node.#right === null) {
                 node.#right = new Node();
@@ -47,16 +44,13 @@ class Node {
             return this.search(value, node.#right);
         }
     }
-
-
-
     remove(value, node, linkParent, flag){
+        if(!this.search(value)){
+            return false;
+        }
         node = node || this;
         linkParent = linkParent || this;
         flag = flag || false;
-
-
-
         if(flag) {
           if (node.#right !== null) {
           return this.remove(value, node.#right, node, flag);
@@ -65,19 +59,14 @@ class Node {
             return node.#value;
           }
         }
-
-
         if(node.#value === value) {
           if (node.#left === null && node.#right === null){
-            console.log(linkParent)
-            console.log('rgr')
-              if(linkParent.#left.#value === node.#value){
+              if(linkParent.#left && linkParent.#left.#value === node.#value){
                 linkParent.#left = null;
                 return true;
-              } else{
-                linkParent.#right = null;
-                return true;
               }
+              linkParent.#right = null;
+              return true;
           }
           if(node.#left === null && node.#right){
               node.#value = node.#right.#value;
@@ -92,7 +81,7 @@ class Node {
           if(node.#left && node.#right) {
             if(node.#left.#right) {
               flag = true;
-              node.#value = this.remove(value, node.#left, node, flag)
+              node.#value = this.remove(value, node.#left, node, flag);
               flag = false;
               return true;
             } else {
@@ -103,22 +92,11 @@ class Node {
           }
         } else {
           if(node.#value < value) {
-              return this.remove(value, node.#right, node, flag)
+              return this.remove(value, node.#right, node, flag);
           }
           if(node.#value > value) {
-              return this.remove(value, node.#left, node, flag)
+              return this.remove(value, node.#left, node, flag);
           }
         }
     }
 }
-
-
-let node = new Node();
-node.insert(50);
-node.insert(60);
-node.insert(70);
-node.insert(75);
-node.insert(65);
-node.insert(66);
-
-console.dir(node)
