@@ -100,3 +100,27 @@ class Node {
         }
     }
 }
+function sortSelection(array, callback){
+    for(let i = 0; i < array.length; i++){
+        for(let j = i+1; j < array.length; j++){
+            if(callback(array[i], array[j])){
+                let copyElement = array[i];
+                array[i] = array[j];
+                array[j] = copyElement;
+            }
+        }
+    }
+    return array;
+}
+function sortBubble(array, callback) {
+    for (let i = array.length - 1; i > 0; i--) {
+      for (let j = 0; j < i; j++) {
+        if (callback(array[j], array[j + 1])) {
+          let copyElement = array[j];
+          array[j] = array[j + 1];
+          array[j + 1] = copyElement;
+        }
+      }
+    }
+    return array;
+}
