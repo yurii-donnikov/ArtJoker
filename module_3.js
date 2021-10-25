@@ -28,25 +28,31 @@ class Node {
     }
     search(value, node) {
         node = node || this;
+        if(arguments[0] === undefined){
+            return null;
+        }
         if(node.#value === value){
-            return true;
+            return node.#value;
         }
         if(node.#value > value) {
             if(node.#left === null) {
-                return false;
+                return null;
             }
             return this.search(value, node.#left);
         }
         if(node.#value < value) {
             if(node.#right === null) {
-                return false;
+                return null;
             }
             return this.search(value, node.#right);
         }
     }
     remove(value, node, linkParent, flag){
+        if(arguments[0] === undefined){
+            return null;
+        }
         if(!this.search(value)){
-            return false;
+            return null;
         }
         node = node || this;
         linkParent = linkParent || this;
@@ -63,31 +69,26 @@ class Node {
           if (node.#left === null && node.#right === null){
               if(linkParent.#left && linkParent.#left.#value === node.#value){
                 linkParent.#left = null;
-                return true;
+              } else{
+                linkParent.#right = null;
               }
-              linkParent.#right = null;
-              return true;
           }
           if(node.#left === null && node.#right){
               node.#value = node.#right.#value;
               node.#right = node.#right.#right;
-              return true;
           }
           if(node.#left && node.#right === null){
               node.#value = node.#left.#value;
               node.#left = node.#left.#left;
-              return true;
           }
           if(node.#left && node.#right) {
             if(node.#left.#right) {
               flag = true;
               node.#value = this.remove(value, node.#left, node, flag);
               flag = false;
-              return true;
             } else {
               node.#value = node.#left.#value;
               node.#left = node.#left.#left;
-              return true;
             }
           }
         } else {
@@ -110,7 +111,6 @@ function sortSelection(array, callback){
             }
         }
     }
-    return array;
 }
 function sortBubble(array, callback) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -122,5 +122,4 @@ function sortBubble(array, callback) {
         }
       }
     }
-    return array;
 }
