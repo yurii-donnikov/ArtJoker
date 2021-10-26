@@ -104,12 +104,18 @@ class Node {
 Array.prototype.sortSelection = function (callback){
     let array = this;
     for(let i = 0; i < array.length; i++){
-        for(let j = i+1; j < array.length; j++){
-            if(callback(array[i], array[j])){
-                let copyElement = array[i];
-                array[i] = array[j];
-                array[j] = copyElement;
+        let resultElement = array[i];
+        let index;
+        for(let j = i + 1; j < array.length; j++){
+            if(callback(resultElement, array[j])){
+                resultElement = array[j];
+                index = j;
             }
+        }
+        if(index){
+            let temp = array[i];
+            array[i] = resultElement;
+            array[index] = temp;
         }
     }
 }
