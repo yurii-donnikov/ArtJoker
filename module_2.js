@@ -6,10 +6,10 @@ Function.prototype.myBind = function (object, ...arg) {
         return copyObject.func(...arg)
     }
 }
-Function.prototype.myCall = function (obj) {
+Function.prototype.myCall = function (obj, ...arg) {
     let copyObj = Object.assign({}, obj);
     copyObj.func = this;
-    return copyObj.func();
+    return copyObj.func(...arg);
 }
 //2
 Array.prototype.myForEach = function(calcForEach) {
