@@ -2,8 +2,8 @@
 Function.prototype.myBind = function (object, ...arg) {
     let copyObject = Object.assign({}, object);
     copyObject.func = this;
-    return function () {
-        return copyObject.func(...arg)
+    return function (...arg2) {
+        return copyObject.func(...arg, ...arg2)
     }
 }
 Function.prototype.myCall = function (obj, ...arg) {
