@@ -165,27 +165,33 @@ class Restaurant {
     }
     amountDismissed () {
         let count = 0;
-        this.employee.forEach((i) => {
-            if(i.works === false) {
-                count++;
-            }
-        })
-        return count;
+        if(this.department && this.employee) {
+            this.employee.forEach((i) => {
+                if(i.works === false) {
+                    count++;
+                }
+            })
+            return count;
+        }
+        return null;
     }
     departmentWithoutLeader(){
         let withLeader = {};
         let result = [];
-        this.employee.forEach((i) => {
-            if(i.leader) {
-                withLeader[i.department] = i;
-            }
-        })
-        this.department.forEach((i) => {
-           if(!withLeader[i.number]){
-               result.push(i.number);
-           }
-        })
-        return result;
+        if(this.department && this.employee) {
+            this.employee.forEach((i) => {
+                if(i.leader) {
+                    withLeader[i.department] = i;
+                }
+            })
+            this.department.forEach((i) => {
+               if(!withLeader[i.number]){
+                   result.push(i.number);
+               }
+            })
+            return result;
+        }
+        return null;
     }
 }
 let nn = new Restaurant()
