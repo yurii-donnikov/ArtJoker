@@ -89,14 +89,16 @@ class Restaurant {
             }
         ]
     }
-    sumSalary(){
+    sumSalary(callback){
         let result = {};
         if(this.department && this.employee) {
             this.employee.forEach((i) => {
-                if(result[i.department]) {
-                    result[i.department] += i.salary;
-                } else {
-                    result[i.department] = i.salary;
+                if(callback(i)){
+                    if(result[i.department]) {
+                        result[i.department] += i.salary;
+                    } else {
+                        result[i.department] = i.salary;
+                    }
                 }
             })
             return result;
