@@ -1,67 +1,115 @@
-let obj = {  
-    a: 100,
-    b: 200
-};
-let func = function( c, d ) { return this.a + this.b + c + d};
-let newFunc = func.bind( obj, 300, 4);
-Function.prototype.myBind = function (object, ...arg) {
-    let copyObject = Object.assign({}, object);
-    copyObject.func = this;
-    return function () {
-        return copyObject.func(...arg)
+//let request = new Request ( "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5" )
+
+// fetch ( 'https://freecurrencyapi.net/api/v2/latest?apikey=dae13160-3b0e-11ec-8361-e108ba6473f9' )
+//     .then ( response => {
+//         response.json().then ( response =>
+//             console.log(response)
+//         )
+// })
+
+
+
+
+class Bank {
+    constructor(){
+        this.clients = [
+            {
+                name: 'Ivan Ivanov',
+                isActive: true,
+                registration: new Date (2013, 13, 1),
+                check:[
+                    {
+                        name: 'checkDebet',
+                        balance: 1000,
+                        active: true,
+                        activeData: new Date (2025, 13, 1),
+                        currency: 'UAH',
+                    },
+                    {
+                        name:'checkKredit',
+                        balance: 2000,
+                        limit: 1000,
+                        active: true,
+                        activeData: new Date (2025, 13, 1),
+                        currency: 'PLN',
+                    }
+                ],
+            },
+            {
+                name: 'Oleg Olegov',
+                isActive: true,
+                registration: (2013, 13, 1),
+                check:[
+                    {
+                        name: 'checkDebet',
+                        balance: 1000,
+                        active: true,
+                        activeData: new Date (2025, 13, 1),
+                        currency: 'UAH',
+                    },
+                    {
+                        name:'checkKredit',
+                        balance: 900,
+                        limit: 1000,
+                        active: true,
+                        activeData: new Date (2025, 13, 1),
+                        currency: 'PLN',
+                    }
+                ],
+            },
+            {
+                name: 'Roman Romanov',
+                isActive: true,
+                registration: (2013, 13, 1),
+                check:[
+                    {
+                        name: 'checkDebet',
+                        balance: 100,
+                        active: true,
+                        activeData: new Date (2025, 13, 1),
+                        currency: 'UAH',
+                    },
+                    {
+                        name:'checkKredit',
+                        balance: 1000,
+                        limit: 1000,
+                        active: true,
+                        activeData: new Date (2025, 13, 1),
+                        currency: 'EUR',
+                    }
+                ],
+            }
+        ]
     }
-}
-let newFunc2 = func.myBind( obj, 3000, 2);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-let obj = {
-    a: 1,
-}
-
-
-let func = function(c, d) {return this.a + c + d};
-let bb = func.bind(obj, 40, 30)
-
-
-let a = 100
-Function.prototype.a = 6666
-
-Function.prototype.myBind = function(object, ...arg) {
-    let objCopy = Object.assign(object);
-
-    objCopy.func = this
-
-    //objCopy.func.prototype = objCopy
-    console.log(objCopy.func.prototype.a)
-
-    return objCopy
-}
-
-
-
-
-Function.prototype.myBind = function (object, ...arg) {
-    let copyObject = Object.assign({}, object);
-    copyObject.func = this;
-    return function () {
-        return copyObject.func(...arg)
+    async haveMoney() {
+        let response = await fetch ('https://freecurrencyapi.net/api/v2/latest?apikey=dae13160-3b0e-11ec-8361-e108ba6473f9');
+        let currencies = await response.json()
+        let result = 0;
+     
+        this.clients.forEach((i) => {
+            if(i.check){
+                i.check.forEach((j) => {
+                    if(!j.limit){
+                        if(j.currency === 'PLN'){
+                            result += j.balance
+                        } else {
+                            result += j.balance / currencies.data[j.currency]
+                        }
+                    } else {
+                        if(j.currency === 'PLN'){
+                            result += j.balance
+                        } else {
+                            result += j.balance / currencies.data[j.currency]
+                        }
+                    }
+                })
+            }
+        })
+       return result
     }
+
+
 }
-let bnd = func.myBind(obj)
+
+let bank = new Bank()
+
