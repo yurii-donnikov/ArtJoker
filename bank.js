@@ -5,7 +5,7 @@ class Bank {
                 name: 'Ivan Ivanov',
                 isActive: true,
                 registration: new Date (2013, 13, 1),
-                check:[
+                checks:[
                     {
                         name: 'Debet',
                         balance: 1000,
@@ -27,7 +27,7 @@ class Bank {
                 name: 'Oleg Olegov',
                 isActive: false,
                 registration: new Date (2013, 13, 1),
-                check:[
+                checks:[
                     {
                         name: 'Debet',
                         balance: 1000,
@@ -49,7 +49,7 @@ class Bank {
                 name: 'Roman Romanov',
                 isActive: false,
                 registration: new Date (2013, 13, 1),
-                check:[
+                checks:[
                     {
                         name: 'Debet',
                         balance: 100,
@@ -75,14 +75,14 @@ class Bank {
         let currencies = (await response.json()).data;
         let result = 0;
         if(this.clients.length) {
-            this.clients.forEach((i) => {
-                if(i.check.length) {
-                    i.check.forEach((j) => {
-                        if(j.currency === callback(j)){
-                            result += j.balance;
+            this.clients.forEach((client) => {
+                if(client.checks.length) {
+                    client.checks.forEach((check) => {
+                        if(check.currency === callback(check)){
+                            result += check.balance;
                         }
                         else {
-                            result += (j.balance / currencies[j.currency]) * currencies[callback(j)];
+                            result += (check.balance / currencies[check.currency]) * currencies[callback(check)];
                         }
                     })
                 }
@@ -97,14 +97,14 @@ class Bank {
         let {data} = await response.json();
         let result = 0;
         if(this.clients.length) {
-            this.clients.forEach((i) => {
-                if(i.check.length){
-                    i.check.forEach((j) => {
-                        if(j.name === 'Credit' && j.balance < j.limit){
-                            if(j.currency === callback(j)){
-                                result += j.limit - j.balance;
+            this.clients.forEach((client) => {
+                if(client.checks.length){
+                    client.checks.forEach((check) => {
+                        if(check.name === 'Credit' && check.balance < check.limit){
+                            if(check.currency === callback(check)){
+                                result += check.limit - check.balance;
                             } else {
-                                result += ((j.limit / data[j.currency]) * data[callback(j)]) - ((j.balance / data[j.currency]) * data[callback(j)]);
+                                result += ((check.limit / data[check.currency]) * data[callback(check)]) - ((check.balance / data[check.currency]) * data[callback(check)]);
                             }
                         }
                     })
@@ -122,16 +122,16 @@ class Bank {
         result.clients = 0;
         result.debt = 0;
         if(this.clients.length) {
-            this.clients.forEach((i) => {
-                if(isActive(i)){
-                    i.check.forEach((j) => {
-                        if(j.name === 'Credit' && j.balance < j.limit){
-                            if(j.currency === callback(j)){
+            this.clients.forEach((client) => {
+                if(isActive(client)){
+                    client.checks.forEach((check) => {
+                        if(check.name === 'Credit' && check.balance < check.limit){
+                            if(check.currency === callback(check)){
                                 result.clients++;
-                                result.debt += j.limit - j.balance;
+                                result.debt += check.limit - check.balance;
                             } else {
                                 result.clients++;
-                                result.debt += ((j.limit / currencies[j.currency]) * currencies[callback(j)]) - ((j.balance / currencies[j.currency]) * currencies[callback(j)]);
+                                result.debt += ((check.limit / currencies[check.currency]) * currencies[callback(check)]) - ((check.balance / currencies[check.currency]) * currencies[callback(check)]);
                             }
                         } 
                     })
@@ -141,6 +141,5 @@ class Bank {
         }
         return null;
     }
-
 }
 let bank = new Bank()
