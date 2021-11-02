@@ -92,7 +92,7 @@ class Bank {
         return null;
     }
 
-    async oweMoney(callback){
+    async debtMoney(callback){
         let response = await fetch ('https://freecurrencyapi.net/api/v2/latest?apikey=dae13160-3b0e-11ec-8361-e108ba6473f9');
         let {data} = await response.json();
         let result = 0;
@@ -100,15 +100,13 @@ class Bank {
             this.clients.forEach((i) => {
                 if(i.check.length){
                     i.check.forEach((j) => {
-                        if(j.name === 'Credit'){
-                            if (j.balance < j.limit){
-                                if(j.currency === callback(j)){
-                                    result += j.limit - j.balance;
-                                } else {
-                                    result += ((j.limit / data[j.currency]) * data[callback(j)]) - ((j.balance / data[j.currency]) * data[callback(j)]);
-                                }
+                        if(j.name === 'Credit' && j.balance < j.limit){
+                            if(j.currency === callback(j)){
+                                result += j.limit - j.balance;
+                            } else {
+                                result += ((j.limit / data[j.currency]) * data[callback(j)]) - ((j.balance / data[j.currency]) * data[callback(j)]);
                             }
-                        } 
+                        }
                     })
                 }
             })
@@ -117,25 +115,23 @@ class Bank {
         return null;
     }
 
-    async sumClientsOwe(callback, isActive){   // ( (i) => 'EUR', (i) => !i.isActive )
+    async sumClientsDebt(callback, isActive){   // ( (i) => 'EUR', (i) => !i.isActive )
         let response = await fetch ('https://freecurrencyapi.net/api/v2/latest?apikey=dae13160-3b0e-11ec-8361-e108ba6473f9');
         let currencies = (await response.json()).data;
-        let result = [];
-        result[0] = 0;
-        result[1] = 0;
+        let result = {};
+        result.clients = 0;
+        result.debt = 0;
         if(this.clients.length) {
             this.clients.forEach((i) => {
                 if(isActive(i)){
                     i.check.forEach((j) => {
-                        if(j.name === 'Credit'){
-                            if (j.balance < j.limit){
-                                if(j.currency === callback(j)){
-                                    result[0]++;
-                                    result[1] += j.limit - j.balance;
-                                } else {
-                                    result[0]++;
-                                    result[1] += ((j.limit / currencies[j.currency]) * currencies[callback(j)]) - ((j.balance / currencies[j.currency]) * currencies[callback(j)]);
-                                }
+                        if(j.name === 'Credit' && j.balance < j.limit){
+                            if(j.currency === callback(j)){
+                                result.clients++;
+                                result.debt += j.limit - j.balance;
+                            } else {
+                                result.clients++;
+                                result.debt += ((j.limit / currencies[j.currency]) * currencies[callback(j)]) - ((j.balance / currencies[j.currency]) * currencies[callback(j)]);
                             }
                         } 
                     })
