@@ -1,6 +1,6 @@
 class Restaurant {
     constructor() {
-      this.department = [
+      this.departments = [
         {
           number: 1,
           name: 'hall'
@@ -14,7 +14,7 @@ class Restaurant {
           name: 'dessert cook'
         },
       ];
-      this.employee = [
+      this.employees = [
         {
           name:'maks',
           position: 'barman',
@@ -46,7 +46,7 @@ class Restaurant {
         {
           name:'semen',
           position: 'ofitsiant',
-          leader: true,
+          isLeader: true,
           salary: 40,
           isWorks: true,
           department: 1,
@@ -83,7 +83,6 @@ class Restaurant {
           name:'igor',
           position: 'dessert cook',
           salary: 150,
-          leader: true,
           isWorks: false,
           department: 4,
         },
@@ -99,13 +98,13 @@ class Restaurant {
 
     sumSalary(callback){
       let result = {};
-      if(this.department.length && this.employee.length) {
-        this.employee.forEach((i) => {
-          if(callback(i)){
-            if(result[i.department]) {
-              result[i.department] += i.salary;
+      if(this.departments.length && this.employees.length) {
+        this.employees.forEach((employee) => {
+          if(callback(employee)){
+            if(result[employee.department]) {
+              result[employee.department] += employee.salary;
             } else {
-              result[i.department] = i.salary;
+              result[employee.department] = employee.salary;
             }
           }
         })
@@ -117,55 +116,53 @@ class Restaurant {
     averageSalary(callback){
       let result = 0;
       let count = 0;
-      if(this.department.length && this.employee.length) {
-        this.employee.forEach((i) => {
-          if(callback(i)){
+      if(this.departments.length && this.employees.length) {
+        this.employees.forEach((employee) => {
+          if(callback(employee)){
             count++;
-            result += i.salary;
+            result += employee.salary;
           }
         })
         return result/count;
-      } 
+      }
       return null;
     }
-  
+
     salaryMinToMax(callback){
       let result = {};
-      if(this.department.length && this.employee.length) {
-        this.department.forEach((i) => {
-          result[i.number] = {};
-          this.employee.forEach((j) => {
-            if(callback(j)){
-              if(i.number === j.department){
-                if(result[i.number][j.position]){
-                  if(result[i.number][j.position].min > j.salary){
-                    result[i.number][j.position].min = j.salary;
+      if(this.departments.length && this.employees.length) {
+        this.departments.forEach((department) => {
+          result[department.number] = {};
+          this.employees.forEach((employee) => {
+            if(callback(employee) && department.number === employee.department){
+                if(result[department.number][employee.position]){
+                  if(result[department.number][employee.position].min > employee.salary){
+                    result[department.number][employee.position].min = employee.salary;
                   }
-                  if(result[i.number][j.position].max < j.salary){
-                    result[i.number][j.position].max = j.salary;
+                  if(result[department.number][employee.position].max < employee.salary){
+                    result[department.number][employee.position].max = employee.salary;
                   }
                 } else {
-                  result[i.number][j.position] = {};
-                  result[i.number][j.position].min = j.salary;
-                  result[i.number][j.position].max = j.salary;
+                  result[department.number][employee.position] = {};
+                  result[department.number][employee.position].min = employee.salary;
+                  result[department.number][employee.position].max = employee.salary;
                 }
-              }
             }
           })
-          if(Object.keys(result[i.number]).length === 0){
-            delete result[i.number];
+          if(Object.keys(result[department.number]).length === 0){
+            delete result[department.number];
           }
         })
         return result;
       }
       return null;
     }
-  
+
     amountEmployee (callback) {
       let result = 0;
-      if(this.department.length && this.employee.length) {
-        this.employee.forEach((i) => {
-          if(callback(i)) {
+      if(this.departments.length && this.employees.length) {
+        this.employees.forEach((employee) => {
+          if(callback(employee)) {
             result++;
           }
         })
@@ -177,23 +174,23 @@ class Restaurant {
     departmentLeader(callback){
         let leader = [];
         let notLeader = [];
-        if(this.department.length && this.employee.length) {
-          this.employee.forEach((i) => {
-            if(i.leader) {
-                leader.push(i.department);
+        if(this.departments.length && this.employees.length) {
+          this.employees.forEach((employee) => {
+            if(employee.isLeader) {
+                leader.push(employee.department);
             }
-            if(callback(i)){
-                notLeader.push(i.department);
+            if(callback(employee)){
+                notLeader.push(employee.department);
             }
           })
           if(leader.toString() === notLeader.toString()) {
             return leader;
           }
-          leader.forEach((i) => {
-            for(let j = 0; j < notLeader.length; j++){
-              if(i === notLeader[j]){
-                notLeader.splice(j, 1);
-                j--;
+          leader.forEach((item) => {
+            for(let i = 0; i < notLeader.length; i++){
+              if(item === notLeader[i]){
+                notLeader.splice(i, 1);
+                i--;
               }
             }
           })
