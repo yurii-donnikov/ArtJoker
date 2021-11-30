@@ -3,16 +3,19 @@
 Для ссылочного типа данных создается кусок в памяти в котором она хранится, когда идет передача значения, создается переменная под которую выделяется память и она хранит ссылку на отрезок памяти в котором хранится объект или массив.
 
 2. Цикл 'for await of' создает цикл который проходится через асинхронные итерируемые объекты (у которых есть объект итератор).
-async function* asyncFunction (){
-    yield 1;
-    yield 1;
-    yield 1;
-    yield 1;
-    yield 1;
+async function* asycnGenerate(start, end) {
+  for (let i = start; i <= end; i++) {
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    yield i;
+  }
 }
-​
-(async () => {
-    for await(let item of asyncFunction()){
-        console.log(item);
+let range = {
+  from: 1,
+  to: 5,
+  async *[Symbol.asyncIterator]() {
+    for(let value = this.from; value <= this.to; value++) {
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      yield value;
     }
-})();
+  }
+};
