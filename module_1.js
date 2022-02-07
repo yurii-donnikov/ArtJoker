@@ -15,6 +15,29 @@ function monogramma(wordOne, wordTwo) {
     }
     return (arrayWordTwo.length == 0);
 }
+
+function monogramma (w1, w2) {
+  let word1 = w1.split('');  // ['a', 's', 'd']
+  let word2 = w2.split('');  // ['d', 's', 'a']
+  if(word1.length !== word2.length) {
+    return false;
+  }
+  for (let i = 0; i < word1.length; i++) {
+    for(let j = 0; j < word1.length; j++) {
+      if(word1[i] === word2[j]) {
+        word2.splice(j, 1);
+        j--;
+        break;
+      }
+    }
+  };
+  if(!word2.length) {
+    console.log(word2)
+    return true;
+  }
+  console.log(word2)
+  return false;
+} 
 //les3
 function calculateDigitsNumber(number) {
     let resultObject = {};
