@@ -32,11 +32,24 @@ function monogramma (w1, w2) {
     }
   };
   if(!word2.length) {
-    console.log(word2)
+
     return true;
   }
-  console.log(word2)
+
   return false;
+} 
+
+function monogramma (word1, word2) {
+  let numberCode = 0;
+  let numberCode2 = 0;
+  for(let i  = 0; i < word1.length; i++) {
+    numberCode += word1[i].charCodeAt()
+  }
+  for(let i  = 0; i < word2.length; i++) {
+    numberCode2 += word2[i].charCodeAt()
+  }
+ 
+  return numberCode === numberCode2
 } 
 //les3
 function calculateDigitsNumber(number) {
